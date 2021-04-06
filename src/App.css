@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+/* Main CSS */
+@font-face {
+  font-family: 'BTBrik';
+  src: url('./BTBrikRegular.otf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Navbar CSS */
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid cyan;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Landing CSS */
+.landing {
+  background: url('./images/landing.png') no-repeat center fixed;
+  background-size: cover;
+  height: 100vh;
+  overflow: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.landing .landing-inner {
+  margin-top: 150px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.landing-inner .landing-logo {
+  height: 250px;
+  width: 250px;
 }
+
+.landing-inner .card {
+  background: transparent;
+}
+
+.landing-inner .title {
+  font-family: 'btbrik';
+  font-size: 9rem;
+  color: #ececec;
+  text-shadow: 0px 0px 1px white;
+}
+
+.landing-inner .title-letter {
+  font-weight: 700;
+  display: inline-block;
+  transform-origin: 0 0;
+}
+
+/* Layout CSS */
+
+/* Landing */
