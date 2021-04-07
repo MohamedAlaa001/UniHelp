@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-sm navbar-dark fixed-top'>
-      <div className='container py-0 py-lg-2'>
+      <div className='container py-1'>
         <Link className='navbar-brand' to='/'>
           <img
             src={logo}
+            alt=''
             width='30'
             height='30'
             className='d-inline-block align-top me-1'
