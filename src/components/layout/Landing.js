@@ -58,11 +58,11 @@ const Landing = ({ isAuthenicated, login }) => {
               <div className='col-lg-6'>
                 <div className='form d-flex align-items-center'>
                   <div className='content'>
-                    <Alert />
                     <form
                       className='form-validate mb-4'
                       onSubmit={(e) => onSubmit(e)}
                     >
+                      <Alert />
                       <div className='form-floating mb-3'>
                         <input
                           type='text'

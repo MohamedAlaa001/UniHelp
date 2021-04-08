@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+// import PrivateRoute from './components/routing/PrivateRoute';
 
 import Landing from './components/layout/Landing';
-// import Navbar from './components/layout/Navbar';
-
+import Dashboard from './components/dashboard/Dashboard';
 import NotFound from './components/pages/NotFound';
 
 function App() {
@@ -14,10 +14,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <Fragment>
-          {/* <Navbar /> */}
           <Switch>
             <Route exact path='/' component={Landing} />
-            {/* <Route exact path='/dashboard' component={Dashboard} /> */}
+            <Route exact path='/dashboard' component={Dashboard} />
             <Route component={NotFound} />
           </Switch>
         </Fragment>
