@@ -33,20 +33,24 @@ const Navbar = () => {
             {/* Messages box // dropdown*/}
             <div className='list-inline-item dropdown'>
               <a
-                href='#messagesCollapse'
-                className='nav-link messages-toggle'
+                href='#'
+                id='messageMenu'
+                className='nav-link messages-toggle '
                 data-bs-toggle='collapse'
+                data-bs-target='#messagesCollapse'
                 role='button'
                 aria-expanded='false'
+                aria-haspopup='true'
               >
                 <i className='icon-email'></i>
                 <span className='badge dashbg-1'>4</span>
               </a>
 
               <div
-                className='collapse collapse-menu'
+                className='collapse dropdown-menu'
                 id='messagesCollapse'
                 data-bs-parent='#collapseMenu'
+                aria-labelledby='messageMenu'
               >
                 <a
                   href='#'
@@ -123,28 +127,6 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
-            {/* <div className='list-inline-item dropdown'>
-              <a
-                href='#languagesCollapse'
-                className='nav-link language dropdown-toggle'
-                data-bs-toggle='collapse'
-                role='button'
-                aria-expanded='false'
-              >
-                <img src={GB} alt='English' />
-                <span className='d-none d-sm-inline-block'>English</span>
-              </a>
-              <div
-                className='collapse collapse-menu'
-                id='languagesCollapse'
-                data-bs-parent='#collapseMenu'
-              >
-                <a href='#' className='dropdown-item'>
-                  <img src={EG} alt='Arabic' className='me-2' />
-                  <span>Arabic</span>
-                </a>
-              </div>
-            </div> */}
 
             {/* Logout */}
             <div className='list-inline-item logout'>

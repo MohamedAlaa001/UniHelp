@@ -25,13 +25,3 @@ export const sidebarHandleClick = () => {
     }
   });
 };
-
-// Navbar dropdown exit on document click
-document.addEventListener('click', () => {
-  let myDropdown = document.querySelector(
-    'nav.navbar .dropdown-menu.collapse.show'
-  );
-  let bsDropdown = bootstrap.Collapse.getInstance(myDropdown);
-
-  console.log(bsDropdown);
-});
