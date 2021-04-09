@@ -1,13 +1,14 @@
-/* General CSS */
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+/*
+* ==========================================================
+* General Styling 
+* ==========================================================
+*/
+body {
+  position: relative;
 }
-.dark-overlay {
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+
+section {
+  padding: 0 1rem;
 }
 
 a {
@@ -243,8 +244,7 @@ pre {
   min-height: 70px;
 }
 
-.dropdown-menu,
-.collapse-menu {
+.dropdown-menu {
   -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1),
     -1px -1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
@@ -254,17 +254,14 @@ pre {
   background: #2d3035;
   border-radius: 0;
   padding: 0;
-  /*margin-top: 21px;*/
   border: 1px solid #393c43;
 }
 
-.dropdown-menu a,
-.collapse-menu a {
+.dropdown-menu a {
   color: inherit;
 }
 
-.dropdown-menu a:hover,
-.collapse-menu a:hover {
+.dropdown-menu a:hover {
   background: #379392;
   color: #fff;
 }
@@ -293,15 +290,13 @@ i[class*='icon-'] {
   transform: translateY(2px);
 }
 
-.dropdown-menu a,
-.collapse-menu a {
+.dropdown-menu a {
   padding: 10px 15px;
   font-size: 0.9rem;
   text-transform: none;
 }
 
-.dropdown-menu a:hover,
-.collapse-menu a:hover {
+.dropdown-menu a:hover {
   color: #fff;
 }
 
@@ -330,9 +325,9 @@ i[class*='icon-'] {
   font-size: 0.95rem;
 }
 /*
-* 
+* ========================================================== 
 * Navbar 
-*
+* ==========================================================
 */
 nav.navbar {
   background: #2d3035;
@@ -392,38 +387,11 @@ nav.navbar .messages-toggle {
   margin-right: 15px;
 }
 
-nav.navbar .dropdown-menu,
-nav.navbar .collapse-menu {
+nav.navbar .dropdown-menu {
   min-width: 300px;
   margin-top: 21px;
-  /* left: auto; */
-  right: 0;
-}
-/* effects */
-nav.navbar .dropdown-menu.collapsing {
-  display: block;
-}
-
-nav.navbar .collapse.collapse-menu,
-nav.navbar .collapsing.collapse-menu {
-  position: absolute;
-  top: 100%;
   left: auto;
   right: 0;
-  z-index: 1000;
-  background: #2d3035;
-  color: #8a8d93;
-
-  min-width: 300px;
-  padding: 0;
-  margin-top: 21px;
-  border: 1px solid #393c43;
-  border-radius: 0;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-
-  text-align: left;
-  list-style: none;
-  font-size: 1rem;
 }
 
 nav.navbar .messages a {
@@ -470,6 +438,19 @@ nav.navbar a.language span {
   vertical-align: middle;
 }
 
+/* Navbar dropdown effect */
+nav.navbar .dropdown .dropdown-menu {
+  -webkit-transform: translateY(50px);
+  transform: translateY(50px);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+nav.navbar .dropdown .dropdown-menu.show {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
 /* Navbar Media Query ----------------------------------- */
 @media (max-width: 1199px) {
   nav.navbar .right-menu {
@@ -514,8 +495,7 @@ nav.navbar a.language span {
 }
 
 @media (max-width: 991px) {
-  nav.navbar .dropdown-menu,
-  nav.navbar .collapse-menu {
+  nav.navbar .dropdown-menu {
     right: -140px;
   }
   nav.navbar a.nav-link {
@@ -535,14 +515,14 @@ nav.navbar a.language span {
   nav.navbar .dropdown {
     position: static;
   }
-  nav.navbar .dropdown-menu,
-  nav.navbar .collapse-menu {
+  nav.navbar .dropdown-menu {
     width: 90vw;
     right: 2.5vw;
     left: 2.5vw;
     margin: 0 auto;
   }
 }
+
 /*
 * 
 * SIDEBAR
@@ -1396,9 +1376,9 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
 }
 
 /*
-*
+* ==========================================================
 * LANDING PAGE
-*
+* ==========================================================
 */
 
 .landing {
@@ -1424,19 +1404,19 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
   padding: 40px;
   height: 100%;
 }
-/* reset col padding */
+
 .landing .form-holder div[class*='col-'] {
   padding: 0;
-}
-
-.landing .form-holder .info h1 {
-  font-size: 2.5em;
-  font-weight: 700;
 }
 
 .landing .form-holder .info {
   background: rgba(55, 147, 146, 0.95);
   color: #fff;
+}
+
+.landing .form-holder .info h1 {
+  font-size: 2.5em;
+  font-weight: 700;
 }
 
 .landing .form-holder .form {
@@ -1484,9 +1464,9 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
 }
 
 /*
-*
+* ==========================================================
 * Forms
-*
+* ==========================================================
 */
 
 .form-control {
@@ -1633,24 +1613,21 @@ input[type='submit'] {
   transform: none;
 }
 
-.input-group .dropdown-menu,
-.input-group .collapse-menu {
+.input-group .dropdown-menu {
   padding: 15px;
   color: #777;
   border-radius: 0;
   margin-top: 5px;
 }
 
-.input-group .dropdown-menu a,
-.input-group .collapse-menu a {
+.input-group .dropdown-menu a {
   padding: 5px 0;
   color: inherit;
   text-decoration: none;
   display: block;
 }
 
-.input-group .dropdown-menu a:hover,
-.input-group .collapse-menu a:hover {
+.input-group .dropdown-menu a:hover {
   color: #379392;
   background: none !important;
 }
@@ -1745,12 +1722,6 @@ form label {
   background: #fff;
 }
 
-.form-floating > .form-control:focus ~ label.label-material,
-.form-floating > .form-control:not(:placeholder-shown) ~ label.label-material {
-  opacity: 1;
-  color: #379392;
-}
-
 input.input-material {
   width: 100%;
   border: none;
@@ -1800,9 +1771,9 @@ input.input-material ~ label.is-invalid ~ label {
 }
 
 /*
-* *******************************
+* =========================================
 * THEMING OF BOOTSTRAP COMPONENTS 
-* *******************************
+* =========================================
 * 1.Navbar
 */
 .navbar {
@@ -1964,6 +1935,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-primary:focus,
 .btn-primary.focus {
+  background-color: #2d7776;
+  border-color: #296e6d;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(55, 147, 146, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(55, 147, 146, 0.5);
 }
@@ -2004,6 +1977,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-secondary:focus,
 .btn-secondary.focus {
+  background-color: #727b84;
+  border-color: #6c757d;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(134, 142, 150, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(134, 142, 150, 0.5);
 }
@@ -2044,6 +2019,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-success:focus,
 .btn-success.focus {
+  background-color: #218838;
+  border-color: #1e7e34;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
 }
@@ -2084,6 +2061,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-info:focus,
 .btn-info.focus {
+  background-color: #138496;
+  border-color: #117a8b;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
@@ -2124,6 +2103,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-warning:focus,
 .btn-warning.focus {
+  background-color: #e0a800;
+  border-color: #d39e00;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
 }
@@ -2164,6 +2145,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-danger:focus,
 .btn-danger.focus {
+  background-color: #9f3741;
+  border-color: #95343d;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(187, 65, 77, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(187, 65, 77, 0.5);
 }
@@ -2204,6 +2187,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-light:focus,
 .btn-light.focus {
+  background-color: #d3d9df;
+  border-color: #cbd3da;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(233, 236, 239, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(233, 236, 239, 0.5);
 }
@@ -2244,6 +2229,8 @@ input.input-material ~ label.is-invalid ~ label {
 
 .btn-dark:focus,
 .btn-dark.focus {
+  background-color: #101214;
+  border-color: #0a0c0d;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5);
 }
@@ -2626,7 +2613,7 @@ a {
 a:focus,
 a:hover {
   color: #225b5b;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 h1,
@@ -3169,8 +3156,7 @@ pre code {
   border-color: #34373d;
 }
 
-.nav-tabs .dropdown-menu,
-.nav-tabs .collapse-menu {
+.nav-tabs .dropdown-menu {
   margin-top: -1px;
 }
 

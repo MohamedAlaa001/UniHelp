@@ -1,7 +1,7 @@
 import EG from '../../../images/flages/EG.png';
 import GB from '../../../images/flages/GB.png';
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Navbar = () => {
   return (

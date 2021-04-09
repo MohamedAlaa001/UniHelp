@@ -1,0 +1,99 @@
+/*
+* ==========================================================
+* General Styling
+* ==========================================================
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dark-overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+/*
+* ==========================================================
+* Navbar
+* ==========================================================
+*/
+nav.navbar .dropdown-menu.collapsing {
+  /* Collapse Effect */
+  display: block;
+}
+
+/*
+* ==========================================================
+* Forms
+* ==========================================================
+*/
+.form-floating > .form-control:focus ~ label.label-material,
+.form-floating > .form-control:not(:placeholder-shown) ~ label.label-material {
+  opacity: 1;
+  color: #379392;
+}
+
+/*
+*
+* Default bootstrap theme
+*
+*/
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+/*
+*
+* Alerts
+*
+*/
+.alert-primary {
+  color: #cfe2ff;
+  background-color: #379392;
+  border-color: #379392;
+}
+
+.alert-secondary {
+  color: #e2e3e5;
+  background-color: #868e96;
+  border-color: #868e96;
+}
+
+.alert-success {
+  color: #d1e7dd;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.alert-danger {
+  color: #f8d7da;
+  background-color: #bb414d;
+  border-color: #bb414d;
+}
+
+.alert-warning {
+  color: #664d03;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.alert-info {
+  color: #cff4fc;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.alert-light {
+  color: #636464;
+  background-color: #e9ecef;
+  border-color: #e9ecef;
+}
+
+.alert-dark {
+  color: #d3d3d4;
+  background-color: #212529;
+  border-color: #212529;
+}
