@@ -20,7 +20,6 @@ function App() {
           <Switch>
             <Route exact path='/' component={Landing} />
             <PrivateRoute component={Dashboard} />
-            {/* <PrivateRoute path='/home' component={Dashboard} /> */}
             <Route component={NotFound} />
           </Switch>
         </Fragment>

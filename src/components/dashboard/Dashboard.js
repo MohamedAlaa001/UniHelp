@@ -6,7 +6,7 @@ import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
 import Footer from './layout/Footer';
 import Home from './Home';
-import PrivateRoute from '../routing/PrivateRoute';
+import NotFound from '../pages/NotFound';
 
 const Dashboard = () => {
   let { path } = useRouteMatch();
