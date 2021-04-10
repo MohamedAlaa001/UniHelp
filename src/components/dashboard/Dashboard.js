@@ -1,12 +1,15 @@
 import React, { Fragment, useEffect } from 'react';
-import { sidebarHandleClick } from './methods';
+import { sidebarHandleClick } from './handlersMethods';
+import { Route, Switch, useRouteMatch, Redirect } from 'react-router-dom';
 
 import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
 import Footer from './layout/Footer';
 import Home from './Home';
+import PrivateRoute from '../routing/PrivateRoute';
 
 const Dashboard = () => {
+  let { path } = useRouteMatch();
   useEffect(() => {
     sidebarHandleClick();
   }, []);
@@ -17,7 +20,17 @@ const Dashboard = () => {
       <div className='d-flex align-items-stretch'>
         <Sidebar />
         <div className='page-content'>
-          <Home />
+          <Switch>
+            <Route exact path={'/home'}>
+              <Home name={'Home'} />
+            </Route>
+            <Route exact path={'/test'}>
+              <Home name={'Test'} />
+            </Route>
+            <Route exact path={'/messages'}>
+              <Home name={'Messages'} />
+            </Route>
+          </Switch>
           <Footer />
         </div>
       </div>

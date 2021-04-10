@@ -4,7 +4,9 @@ import store from './store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './customStyle.css';
-// import PrivateRoute from './components/routing/PrivateRoute';
+import './vendor/font-awesome/css/font-awesome.min.css';
+import './vendor/font.css';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 import Landing from './components/layout/Landing';
 import Dashboard from './components/dashboard/Dashboard';
@@ -17,7 +19,8 @@ function App() {
         <Fragment>
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute component={Dashboard} />
+            {/* <PrivateRoute path='/home' component={Dashboard} /> */}
             <Route component={NotFound} />
           </Switch>
         </Fragment>

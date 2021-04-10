@@ -3,3 +3,4 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const USER_LOADED = 'USER_LOADED';
+export const LOGOUT = 'LOGOUT';

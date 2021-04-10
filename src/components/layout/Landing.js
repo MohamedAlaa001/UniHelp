@@ -31,7 +31,7 @@ const Landing = ({ isAuthenicated, login }) => {
   };
 
   if (isAuthenicated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/home' />;
   }
 
   return (

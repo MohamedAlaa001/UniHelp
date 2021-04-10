@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div className='page-header'>
       <div className='container-fluid'>
-        <h2 className='h5 no-margin-bottom'>Dashboard</h2>
+        <h2 className='h5 no-margin-bottom'>{props.name}</h2>
       </div>
     </div>
   );

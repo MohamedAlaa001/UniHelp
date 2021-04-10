@@ -1,4 +1,9 @@
-import { LOGIN_SUCCESS, LOGIN_FAILED, USER_LOADED } from '../actions/types';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  USER_LOADED,
+  LOGOUT,
+} from '../actions/types';
 
 const initialState = {
   isAuthenicated: null,
@@ -25,6 +30,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case LOGIN_FAILED:
+    case LOGOUT:
       return {
         ...state,
         isAuthenicated: false,

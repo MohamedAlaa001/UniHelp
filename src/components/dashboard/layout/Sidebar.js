@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+
+import NavItem from './NavItem';
 
 const Sidebar = () => {
   return (
@@ -16,18 +17,9 @@ const Sidebar = () => {
         {/* Sidebar Menu start */}
         <span className='heading'>Main</span> {/* Section 1 */}
         <ul className='list-unstyled'>
-          <li className='active'>
-            <Link to='/dashboard'>
-              <i className='icon-home'></i>
-              Home
-            </Link>
-          </li>
-          <li className=''>
-            <Link to='#'>
-              <i className='icon-light-bulb'></i>
-              Test
-            </Link>
-          </li>
+          <NavItem path={'/home'} icon={'home'} name={'Home'} />
+          <NavItem path={'/test'} icon={'light-bulb'} name={'Test'} />
+          <NavItem path={'/messages'} icon={'email'} name={'Messages'} />
           {/* Start Dropdown menu */}
           <li>
             <a
@@ -39,36 +31,18 @@ const Sidebar = () => {
               Dropdown Example
             </a>
             <ul className='list-unstyled collapse' id='menuDropdown'>
-              <li>
-                <a href='#'>Page 1</a>
-              </li>
-              <li>
-                <a href='#'>Page 2</a>
-              </li>
-              <li>
-                <a href='#'>Page 3</a>
-              </li>
+              <NavItem path={'/demo'} name={'Page 1'} />
+              <NavItem path={'/demo'} name={'Page 2'} />
+              <NavItem path={'/demo'} name={'Page 3'} />
             </ul>
           </li>
           {/* End Dropdown menu */}
         </ul>
         <span className='heading'>Extras</span> {/* Section 2 */}
         <ul className='list-unstyled'>
-          <li>
-            <a href='#'>
-              <i className='icon-settings'></i>Demo
-            </a>
-          </li>
-          <li>
-            <a href='#'>
-              <i className='icon-settings'></i>Demo
-            </a>
-          </li>
-          <li>
-            <a href='#'>
-              <i className='icon-settings'></i>Demo
-            </a>
-          </li>
+          <NavItem path={'/demo'} icon={'settings'} name={'Demo'} />
+          <NavItem path={'/demo'} icon={'settings'} name={'Demo'} />
+          <NavItem path={'/demo'} icon={'settings'} name={'Demo'} />
         </ul>
       </nav>
     </Fragment>

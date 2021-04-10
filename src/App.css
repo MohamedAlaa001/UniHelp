@@ -665,7 +665,7 @@ nav#sidebar li::before {
 }
 
 nav#sidebar li.active::before {
-  background: #379392;
+  background: #2db4b2;
 }
 
 nav#sidebar li.active > a {

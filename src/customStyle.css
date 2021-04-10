@@ -97,3 +97,33 @@ a:hover {
   background-color: #212529;
   border-color: #212529;
 }
+
+/* demo */
+nav#sidebar a::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  background: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+nav#sidebar a.active::before {
+  background: #2db4b2;
+}
+
+nav#sidebar a.active {
+  background: #34373d;
+  color: #bfc1c4;
+}
+
+nav#sidebar a.active i {
+  color: #379392;
+}
+
+nav#sidebar li li a.active {
+  background: #292c32;
+}

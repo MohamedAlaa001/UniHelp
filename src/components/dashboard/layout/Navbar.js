@@ -2,8 +2,11 @@ import EG from '../../../images/flages/EG.png';
 import GB from '../../../images/flages/GB.png';
 import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../../actions/auth';
 
-const Navbar = () => {
+const Navbar = ({ logout }) => {
   return (
     <header>
       <nav className='navbar navbar-expand-lg'>
@@ -130,10 +133,10 @@ const Navbar = () => {
 
             {/* Logout */}
             <div className='list-inline-item logout'>
-              <Link id='logout' to='/' className='nav-link'>
+              <a id='logout' href='#!' className='nav-link' onClick={logout}>
                 <span className='d-none d-sm-inline'>Logout </span>
                 <i className='icon-logout'></i>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -142,4 +145,8 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
+
+export default connect(null, { logout })(Navbar);
