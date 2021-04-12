@@ -13,7 +13,7 @@ const Navbar = ({ logout }) => {
         <div className='container-fluid d-flex align-items-center justify-content-between'>
           {/* Navbar Header */}
           <div className='navbar-header'>
-            <Link to='/dashboard' className='navbar-brand'>
+            <Link to='/home' className='navbar-brand'>
               <div className='brand-text brand-big visible text-uppercase'>
                 <strong className='text-primary'>Uni</strong>
                 <strong>help</strong>
