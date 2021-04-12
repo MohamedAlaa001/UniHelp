@@ -4,7 +4,12 @@ const Home = ({ name = 'Other' }) => {
   return (
     <div className='page-header'>
       <div className='container-fluid'>
-        <h2 className='h5 no-margin-bottom'>{name}</h2>
+        <h2
+          className='h5 no-margin-bottom'
+          style={{ textTransform: 'capitalize' }}
+        >
+          {name}
+        </h2>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ function App() {
         <Fragment>
           <Switch>
             <Route exact path='/' component={Landing} />
-            <PrivateRoute component={Dashboard} />
+            <Route component={Dashboard} />
           </Switch>
         </Fragment>
       </Router>
