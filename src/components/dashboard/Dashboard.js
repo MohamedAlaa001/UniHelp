@@ -7,6 +7,7 @@ import Sidebar from './layout/Sidebar';
 import Footer from './layout/Footer';
 import Home from './Home';
 import NotFound from '../pages/NotFound';
+import PrivateRoute from '../routing/PrivateRoute';
 
 const Dashboard = () => {
   let { path } = useRouteMatch();
@@ -30,6 +31,7 @@ const Dashboard = () => {
             <Route exact path={'/messages'}>
               <Home name={'Messages'} />
             </Route>
+            <Route component={NotFound} />
           </Switch>
           <Footer />
         </div>

@@ -1,14 +1,6 @@
 import axios from 'axios';
-import { LOGIN_SUCCESS, LOGIN_FAILED, USER_LOADED, LOGOUT } from './types';
+import { LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from './types';
 import { setAlert } from './alert';
-
-// Load User
-export const loadUser = (user) => async (dispatch) => {
-  dispatch({
-    type: USER_LOADED,
-    payload: user,
-  });
-};
 
 export const login = (username2, password2) => async (dispatch) => {
   // To be changed with Backend
@@ -27,8 +19,6 @@ export const login = (username2, password2) => async (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      dispatch(loadUser(res.data));
-      dispatch(setAlert('Login Success', 'success', 3000));
     } else {
       dispatch(setAlert('Invalid Credentials', 'danger', 3000));
       dispatch({
@@ -40,8 +30,4 @@ export const login = (username2, password2) => async (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => {
-  dispatch({
-    type: LOGOUT,
-  });
-};
+export const logout = () => ({ type: LOGOUT });

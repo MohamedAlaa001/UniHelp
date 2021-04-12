@@ -1,9 +1,4 @@
-import {
-  LOGIN_SUCCESS,
-  LOGIN_FAILED,
-  USER_LOADED,
-  LOGOUT,
-} from '../actions/types';
+import { LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from '../actions/types';
 
 const initialState = {
   isAuthenicated: null,
@@ -11,32 +6,33 @@ const initialState = {
   user: null,
 };
 
-export default function (state = initialState, action) {
+function authReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case USER_LOADED:
+    case LOGIN_SUCCESS:
       return {
         ...state,
         isAuthenicated: true,
         loading: false,
         user: payload,
       };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        // ...payload,
-        isAuthenicated: true,
-        loading: false,
-      };
     case LOGIN_FAILED:
-    case LOGOUT:
       return {
         ...state,
         isAuthenicated: false,
         loading: false,
       };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenicated: false,
+        loading: false,
+        user: null,
+      };
     default:
       return state;
   }
 }
+
+export default authReducer;
