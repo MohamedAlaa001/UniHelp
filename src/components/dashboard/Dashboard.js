@@ -7,6 +7,7 @@ import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
 import Footer from './layout/Footer';
 import Home from './Home';
+import Notifications from './Notifications';
 import NotFound from '../pages/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
 
@@ -22,24 +23,17 @@ const Dashboard = ({ isAuthenicated }) => {
         <Sidebar />
         <div className='page-content'>
           <Switch>
-            {/* <Route exact path={'/home'}>
-              <Home name={'Home'} />
-            </Route>
-            <Route exact path={'/test'}>
-              <Home name={'Test'} />
-            </Route> */}
             <PrivateRoute exact path={'/home'}>
               <Home name={'home'} />
             </PrivateRoute>
             <PrivateRoute exact path={'/test'} component={Home}>
               <Home name={'test'} />
             </PrivateRoute>
-            <PrivateRoute exact path={'/messages'} component={Home}>
-              <Home name={'Messages'} />
-            </PrivateRoute>
-            {/* <Route exact path={'/messages'}>
-              <Home name={'Messages'} />
-            </Route> */}
+            <PrivateRoute
+              exact
+              path={'/notifications'}
+              component={Notifications}
+            />
             <Route component={NotFound} />
           </Switch>
           <Footer />

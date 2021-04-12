@@ -19,6 +19,9 @@
 * Navbar
 * ==========================================================
 */
+nav.navbar .right-menu {
+  font-size: 1.25rem;
+}
 nav.navbar .dropdown-menu.collapsing {
   /* Collapse Effect */
   display: block;
@@ -52,53 +55,53 @@ a:hover {
 */
 .alert-primary {
   color: #cfe2ff;
-  background-color: #379392;
-  border-color: #379392;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .alert-secondary {
   color: #e2e3e5;
-  background-color: #868e96;
-  border-color: #868e96;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
 }
 
 .alert-success {
   color: #d1e7dd;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: var(--color-success);
+  border-color: var(--color-success);
 }
 
 .alert-danger {
   color: #f8d7da;
-  background-color: #bb414d;
-  border-color: #bb414d;
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
 }
 
 .alert-warning {
   color: #664d03;
-  background-color: #ffc107;
-  border-color: #ffc107;
+  background-color: var(--color-warning);
+  border-color: var(--color-warning);
 }
 
 .alert-info {
   color: #cff4fc;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: var(--color-info);
+  border-color: var(--color-info);
 }
 
 .alert-light {
   color: #636464;
-  background-color: #e9ecef;
-  border-color: #e9ecef;
+  background-color: var(--color-light);
+  border-color: var(--color-light);
 }
 
 .alert-dark {
   color: #d3d3d4;
-  background-color: #212529;
-  border-color: #212529;
+  background-color: var(--color-dark);
+  border-color: var(--color-dark);
 }
 
-/* demo */
+/* Sidebar */
 nav#sidebar a::before {
   content: '';
   width: 2px;
@@ -126,4 +129,21 @@ nav#sidebar a.active i {
 
 nav#sidebar li li a.active {
   background: #292c32;
+}
+
+/* Messages Section */
+section .messages-block .message {
+  position: relative;
+}
+section .messages-block .message > .content:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0px;
+
+  width: 2px;
+  height: 100%;
+}
+section .messages-block .message > .content.unRead:before {
+  background: var(--color-danger);
 }

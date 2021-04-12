@@ -1,5 +1,3 @@
-import EG from '../../../images/flages/EG.png';
-import GB from '../../../images/flages/GB.png';
 import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -45,7 +43,7 @@ const Navbar = ({ logout }) => {
                 aria-expanded='false'
                 aria-haspopup='true'
               >
-                <i className='icon-email'></i>
+                <i className='icon-bell'></i>
                 <span className='badge dashbg-1'>4</span>
               </a>
 
@@ -95,11 +93,14 @@ const Navbar = ({ logout }) => {
                     <small className='date d-block'>10:30pm</small>
                   </div>
                 </a>
-                <a href='#' className='dropdown-item text-center message'>
+                <Link
+                  to='/notifications'
+                  className='dropdown-item text-center message'
+                >
                   <strong>
-                    See All Messages <i className='fa fa-angle-right'></i>
+                    See All Notifications <i className='fa fa-angle-right'></i>
                   </strong>
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -115,8 +116,7 @@ const Navbar = ({ logout }) => {
                 aria-expanded='false'
                 aria-haspopup='true'
               >
-                <img src={GB} alt='English' />
-                <span className='d-none d-sm-inline-block'>English</span>
+                <span className='d-inline-block'>English</span>
               </a>
               <div
                 className='collapse dropdown-menu'
@@ -125,7 +125,6 @@ const Navbar = ({ logout }) => {
                 aria-labelledby='languageMenu'
               >
                 <a href='#' className='dropdown-item'>
-                  <img src={EG} alt='Arabic' className='me-2' />
                   <span>Arabic</span>
                 </a>
               </div>

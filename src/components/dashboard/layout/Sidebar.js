@@ -15,7 +15,6 @@ const Sidebar = ({ isAdmin }) => {
       <span className='heading'>Student Panel</span>
       <ul className='list-unstyled'>
         <NavItem path={'/test'} icon={'light-bulb'} name={'Test'} />
-        <NavItem path={'/messages'} icon={'email'} name={'Messages'} />
         <li>
           <a
             href='#menuDropdown'
@@ -61,6 +60,11 @@ const Sidebar = ({ isAdmin }) => {
         <span className='heading'>Main</span>
         <ul className='list-unstyled'>
           <NavItem path={'/home'} icon={'home'} name={'Home'} />
+          <NavItem
+            path={'/notifications'}
+            icon={'bell'}
+            name={'Notifications'}
+          />
         </ul>
         {isAdmin ? adminSidebar : studentSidebar}
         {/* Sidebar Main Menu End */}
