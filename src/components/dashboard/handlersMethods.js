@@ -25,3 +25,32 @@ export const sidebarHandleClick = () => {
     }
   });
 };
+
+// handle dropdown fade in & out to ensure transition
+export const dropdownHandleShow = () => {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener('show.bs.dropdown', () => {
+      const menuElement = Array.from(dropdown.children).find((el) => {
+        return el.classList.contains('dropdown-menu');
+      });
+
+      let i = 0;
+      const timer = setInterval(() => {
+        i++;
+        // total time = css transition time + 3 (millseconds) * 50 (iterations)
+        if (i === 50) {
+          menuElement.classList.add('active');
+          clearInterval(timer);
+        }
+      }, 3);
+    });
+    dropdown.addEventListener('hide.bs.dropdown', () => {
+      const menuElement = Array.from(dropdown.children).find((el) => {
+        return el.classList.contains('dropdown-menu');
+      });
+      menuElement.classList.remove('active');
+    });
+  });
+};

@@ -14,7 +14,7 @@ export const login = (username2, password2) => async (dispatch) => {
     const res = await axios.get(
       `http://localhost:5000/users?username=${username2}&password=${password2}`
     );
-    console.log(res.data[0]);
+    // console.log(res.data[0]);
     // const { username, password } = res.data;
 
     // if (username == username2 && password == password2) {

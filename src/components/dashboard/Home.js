@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = ({ name = 'Other' }) => {
+const Home = () => {
   return (
     <div className='page-header'>
       <div className='container-fluid'>
@@ -8,7 +8,7 @@ const Home = ({ name = 'Other' }) => {
           className='h5 no-margin-bottom'
           style={{ textTransform: 'capitalize' }}
         >
-          {name}
+          Home
         </h2>
       </div>
     </div>

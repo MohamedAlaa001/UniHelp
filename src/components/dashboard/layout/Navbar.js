@@ -3,8 +3,23 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
+import { dropdownHandleShow } from '../handlersMethods';
+import { getAllNotifications } from '../../../actions/notifications';
 
-const Navbar = ({ logout }) => {
+import Spinner from '../../layout/Spinner';
+import NotificationItem from '../notification/NotificationItem';
+
+const Navbar = ({
+  logout,
+  getAllNotifications,
+  user: { id },
+  notifications,
+}) => {
+  useEffect(() => {
+    dropdownHandleShow();
+    getAllNotifications(id);
+  }, [getAllNotifications]);
+
   return (
     <header>
       <nav className='navbar navbar-expand-lg'>
@@ -27,72 +42,41 @@ const Navbar = ({ logout }) => {
             </button>
           </div>
           {/* Right Menu */}
-          <div
-            className='right-menu list-inline no-margin-bottom'
-            id='collapseMenu'
-          >
+          <div className='right-menu list-inline no-margin-bottom'>
             {/* Messages box // dropdown*/}
             <div className='list-inline-item dropdown'>
               <a
                 href='#'
                 id='messageMenu'
                 className='nav-link messages-toggle '
-                data-bs-toggle='collapse'
-                data-bs-target='#messagesCollapse'
+                data-bs-toggle='dropdown'
                 role='button'
                 aria-expanded='false'
-                aria-haspopup='true'
               >
                 <i className='icon-bell'></i>
-                <span className='badge dashbg-1'>4</span>
+                <span className='badge dashbg-1'>
+                  {
+                    notifications.filter((notification) => {
+                      return notification.isRead === true;
+                    }).length
+                  }
+                </span>
               </a>
 
               <div
-                className='collapse dropdown-menu'
-                id='messagesCollapse'
-                data-bs-parent='#collapseMenu'
-                aria-labelledby='messageMenu'
+                className='dropdown-menu messages messages-block'
+                aria-labelledby='messagesMenu'
               >
-                <a
-                  href='#'
-                  className='dropdown-item message d-flex align-items-center'
-                >
-                  <div className='content'>
-                    <strong className='d-block'>Nadia Halsey</strong>
-                    <span className='d-block'>lorem ipsum dolor sit amit</span>
-                    <small className='date d-block'>9:30am</small>
-                  </div>
-                </a>
-                <a
-                  href='#'
-                  className='dropdown-item message d-flex align-items-center'
-                >
-                  <div className='content'>
-                    <strong className='d-block'>Peter Ramsy</strong>
-                    <span className='d-block'>lorem ipsum dolor sit amit</span>
-                    <small className='date d-block'>7:40am</small>
-                  </div>
-                </a>
-                <a
-                  href='#'
-                  className='dropdown-item message d-flex align-items-center'
-                >
-                  <div className='content'>
-                    <strong className='d-block'>Sam Kaheil</strong>
-                    <span className='d-block'>lorem ipsum dolor sit amit</span>
-                    <small className='date d-block'>6:55am</small>
-                  </div>
-                </a>
-                <a
-                  href='#'
-                  className='dropdown-item message d-flex align-items-center'
-                >
-                  <div className='content'>
-                    <strong className='d-block'>Sara Wood</strong>
-                    <span className='d-block'>lorem ipsum dolor sit amit</span>
-                    <small className='date d-block'>10:30pm</small>
-                  </div>
-                </a>
+                {notifications.map((notification) => (
+                  <NotificationItem
+                    key={notification.id}
+                    id={notification.id}
+                    name={notification.name}
+                    message={notification.message}
+                    time={notification.time}
+                    isRead={notification.isRead}
+                  />
+                ))}
                 <Link
                   to='/notifications'
                   className='dropdown-item text-center message'
@@ -110,20 +94,13 @@ const Navbar = ({ logout }) => {
                 href='#'
                 id='languageMenu'
                 className='nav-link language dropdown-toggle'
-                data-bs-toggle='collapse'
-                data-bs-target='#languagesCollapse'
+                data-bs-toggle='dropdown'
                 role='button'
                 aria-expanded='false'
-                aria-haspopup='true'
               >
                 <span className='d-inline-block'>English</span>
               </a>
-              <div
-                className='collapse dropdown-menu'
-                id='languagesCollapse'
-                data-bs-parent='#collapseMenu'
-                aria-labelledby='languageMenu'
-              >
+              <div className='dropdown-menu' id='languagesCollapse'>
                 <a href='#' className='dropdown-item'>
                   <span>Arabic</span>
                 </a>
@@ -146,6 +123,16 @@ const Navbar = ({ logout }) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  getAllNotifications: PropTypes.func.isRequired,
+  notifications: PropTypes.array.isRequired,
 };
 
-export default connect(null, { logout })(Navbar);
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  notifications: state.notification.notifications,
+});
+
+export default connect(mapStateToProps, { logout, getAllNotifications })(
+  Navbar
+);
