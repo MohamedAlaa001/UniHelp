@@ -1280,32 +1280,42 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
   text-decoration: line-through;
 }
 
-/* Messages Media Query */
-.messages-block a.message {
+/* Messages & Tickets Media Query */
+.messages-block a.message,
+.tickets-block a.ticket {
   color: #8a8d93;
   text-decoration: none;
   padding: 10px;
   border-bottom: 1px solid #282b2f;
 }
 
-.messages-block a.message:hover {
+.messages-block a.message:hover,
+.tickets-block a.ticket:hover {
   background: #282b2f;
 }
 
-.messages-block a.message:last-of-type {
+.messages-block a.message:last-of-type,
+.tickets-block a.ticket:last-of-type {
   border-bottom: none;
   margin-bottom: 0;
 }
-
-.messages-block .title {
-  margin-bottom: 30px;
+.messages-block .content,
+.tickets-block .content {
+  width: 80%;
 }
 
-.messages-block .title strong {
+.messages-block .title,
+.tickets-block .title {
+  margin-bottom: 20px;
+}
+
+.messages-block .title strong,
+.tickets-block .title strong {
   font-size: 1.25rem;
 }
 
-.messages-block .title span {
+.messages-block .title span,
+.tickets-block .title span {
   font-weight: 300;
   font-size: 0.95rem;
 }
@@ -1350,15 +1360,18 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
   background: #999;
 }
 
-.messages-block .content strong {
+.messages-block .content strong,
+.tickets-block .content strong {
   font-size: 1.1rem;
 }
 
-.messages-block .content span {
+.messages-block .content span,
+.tickets-block .content span {
   font-weight: 300;
 }
 
-.messages-block .content .date {
+.messages-block .content .date,
+.tickets-block .content .date {
   color: #70737a;
 }
 

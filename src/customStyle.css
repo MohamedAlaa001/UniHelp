@@ -14,73 +14,6 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
-/*
-* ==========================================================
-* Navbar
-* ==========================================================
-*/
-nav.navbar .right-menu {
-  font-size: 1.25rem;
-}
-
-nav.navbar .message {
-  padding: 1rem !important;
-  border-bottom: 1px solid #393c43;
-  width: 100%;
-}
-
-nav.navbar .message:hover {
-  background: #282b2f;
-}
-
-nav.navbar .message:last-of-type {
-  border-bottom: none;
-}
-nav.navbar .message {
-  color: #8a8d93;
-  text-decoration: none;
-}
-
-nav.navbar .message li:last-of-type a {
-  border-bottom: none;
-}
-
-nav.navbar .message .content strong {
-  font-size: 1rem;
-}
-
-nav.navbar .message .content span {
-  font-weight: 300;
-  font-size: 0.85rem;
-}
-
-nav.navbar .message .content .date {
-  color: #70737a;
-}
-nav.navbar .messages-block {
-  max-height: 425px;
-  overflow-y: auto;
-}
-/*
-* ==========================================================
-* Forms
-* ==========================================================
-*/
-.form-floating > .form-control:focus ~ label.label-material,
-.form-floating > .form-control:not(:placeholder-shown) ~ label.label-material {
-  opacity: 1;
-  color: #379392;
-}
-
-/*
-*
-* Default bootstrap theme
-*
-*/
-a:focus,
-a:hover {
-  text-decoration: none;
-}
 
 /*
 *
@@ -135,6 +68,85 @@ a:hover {
   border-color: var(--color-dark);
 }
 
+/*
+* ==========================================================
+* Navbar
+* ==========================================================
+*/
+nav.navbar .right-menu {
+  font-size: 1.25rem;
+}
+
+nav.navbar .dropdown-menu {
+  min-width: 400px;
+  max-width: 450px;
+}
+nav.navbar .dropdown-menu#languagesCollapse {
+  min-width: 150px;
+}
+
+nav.navbar .messages-block {
+  max-height: 425px;
+  overflow-y: auto;
+}
+
+nav.navbar .message,
+nav.navbar .messages-header {
+  padding: 1rem !important;
+  border-bottom: 1px solid #393c43;
+  width: 100%;
+}
+
+nav.navbar .message:hover {
+  background: #282b2f;
+}
+
+nav.navbar .message:last-of-type {
+  border-bottom: none;
+}
+nav.navbar .message {
+  color: #8a8d93;
+  text-decoration: none;
+}
+
+nav.navbar .message li:last-of-type a {
+  border-bottom: none;
+}
+
+nav.navbar .message .content strong {
+  font-size: 1rem;
+}
+
+nav.navbar .message .content span {
+  font-weight: 300;
+  font-size: 0.85rem;
+}
+
+nav.navbar .message .content .date {
+  color: #70737a;
+}
+
+/*
+* ==========================================================
+* Forms
+* ==========================================================
+*/
+.form-floating > .form-control:focus ~ label.label-material,
+.form-floating > .form-control:not(:placeholder-shown) ~ label.label-material {
+  opacity: 1;
+  color: #379392;
+}
+
+/*
+*
+* Default bootstrap theme
+*
+*/
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
 /* Sidebar */
 nav#sidebar a::before {
   content: '';
@@ -161,11 +173,19 @@ nav#sidebar a.active i {
   color: #379392;
 }
 
+nav#sidebar li li a {
+  padding-left: 35px;
+}
+
 nav#sidebar li li a.active {
   background: #292c32;
 }
 
-/* Messages Section */
+/* 
+*
+* Messages Section 
+*
+*/
 .messages-block .message {
   position: relative;
 }
@@ -175,11 +195,34 @@ nav#sidebar li li a.active {
   top: 0;
   left: 0px;
 
-  width: 2px;
-  height: 90%;
-  transform: translateY(5%);
+  width: 3px;
+  height: 100%;
 }
 
-.messages-block .content.unRead:before {
+.messages-block .content.mark-unRead:before {
   background: var(--color-danger);
+}
+
+/*
+*
+* Tickets Section
+*
+*/
+.ticket .ticket-status {
+  font-size: 1.25rem !important;
+  color: #a5a7ab !important;
+  font-weight: inherit !important;
+}
+.ticket .ticket-status {
+  color: var(--color-success) !important;
+}
+
+.ticket .ticket-status.resolved {
+  color: var(--color-danger) !important;
+}
+
+section .messages-block a.message,
+section .tickets-block a.ticket {
+  box-shadow: 0px 0px 5px var(--color-dark);
+  margin-bottom: 0.5rem;
 }

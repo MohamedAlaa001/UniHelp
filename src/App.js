@@ -10,8 +10,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import PrivateRoute from './components/routing/PrivateRoute';
 
-import Landing from './components/layout/Landing';
-import Dashboard from './components/dashboard/Dashboard';
+import Landing from './components/Landing';
+import Dashboard from './components/Dashboard';
 import NotFound from './components/pages/NotFound';
 
 function App() {

@@ -2,6 +2,7 @@ import {
   GET_ALL_NOTIFICATIONS,
   GET_NOTIFICATION,
   SET_NOTIFICATION_READ,
+  SET_ALL_NOTIFICATIONS_READ,
 } from '../actions/types';
 
 const initialState = {
@@ -31,9 +32,18 @@ function notificationReducer(state = initialState, action) {
         ...state,
         notifications: state.notifications.map((notification) =>
           notification.id === payload.id
-            ? { ...notification, unRead: payload.unRead }
+            ? { ...notification, isRead: true }
             : notification
         ),
+        loading: false,
+      };
+    case SET_ALL_NOTIFICATIONS_READ:
+      return {
+        ...state,
+        notifications: state.notifications.map((notification) => ({
+          ...notification,
+          isRead: true,
+        })),
         loading: false,
       };
     default:

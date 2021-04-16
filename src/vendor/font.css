@@ -181,3 +181,9 @@
 .icon-bell:before {
 	content: "\56"
 }
+.icon-caret-up:before {
+  content: "\57";
+}
+.icon-menu-right:before {
+  content: "\58";
+}

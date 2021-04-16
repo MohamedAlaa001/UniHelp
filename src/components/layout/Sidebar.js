@@ -14,22 +14,7 @@ const Sidebar = ({ isAdmin }) => {
     <Fragment>
       <span className='heading'>Student Panel</span>
       <ul className='list-unstyled'>
-        <NavItem path={'/test'} icon={'light-bulb'} name={'Test'} />
-        <li>
-          <a
-            href='#menuDropdown'
-            aria-expanded='false'
-            data-bs-toggle='collapse'
-          >
-            <i className='icon-windows'></i>
-            Dropdown Example
-          </a>
-          <ul className='list-unstyled collapse' id='menuDropdown'>
-            <NavItem path={'/demo1'} name={'Page 1'} />
-            <NavItem path={'/demo2'} name={'Page 2'} />
-            <NavItem path={'/demo3'} name={'Page 3'} />
-          </ul>
-        </li>
+        <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
       </ul>
     </Fragment>
   );
@@ -38,9 +23,21 @@ const Sidebar = ({ isAdmin }) => {
     <Fragment>
       <span className='heading'>Admin Panel</span>
       <ul className='list-unstyled'>
-        <NavItem path={'/demo4'} icon={'settings'} name={'Demo4'} />
-        <NavItem path={'/demo5'} icon={'settings'} name={'Demo5'} />
-        <NavItem path={'/demo6'} icon={'settings'} name={'Demo6'} />
+        <li>
+          <a
+            href='#menuDropdown'
+            aria-expanded='false'
+            data-bs-toggle='collapse'
+          >
+            <i className='icon-list-1'></i>
+            Dropdown Example
+          </a>
+          <ul className='list-unstyled collapse' id='menuDropdown'>
+            <NavItem path='/demo1' icon={'menu-right'} name='Department X' />
+            <NavItem path='/demo2' icon={'menu-right'} name='Department Y' />
+            <NavItem path='/demo3' icon={'menu-right'} name='Department Z' />
+          </ul>
+        </li>
       </ul>
     </Fragment>
   );
@@ -59,12 +56,8 @@ const Sidebar = ({ isAdmin }) => {
         {/* Sidebar Main Menu start */}
         <span className='heading'>Main</span>
         <ul className='list-unstyled'>
-          <NavItem path={'/home'} icon={'home'} name={'Home'} />
-          <NavItem
-            path={'/notifications'}
-            icon={'bell'}
-            name={'Notifications'}
-          />
+          <NavItem path='/home' icon='home' name='Home' />
+          <NavItem path='/notifications' icon='bell' name='Notifications' />
         </ul>
         {isAdmin ? adminSidebar : studentSidebar}
         {/* Sidebar Main Menu End */}

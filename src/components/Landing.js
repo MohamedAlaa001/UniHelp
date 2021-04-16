@@ -4,17 +4,14 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Alert from './Alert';
-import { login } from '../../actions/auth';
+import Alert from './layout/Alert';
+import { login } from '../actions/auth';
 
 const Landing = ({ isAuthenicated, login }) => {
   const [loginData, setLoginData] = useState({
     username: '',
     password: '',
   });
-
-  // useEffect(() => {
-  // }, []);
 
   const { username, password } = loginData;
 

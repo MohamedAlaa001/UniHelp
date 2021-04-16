@@ -2,23 +2,30 @@ import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../../actions/auth';
-import { dropdownHandleShow } from '../handlersMethods';
-import { getAllNotifications } from '../../../actions/notifications';
+import { logout } from '../../actions/auth';
+import { navbarHandler } from '../handlersMethods';
+import {
+  getAllNotifications,
+  setAllNotificationsRead,
+} from '../../actions/notifications';
 
-import Spinner from '../../layout/Spinner';
-import NotificationItem from '../notification/NotificationItem';
+import NotificationItem from '../dashboard/notification/NotificationItem';
 
 const Navbar = ({
   logout,
   getAllNotifications,
+  setAllNotificationsRead,
   user: { id },
   notifications,
 }) => {
   useEffect(() => {
-    dropdownHandleShow();
+    navbarHandler();
     getAllNotifications(id);
   }, [getAllNotifications]);
+
+  const markReadHandler = (e) => {
+    setAllNotificationsRead();
+  };
 
   return (
     <header>
@@ -43,7 +50,7 @@ const Navbar = ({
           </div>
           {/* Right Menu */}
           <div className='right-menu list-inline no-margin-bottom'>
-            {/* Messages box // dropdown*/}
+            {/* Messages box */}
             <div className='list-inline-item dropdown'>
               <a
                 href='#'
@@ -54,19 +61,39 @@ const Navbar = ({
                 aria-expanded='false'
               >
                 <i className='icon-bell'></i>
-                <span className='badge dashbg-1'>
-                  {
-                    notifications.filter((notification) => {
-                      return notification.isRead === true;
-                    }).length
-                  }
-                </span>
+                {/* more > 0 */}
+                {notifications.filter((notification) => {
+                  return notification.isRead === false;
+                }).length > 0 ? (
+                  <span className='badge bg-danger'>
+                    {
+                      notifications.filter((notification) => {
+                        return notification.isRead === false;
+                      }).length
+                    }
+                  </span>
+                ) : null}
               </a>
 
               <div
                 className='dropdown-menu messages messages-block'
                 aria-labelledby='messagesMenu'
               >
+                <div
+                  className='messages-header d-flex justify-content-between align-items-center'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <span className='lead '>Notifications</span>
+                  <span
+                    className=''
+                    role='button'
+                    onClick={(e) => markReadHandler(e)}
+                  >
+                    Mark all as Read
+                  </span>
+                </div>
                 {notifications.map((notification) => (
                   <NotificationItem
                     key={notification.id}
@@ -133,6 +160,8 @@ const mapStateToProps = (state) => ({
   notifications: state.notification.notifications,
 });
 
-export default connect(mapStateToProps, { logout, getAllNotifications })(
-  Navbar
-);
+export default connect(mapStateToProps, {
+  logout,
+  getAllNotifications,
+  setAllNotificationsRead,
+})(Navbar);

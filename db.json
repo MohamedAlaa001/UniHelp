@@ -4,13 +4,13 @@
       "id": 1,
       "username": "admin",
       "password": "admin",
-      "isAdmin" : true
+      "isAdmin": true
     },
     {
       "id": 2,
       "username": "std",
       "password": "std",
-      "isAdmin" : false
+      "isAdmin": false
     }
   ],
   "notifications": [
@@ -25,10 +25,10 @@
     {
       "id": 2,
       "user": 1,
-      "name": "Peter Ramsy",
+      "name": "Sara Wood",
       "message": "lorem ipsum dolor sit amit",
-      "time": "7:40am",
-      "isRead": false
+      "time": "10:30pm",
+      "isRead": true
     },
     {
       "id": 3,
@@ -44,15 +44,15 @@
       "name": "Nadia Halsey",
       "message": "lorem ipsum dolor sit amit",
       "time": "9:30am",
-      "isRead": true
+      "isRead": false
     },
     {
       "id": 5,
       "user": 1,
-      "name": "Peter Ramsy",
+      "name": "Sam Kaheil",
       "message": "lorem ipsum dolor sit amit",
-      "time": "7:40am",
-      "isRead": false
+      "time": "6:55am",
+      "isRead": true
     },
     {
       "id": 6,
@@ -60,7 +60,7 @@
       "name": "Sam Kaheil",
       "message": "lorem ipsum dolor sit amit",
       "time": "6:55am",
-      "isRead": true
+      "isRead": false
     },
     {
       "id": 7,
@@ -76,7 +76,7 @@
       "name": "Nader Magdy",
       "message": "lorem ipsum dolor sit amit",
       "time": "9:47pm",
-      "isRead": true
+      "isRead": false
     }
   ]
 }

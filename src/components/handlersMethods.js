@@ -27,7 +27,7 @@ export const sidebarHandleClick = () => {
 };
 
 // handle dropdown fade in & out to ensure transition
-export const dropdownHandleShow = () => {
+export const navbarHandler = () => {
   const dropdowns = document.querySelectorAll('.dropdown');
 
   dropdowns.forEach((dropdown) => {
