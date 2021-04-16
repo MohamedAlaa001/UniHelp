@@ -4,10 +4,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllNotifications } from '../../../actions/notifications';
 
+import Spinner from '../../layout/Spinner';
 import NotificationItem from './NotificationItem';
 
-const Notifications = ({ notifications }) => {
-  return (
+const Notifications = ({ notifications, loading }) => {
+  return loading || notifications === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       {/* Page Header */}
       <div className='page-header no-margin-bottom'>
@@ -29,14 +32,10 @@ const Notifications = ({ notifications }) => {
         <div className='container-fluid'>
           <div className='messages-block block'>
             <div className='messages'>
-              {notifications.map((notification) => (
+              {notifications.map((notifications) => (
                 <NotificationItem
-                  key={notification.id}
-                  id={notification.id}
-                  name={notification.name}
-                  message={notification.message}
-                  time={notification.time}
-                  isRead={notification.isRead}
+                  key={notifications.id}
+                  notification={notifications}
                 />
               ))}
             </div>
@@ -48,11 +47,12 @@ const Notifications = ({ notifications }) => {
 };
 
 Notifications.propTypes = {
-  notifications: PropTypes.array.isRequired,
+  // notifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   notifications: state.notification.notifications,
+  loading: state.notification.loading,
 });
 
 export default connect(mapStateToProps, { getAllNotifications })(Notifications);

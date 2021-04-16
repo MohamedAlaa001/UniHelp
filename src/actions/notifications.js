@@ -34,25 +34,17 @@ export const getNotification = (id) => async (dispatch) => {
   }
 };
 
-export const setNotificationRead = (id, notification) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
-  // const body = JSON.stringify(notification);
-  // console.log('body -> ', body);
-
+export const setNotificationRead = (notification) => async (dispatch) => {
+  console.log(notification);
   try {
-    const res = await axios.put(`http://localhost:5000/notifications/${id}`, {
+    await axios.put(`http://localhost:5000/notifications/${notification.id}`, {
       ...notification,
       isRead: true,
     });
-    console.log('res -> ', res);
 
     dispatch({
       type: SET_NOTIFICATION_READ,
-      payload: { id },
+      payload: notification.id,
     });
   } catch (err) {
     console.log(err);

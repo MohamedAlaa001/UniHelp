@@ -7,51 +7,48 @@ import { Link } from 'react-router-dom';
 import { setNotificationRead } from '../../../actions/notifications';
 
 // Date & Time
-const NotificationItem = ({
-  id,
-  name,
-  message,
-  time,
-  isRead,
-  setNotificationRead,
-  user,
-}) => {
+const NotificationItem = ({ notification, setNotificationRead, user }) => {
+  const { id, name, message, date, isRead } = notification;
+
   const notifyClass = classnames('content', {
     'mark-unRead': !isRead,
   });
 
-  const handleClick = () => {
-    if (!isRead) {
-      const notification = {
-        id,
-        user: user.id,
-        name,
-        message,
-        time,
-        isRead,
-      };
-      setNotificationRead(id, notification);
-    }
-  };
   return (
     <Link
       to={`/notifications/${id}`}
       className='message d-flex align-items-center'
-      onClick={() => handleClick()}
+      onClick={() =>
+        !isRead ? setNotificationRead({ user, ...notification }) : null
+      }
     >
       <div className={notifyClass}>
         <strong className='d-block'>{name}</strong>
         <span className='d-block text-truncate'>{message}</span>
-        <small className='date d-block'>{time}</small>
+        <small className='date d-block'>{date}</small>
       </div>
     </Link>
   );
 };
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
+  user: state.auth.user.id,
 });
 
 export default connect(mapStateToProps, { setNotificationRead })(
   NotificationItem
 );
+
+// const handleClick = () => {
+//   if (!isRead) {
+//     const notification = {
+//       id,
+//       user: user.id,
+//       name,
+//       message,
+//       time,
+//       isRead,
+//     };
+//     setNotificationRead(id, notification);
+//   }
+// };

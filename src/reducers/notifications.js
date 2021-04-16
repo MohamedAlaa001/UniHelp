@@ -31,7 +31,7 @@ function notificationReducer(state = initialState, action) {
       return {
         ...state,
         notifications: state.notifications.map((notification) =>
-          notification.id === payload.id
+          notification.id === payload
             ? { ...notification, isRead: true }
             : notification
         ),

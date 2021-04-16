@@ -1,7 +1,17 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+import TicketItem from './TicketItem';
+
 const Tickets = () => {
+  const ticket = {
+    ticketId: 3,
+    title: 'Lorem, ipsum dolor',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!',
+    date: '6:23pm',
+    isResolved: true,
+  };
   return (
     <Fragment>
       {/* Page Header */}
@@ -38,7 +48,7 @@ const Tickets = () => {
                     earum sequi molestias beatae quae! Molestiae ipsam
                     laudantium earum repellat quis ducimus officia possimus.
                   </span>
-                  <small class='date d-block'>9:47pm</small>
+                  <small className='date d-block'>9:47pm</small>
                 </div>
               </a>
               <a href='#' className='ticket d-flex align-items-center'>
@@ -55,9 +65,10 @@ const Tickets = () => {
                     earum sequi molestias beatae quae! Molestiae ipsam
                     laudantium earum repellat quis ducimus officia possimus.
                   </span>
-                  <small class='date d-block'>10:30pm</small>
+                  <small className='date d-block'>10:30pm</small>
                 </div>
               </a>
+              <TicketItem ticket={ticket} />
             </div>
           </div>
         </div>

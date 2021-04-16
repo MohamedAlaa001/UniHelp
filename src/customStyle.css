@@ -214,6 +214,7 @@ nav#sidebar li li a.active {
   font-weight: inherit !important;
 }
 .ticket .ticket-status {
+  margin-right: 0.25rem;
   color: var(--color-success) !important;
 }
 

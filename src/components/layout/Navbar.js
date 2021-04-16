@@ -94,7 +94,7 @@ const Navbar = ({
                     Mark all as Read
                   </span>
                 </div>
-                {notifications.map((notification) => (
+                {/* {notifications.map((notification) => (
                   <NotificationItem
                     key={notification.id}
                     id={notification.id}
@@ -103,7 +103,7 @@ const Navbar = ({
                     time={notification.time}
                     isRead={notification.isRead}
                   />
-                ))}
+                ))} */}
                 <Link
                   to='/notifications'
                   className='dropdown-item text-center message'
