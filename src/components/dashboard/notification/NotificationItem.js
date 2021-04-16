@@ -38,17 +38,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { setNotificationRead })(
   NotificationItem
 );
-
-// const handleClick = () => {
-//   if (!isRead) {
-//     const notification = {
-//       id,
-//       user: user.id,
-//       name,
-//       message,
-//       time,
-//       isRead,
-//     };
-//     setNotificationRead(id, notification);
-//   }
-// };
