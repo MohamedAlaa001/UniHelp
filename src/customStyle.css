@@ -218,7 +218,7 @@ nav#sidebar li li a.active {
   color: var(--color-success) !important;
 }
 
-.ticket .ticket-status.resolved {
+.ticket .ticket-status.closed {
   color: var(--color-danger) !important;
 }
 

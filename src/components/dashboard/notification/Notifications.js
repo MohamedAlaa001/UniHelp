@@ -1,16 +1,12 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAllNotifications } from '../../../actions/notifications';
 
-import Spinner from '../../layout/Spinner';
 import NotificationItem from './NotificationItem';
 
-const Notifications = ({ notifications, loading }) => {
-  return loading || notifications === null ? (
-    <Spinner />
-  ) : (
+const Notifications = ({ notifications }) => {
+  return (
     <Fragment>
       {/* Page Header */}
       <div className='page-header no-margin-bottom'>
@@ -47,12 +43,11 @@ const Notifications = ({ notifications, loading }) => {
 };
 
 Notifications.propTypes = {
-  // notifications: PropTypes.array.isRequired,
+  notifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   notifications: state.notification.notifications,
-  loading: state.notification.loading,
 });
 
-export default connect(mapStateToProps, { getAllNotifications })(Notifications);
+export default connect(mapStateToProps)(Notifications);

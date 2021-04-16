@@ -4,28 +4,32 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import { navbarHandler } from '../handlersMethods';
-import {
-  getAllNotifications,
-  setAllNotificationsRead,
-} from '../../actions/notifications';
+import { setAllNotificationsRead } from '../../actions/notifications';
 
 import NotificationItem from '../dashboard/notification/NotificationItem';
 
 const Navbar = ({
   logout,
-  getAllNotifications,
   setAllNotificationsRead,
   user: { id },
   notifications,
 }) => {
   useEffect(() => {
     navbarHandler();
-    getAllNotifications(id);
-  }, [getAllNotifications]);
+  }, []);
 
-  const markReadHandler = (e) => {
-    setAllNotificationsRead();
-  };
+  const notificationDisplay =
+    notifications.filter((notification) => {
+      return notification.isRead === false;
+    }).length > 0 ? (
+      <span className='badge bg-danger'>
+        {
+          notifications.filter((notification) => {
+            return notification.isRead === false;
+          }).length
+        }
+      </span>
+    ) : null;
 
   return (
     <header>
@@ -61,18 +65,7 @@ const Navbar = ({
                 aria-expanded='false'
               >
                 <i className='icon-bell'></i>
-                {/* more > 0 */}
-                {notifications.filter((notification) => {
-                  return notification.isRead === false;
-                }).length > 0 ? (
-                  <span className='badge bg-danger'>
-                    {
-                      notifications.filter((notification) => {
-                        return notification.isRead === false;
-                      }).length
-                    }
-                  </span>
-                ) : null}
+                {notificationDisplay}
               </a>
 
               <div
@@ -89,21 +82,17 @@ const Navbar = ({
                   <span
                     className=''
                     role='button'
-                    onClick={(e) => markReadHandler(e)}
+                    onClick={() => setAllNotificationsRead()}
                   >
                     Mark all as Read
                   </span>
                 </div>
-                {/* {notifications.map((notification) => (
+                {notifications.map((notifications) => (
                   <NotificationItem
-                    key={notification.id}
-                    id={notification.id}
-                    name={notification.name}
-                    message={notification.message}
-                    time={notification.time}
-                    isRead={notification.isRead}
+                    key={notifications.id}
+                    notification={notifications}
                   />
-                ))} */}
+                ))}
                 <Link
                   to='/notifications'
                   className='dropdown-item text-center message'
@@ -151,7 +140,6 @@ const Navbar = ({
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  getAllNotifications: PropTypes.func.isRequired,
   notifications: PropTypes.array.isRequired,
 };
 
@@ -162,6 +150,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   logout,
-  getAllNotifications,
   setAllNotificationsRead,
 })(Navbar);

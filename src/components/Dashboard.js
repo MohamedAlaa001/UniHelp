@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PrivateRoute from './routing/PrivateRoute';
 
+import { getAllNotifications } from '../actions/notifications';
+import { getAllTickets } from '../actions/tickets';
+
 // layout
 import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
 import Footer from './layout/Footer';
+import Spinner from './layout/Spinner';
 // Home
 import Home from './dashboard/Home';
 // Notifications
@@ -19,12 +23,23 @@ import TicketBody from './dashboard/ticket/TicketBody';
 
 import NotFound from './pages/NotFound';
 
-const Dashboard = ({ isAuthenicated }) => {
-  if (!isAuthenicated) {
-    return <Redirect to='/' />;
-  }
+const Dashboard = ({
+  getAllNotifications,
+  getAllTickets,
+  auth: {
+    loading,
+    user: { id },
+  },
+  notifications,
+}) => {
+  useEffect(() => {
+    getAllNotifications(id);
+    getAllTickets(id);
+  }, [getAllNotifications, getAllTickets]);
 
-  return (
+  return loading || notifications === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <Navbar />
       <div className='d-flex align-items-stretch'>
@@ -53,11 +68,17 @@ const Dashboard = ({ isAuthenicated }) => {
   );
 };
 Dashboard.propTypes = {
-  isAuthenicated: PropTypes.bool,
+  auth: PropTypes.object.isRequired,
+  getAllNotifications: PropTypes.func.isRequired,
+  getAllTickets: PropTypes.func.isRequired,
+  notifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenicated: state.auth.isAuthenicated,
+  auth: state.auth,
+  notifications: state.notification.notifications,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { getAllNotifications, getAllTickets })(
+  Dashboard
+);

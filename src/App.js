@@ -21,7 +21,7 @@ function App() {
         <Fragment>
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route component={Dashboard} />
+            <PrivateRoute component={Dashboard} />
           </Switch>
         </Fragment>
       </Router>

@@ -35,20 +35,19 @@ export const getNotification = (id) => async (dispatch) => {
 };
 
 export const setNotificationRead = (notification) => async (dispatch) => {
-  console.log(notification);
-  try {
-    await axios.put(`http://localhost:5000/notifications/${notification.id}`, {
-      ...notification,
-      isRead: true,
-    });
+  // try {
+  //   await axios.put(`http://localhost:5000/notifications/${notification.id}`, {
+  //     ...notification,
+  //     isRead: true,
+  //   });
 
-    dispatch({
-      type: SET_NOTIFICATION_READ,
-      payload: notification.id,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  dispatch({
+    type: SET_NOTIFICATION_READ,
+    payload: notification.id,
+  });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 };
 
 export const setAllNotificationsRead = () => ({

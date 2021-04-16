@@ -1,17 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import TicketItem from './TicketItem';
 
-const Tickets = () => {
-  const ticket = {
-    ticketId: 3,
-    title: 'Lorem, ipsum dolor',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!',
-    date: '6:23pm',
-    isResolved: true,
-  };
+const Tickets = ({ tickets }) => {
   return (
     <Fragment>
       {/* Page Header */}
@@ -34,41 +28,9 @@ const Tickets = () => {
         <div className='container-fluid'>
           <div className='tickets-block block'>
             <div className='tickets'>
-              <a href='#' className='ticket d-flex align-items-center'>
-                <div className='content'>
-                  <div className='title'>
-                    <strong>
-                      <span className='ticket-status resolved'>[RESOLVED]</span>{' '}
-                      Lorem, ipsum dolor.
-                    </strong>
-                  </div>
-                  <span className='d-block text-truncate'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Dignissimos, dolorem quod! Animi, mollitia quam ipsum iure
-                    earum sequi molestias beatae quae! Molestiae ipsam
-                    laudantium earum repellat quis ducimus officia possimus.
-                  </span>
-                  <small className='date d-block'>9:47pm</small>
-                </div>
-              </a>
-              <a href='#' className='ticket d-flex align-items-center'>
-                <div className='content'>
-                  <div className='title d-block'>
-                    <strong>
-                      <span className='ticket-status'>[OPEN]</span> Lorem, ipsum
-                      dolor.
-                    </strong>
-                  </div>
-                  <span className='d-block text-truncate'>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Dignissimos, dolorem quod! Animi, mollitia quam ipsum iure
-                    earum sequi molestias beatae quae! Molestiae ipsam
-                    laudantium earum repellat quis ducimus officia possimus.
-                  </span>
-                  <small className='date d-block'>10:30pm</small>
-                </div>
-              </a>
-              <TicketItem ticket={ticket} />
+              {tickets.map((ticket) => (
+                <TicketItem key={ticket.id} ticket={ticket} />
+              ))}
             </div>
           </div>
         </div>
@@ -77,4 +39,11 @@ const Tickets = () => {
   );
 };
 
-export default Tickets;
+Tickets.propTypes = {
+  tickets: PropTypes.array.isRequired,
+};
+const mapStateToProps = (state) => ({
+  tickets: state.ticket.tickets,
+});
+
+export default connect(mapStateToProps)(Tickets);

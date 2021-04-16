@@ -23,12 +23,12 @@
       "isRead": true
     },
     {
-      "id": 2,
       "user": 1,
+      "id": 2,
       "name": "Sara Wood",
       "message": "lorem ipsum dolor sit amit",
       "date": "10:30pm",
-      "isRead": true
+      "isRead": false
     },
     {
       "id": 3,
@@ -36,7 +36,7 @@
       "name": "Sam Kaheil",
       "message": "lorem ipsum dolor sit amit",
       "date": "6:55am",
-      "isRead": true
+      "isRead": false
     },
     {
       "user": 1,
@@ -52,7 +52,7 @@
       "name": "Sam Kaheil",
       "message": "lorem ipsum dolor sit amit",
       "date": "6:55am",
-      "isRead": true
+      "isRead": false
     },
     {
       "user": 1,
@@ -77,6 +77,33 @@
       "message": "lorem ipsum dolor sit amit",
       "date": "9:47pm",
       "isRead": false
+    }
+  ],
+  "tickets" : [
+    {
+      "user": 2,
+      "id": 1,
+      "title": "asd",
+      "content": "asdasdasdasd",
+      "date": "14/April/2021 12:39PM",
+      "isResolved": false
+    },
+    {
+      "user": 2,
+      "id": 2,
+      "title": "Lorem, ipsum dolor",
+      "content":  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "date": "6:23pm",
+      "isResolved": true
+    },
+    {
+      "user": 2,
+      "id": 3,
+      "title": "Lorem, ipsum dolor",
+      "content":
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "date": "6:23pm",
+      "isResolved": true
     }
   ]
 }
