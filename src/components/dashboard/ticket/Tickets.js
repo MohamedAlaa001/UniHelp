@@ -24,9 +24,12 @@ const Tickets = ({ tickets }) => {
         </ul>
       </div>
       {/* Page Section */}
-      <section className='no-padding-top'>
+      <section>
         <div className='container-fluid'>
           <div className='tickets-block block'>
+            <Link className='btn btn-primary mb-3' to='/tickets/create'>
+              Create Ticket
+            </Link>
             <div className='tickets'>
               {tickets.map((ticket) => (
                 <TicketItem key={ticket.id} ticket={ticket} />

@@ -20,6 +20,7 @@ import NotificationBody from './dashboard/notification/NotificationBody';
 // Tickets
 import Tickets from './dashboard/ticket/Tickets';
 import TicketBody from './dashboard/ticket/TicketBody';
+import TicketForm from './dashboard/ticket/TicketForm';
 
 import NotFound from './pages/NotFound';
 
@@ -58,6 +59,7 @@ const Dashboard = ({
               component={NotificationBody}
             />
             <PrivateRoute exact path='/tickets' component={Tickets} />
+            <PrivateRoute exact path='/tickets/create' component={TicketForm} />
             <PrivateRoute exact path='/tickets/:id' component={TicketBody} />
             <Route component={NotFound} />
           </Switch>

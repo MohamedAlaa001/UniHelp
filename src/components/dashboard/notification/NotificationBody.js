@@ -15,6 +15,8 @@ const NotificationBody = ({
     getNotification(match.params.id);
   }, [getNotification, match.params.id]);
 
+  const { name, message, date } = notification;
+
   return loading || notification === null ? (
     <Spinner />
   ) : (
@@ -34,7 +36,7 @@ const NotificationBody = ({
           <li className='breadcrumb-item'>
             <Link to='/notifications'>Notifications</Link>
           </li>
-          <li className='breadcrumb-item active'>Notifications</li>
+          <li className='breadcrumb-item active'>{name}</li>
         </ul>
       </div>
       {/* Page Section */}
@@ -45,9 +47,9 @@ const NotificationBody = ({
               {
                 <div className='message d-flex align-items-center'>
                   <div className='content'>
-                    <strong className='d-block'>{notification.name}</strong>
-                    <span className='d-block'>{notification.message}</span>
-                    <small className='date d-block'>{notification.time}</small>
+                    <strong className='d-block'>{name}</strong>
+                    <span className='d-block'>{message}</span>
+                    <small className='date d-block'>{date}</small>
                   </div>
                 </div>
               }

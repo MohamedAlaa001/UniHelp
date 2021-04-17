@@ -27,6 +27,12 @@ a {
   display: inline-block;
 }
 
+textarea {
+  resize: none;
+  height: 350px !important;
+  overflow-y: auto;
+}
+
 .dashtext-1 {
   color: #864dd9 !important;
 }
@@ -1553,7 +1559,7 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
   line-height: 1.5;
 }
 
-.form-control-label {
+.form-label {
   color: #777;
 }
 
