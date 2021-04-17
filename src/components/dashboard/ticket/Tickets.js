@@ -26,6 +26,9 @@ const Tickets = ({ tickets }) => {
       {/* Page Section */}
       <section>
         <div className='container-fluid'>
+          <div className='block alert-primary'>
+            <strong>Sorting by newest</strong>
+          </div>
           <div className='tickets-block block'>
             <Link className='btn btn-primary mb-3' to='/tickets/create'>
               Create Ticket

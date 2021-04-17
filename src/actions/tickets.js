@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_ALL_TICKETS, GET_TICKET } from './types';
+import { setAlert } from './alert';
+import { GET_ALL_TICKETS, GET_TICKET, CREATE_TICKET } from './types';
 
 export const getAllTickets = (userId) => async (dispatch) => {
   try {
@@ -25,4 +26,10 @@ export const getTicket = (ticketId) => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const createTicket = (ticket) => async (dispatch) => {
+  console.log(ticket);
+  // add dispatch create ticket
+  dispatch(setAlert('Ticket Created', 'success', false, 3000));
 };
