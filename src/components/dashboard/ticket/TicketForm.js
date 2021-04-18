@@ -4,22 +4,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { createTicket } from '../../../actions/tickets';
+import { setAlert } from '../../../actions/alert';
 // Alert
 import Alert from '../../layout/Alert';
 
-const TicketForm = ({ createTicket, user: { id } }) => {
+import TicketFormInput from './TicketFormInput';
+
+const TicketForm = ({ createTicket, user: { id }, setAlert }) => {
   const [ticketData, setTicketData] = useState({
     title: '',
     content: '',
+    categoryValue: '',
+    errors: [],
   });
 
-  const [categoryData, setCategoryData] = useState({
-    departmentX: false,
-    departmentY: false,
-    departmentZ: false,
-  });
-
-  const { title, content } = ticketData;
+  const { title, content, categoryValue, errors } = ticketData;
 
   const onChangeTextHandler = (e) => {
     setTicketData({
@@ -29,23 +28,62 @@ const TicketForm = ({ createTicket, user: { id } }) => {
   };
 
   const onChangeSwitchHandler = (e) => {
-    setCategoryData({
-      ...categoryData,
-      [e.target.name]: e.target.checked,
+    setTicketData({
+      ...ticketData,
+      categoryValue: e.target.value,
     });
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (title.trim() === '') {
+      errors.push('Ticket Title is Required');
+    }
+    if (content.trim() === '') {
+      errors.push('Ticket Content is Required');
+    }
+    if (categoryValue === '') {
+      errors.push('Ticket Category is Required');
+    }
+
+    setTicketData({
+      ...ticketData,
+      errors,
+    });
+
+    if (errors.length > 0) {
+      errors.forEach((err) => {
+        setAlert(err, 'danger', false, 1000);
+      });
+
+      // reset errors
+      setTicketData({
+        ...ticketData,
+        categoryValue: '',
+        errors: [],
+      });
+      document.querySelector('form').reset();
+      return;
+    }
+
     // Validate Form Here
     const ticketBody = {
       user: id,
       title,
       content,
+      category: categoryValue,
       isResloved: false,
     };
     createTicket(ticketBody);
-
+    // Form Reset
+    setTicketData({
+      title: '',
+      content: '',
+      categoryValue: '',
+      errors: [],
+    });
+    document.querySelector('form').reset();
     // history.
   };
   return (
@@ -75,8 +113,9 @@ const TicketForm = ({ createTicket, user: { id } }) => {
           <div className='block alert-primary'>
             <strong>Form Validation</strong>
           </div>
-          <form onSubmit={(e) => onSubmitHandler(e)}>
+          <form className='ticket-form' onSubmit={(e) => onSubmitHandler(e)}>
             <div className='row'>
+              {/* Left Panel */}
               <div className='col-md-12 col-lg-8'>
                 <div className='block'>
                   <div className='title'>
@@ -111,39 +150,33 @@ const TicketForm = ({ createTicket, user: { id } }) => {
                   </div>
                 </div>
               </div>
+              {/* Right Panel */}
               <div className='col'>
                 <div className='block'>
                   <div className='title'>
                     <strong className='d-block'>Select Category</strong>
                   </div>
                   <div className='block-body'>
-                    <div className='form-check form-switch'>
-                      <input
-                        type='checkbox'
-                        className='form-check-input'
-                        name='departmentX'
-                        onChange={(e) => onChangeSwitchHandler(e)}
-                      />
-                      <label className='form-check-label'>Department X</label>
-                    </div>
-                    <div className='form-check form-switch'>
-                      <input
-                        type='checkbox'
-                        className='form-check-input'
-                        name='departmentY'
-                        onChange={(e) => onChangeSwitchHandler(e)}
-                      />
-                      <label className='form-check-label'>Department Y</label>
-                    </div>
-                    <div className='form-check form-switch'>
-                      <input
-                        type='checkbox'
-                        className='form-check-input'
-                        name='departmentZ'
-                        onChange={(e) => onChangeSwitchHandler(e)}
-                      />
-                      <label className='form-check-label'>Department Z</label>
-                    </div>
+                    <TicketFormInput
+                      categoryValue='1'
+                      onChange={(e) => onChangeSwitchHandler(e)}
+                      label='Department 1'
+                    />
+                    <TicketFormInput
+                      categoryValue='2'
+                      onChange={(e) => onChangeSwitchHandler(e)}
+                      label='Department 2'
+                    />
+                    <TicketFormInput
+                      categoryValue='3'
+                      onChange={(e) => onChangeSwitchHandler(e)}
+                      label='Department 3'
+                    />
+                    <TicketFormInput
+                      categoryValue='4'
+                      onChange={(e) => onChangeSwitchHandler(e)}
+                      label='Department 4'
+                    />
                     <div className='d-grid mt-3 mx-md-auto col-md-8 col-lg-12'>
                       <input
                         type='submit'
@@ -170,4 +203,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { createTicket })(TicketForm);
+export default connect(mapStateToProps, { createTicket, setAlert })(TicketForm);

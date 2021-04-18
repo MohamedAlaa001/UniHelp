@@ -8,6 +8,11 @@
   --color-light: #e9ecef;
   --color-dark: #212529;
 }
+::selection {
+  background: var(--color-primary);
+  color: var(--color-light);
+}
+
 /*
 * ==========================================================
 * General Styling 
@@ -25,6 +30,10 @@ a {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   display: inline-block;
+}
+
+a:focus-visible {
+  outline: none;
 }
 
 textarea {
@@ -1304,10 +1313,6 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
 .tickets-block a.ticket:last-of-type {
   border-bottom: none;
   margin-bottom: 0;
-}
-.messages-block .content,
-.tickets-block .content {
-  width: 80%;
 }
 
 .messages-block .title,

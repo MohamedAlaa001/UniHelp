@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from 'react';
-import { useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,8 +13,6 @@ const NotificationBody = ({
   useEffect(() => {
     getNotification(match.params.id);
   }, [getNotification, match.params.id]);
-
-  const { name, message, date } = notification;
 
   return loading || notification === null ? (
     <Spinner />
@@ -36,7 +33,7 @@ const NotificationBody = ({
           <li className='breadcrumb-item'>
             <Link to='/notifications'>Notifications</Link>
           </li>
-          <li className='breadcrumb-item active'>{name}</li>
+          <li className='breadcrumb-item active'>{notification.name}</li>
         </ul>
       </div>
       {/* Page Section */}
@@ -44,15 +41,13 @@ const NotificationBody = ({
         <div className='container-fluid'>
           <div className='messages-block block'>
             <div className='messages'>
-              {
-                <div className='message d-flex align-items-center'>
-                  <div className='content'>
-                    <strong className='d-block'>{name}</strong>
-                    <span className='d-block'>{message}</span>
-                    <small className='date d-block'>{date}</small>
-                  </div>
+              <div className='message d-flex align-items-center'>
+                <div className='content'>
+                  <strong className='d-block'>{notification.name}</strong>
+                  <span className='d-block'>{notification.message}</span>
+                  <small className='date d-block'>{notification.date}</small>
                 </div>
-              }
+              </div>
             </div>
           </div>
         </div>
@@ -63,7 +58,7 @@ const NotificationBody = ({
 
 NotificationBody.propTypes = {
   getNotification: PropTypes.func.isRequired,
-  notification: PropTypes.object,
+  notification: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
