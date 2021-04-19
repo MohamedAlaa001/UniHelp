@@ -158,22 +158,22 @@ const TicketForm = ({ createTicket, user: { id }, setAlert }) => {
                   </div>
                   <div className='block-body'>
                     <TicketFormInput
-                      categoryValue='1'
+                      categoryValue={1}
                       onChange={(e) => onChangeSwitchHandler(e)}
                       label='Department 1'
                     />
                     <TicketFormInput
-                      categoryValue='2'
+                      categoryValue={2}
                       onChange={(e) => onChangeSwitchHandler(e)}
                       label='Department 2'
                     />
                     <TicketFormInput
-                      categoryValue='3'
+                      categoryValue={3}
                       onChange={(e) => onChangeSwitchHandler(e)}
                       label='Department 3'
                     />
                     <TicketFormInput
-                      categoryValue='4'
+                      categoryValue={4}
                       onChange={(e) => onChangeSwitchHandler(e)}
                       label='Department 4'
                     />

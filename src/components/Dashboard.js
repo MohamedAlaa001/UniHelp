@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import PrivateRoute from './routing/PrivateRoute';
 
 import { getAllNotifications } from '../actions/notifications';
-import { getAllTickets } from '../actions/tickets';
+import { getTicketsByUserId } from '../actions/tickets';
 
 // layout
 import Navbar from './layout/Navbar';
@@ -26,7 +26,7 @@ import NotFound from './pages/NotFound';
 
 const Dashboard = ({
   getAllNotifications,
-  getAllTickets,
+  getTicketsByUserId,
   auth: {
     loading,
     user: { id },
@@ -35,8 +35,8 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getAllNotifications(id);
-    getAllTickets(id);
-  }, [getAllNotifications, getAllTickets]);
+    getTicketsByUserId(id);
+  }, [getAllNotifications, getTicketsByUserId]);
 
   return loading || notifications === null ? (
     <Spinner />
@@ -72,7 +72,7 @@ const Dashboard = ({
 Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   getAllNotifications: PropTypes.func.isRequired,
-  getAllTickets: PropTypes.func.isRequired,
+  getTicketsByUserId: PropTypes.func.isRequired,
   notifications: PropTypes.array.isRequired,
 };
 
@@ -81,6 +81,7 @@ const mapStateToProps = (state) => ({
   notifications: state.notification.notifications,
 });
 
-export default connect(mapStateToProps, { getAllNotifications, getAllTickets })(
-  Dashboard
-);
+export default connect(mapStateToProps, {
+  getAllNotifications,
+  getTicketsByUserId,
+})(Dashboard);

@@ -1,15 +1,17 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Spinner from '../../layout/Spinner';
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTicket } from '../../../actions/tickets';
 
-const TicketBody = ({ match, getTicket, ticket: { ticket, loading } }) => {
+import { getTicketById } from '../../../actions/tickets';
+
+import Spinner from '../../layout/Spinner';
+import TicketReply from './TicketReply';
+
+const TicketBody = ({ match, getTicketById, ticket: { ticket, loading } }) => {
   useEffect(() => {
-    getTicket(match.params.id);
-  }, [getTicket, match.params.id]);
+    getTicketById(match.params.id);
+  }, [getTicketById, match.params.id]);
   return loading || ticket === null ? (
     <Spinner />
   ) : (
@@ -55,7 +57,9 @@ const TicketBody = ({ match, getTicket, ticket: { ticket, loading } }) => {
                 </div>
               </div>
               {/* Ticket replies */}
-              <div className='alert alert-primary mt-3'>Replies goes below</div>
+              <div className='alert alert-primary mt-3'>Replies goes here</div>
+              {/* Reply Form */}
+              <TicketReply />
             </div>
           </div>
         </div>
@@ -64,7 +68,7 @@ const TicketBody = ({ match, getTicket, ticket: { ticket, loading } }) => {
   );
 };
 TicketBody.propTypes = {
-  getTicket: PropTypes.func.isRequired,
+  getTicketById: PropTypes.func.isRequired,
   ticket: PropTypes.object.isRequired,
 };
 
@@ -72,4 +76,4 @@ const mapStateToProps = (state) => ({
   ticket: state.ticket,
 });
 
-export default connect(mapStateToProps, { getTicket })(TicketBody);
+export default connect(mapStateToProps, { getTicketById })(TicketBody);

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import { GET_ALL_TICKETS, GET_TICKET, CREATE_TICKET } from './types';
 
-export const getAllTickets = (userId) => async (dispatch) => {
+export const getTicketsByUserId = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`http://localhost:5000/tickets?user=${userId}`);
 
@@ -15,7 +15,7 @@ export const getAllTickets = (userId) => async (dispatch) => {
   }
 };
 
-export const getTicket = (ticketId) => async (dispatch) => {
+export const getTicketById = (ticketId) => async (dispatch) => {
   try {
     const res = await axios.get(`http://localhost:5000/tickets/${ticketId}`);
 
