@@ -2,15 +2,17 @@
   "users": [
     {
       "id": 1,
+      "name": "Sys Admin",
       "username": "admin",
       "password": "admin",
-      "isAdmin": true
+      "role": "employee"
     },
     {
       "id": 2,
+      "name": "Sys Student",
       "username": "std",
       "password": "std",
-      "isAdmin": false
+      "role": "student"
     }
   ],
   "notifications": [
@@ -86,6 +88,48 @@
       "title": "Lorem ipsum dolor sit amet.",
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nesciunt quisquam asperiores, ea, possimus laborum tempora explicabo ipsa excepturi officia facere, aperiam architecto minus aut perspiciatis aliquid sapiente necessitatibus itaque! At tempora iure soluta officiis explicabo recusandae suscipit accusantium, debitis impedit architecto eius quod corrupti esse alias, magnam sit veniam dolore beatae eos maiores minima excepturi, voluptate corporis repudiandae? Incidunt quia necessitatibus non temporibus! Obcaecati cupiditate labore dolor, officia quisquam perferendis itaque? Omnis dicta corrupti, repellendus ut veniam magni quo suscipit modi, cupiditate excepturi molestias id similique! Est ducimus optio repudiandae aliquid consequuntur aperiam a voluptatum in praesentium dolore eius autem, esse possimus vero quis eum harum ratione nobis veritatis ipsa alias voluptates id molestias provident! Amet delectus porro quisquam?",
       "date": "Apr, 14,2021, 9:00 PM",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [
+        {
+          "name": "Sys Admin",
+          "ticketId": 1,
+          "id": 1,
+          "content": "Reply 1",
+          "date": 1618426800000
+        },
+        {
+          "name": "Sys Admin",
+          "ticketId": 1,
+          "id": 2,
+          "content": "Reply 2",
+          "date": 1609570800000
+        },
+        {
+          "name": "Sys Admin",
+          "ticketId": 1,
+          "id": 3,
+          "content": "Reply 3",
+          "date": 1612614000000
+        }
+    
+      ],
       "isResolved": false
     },
     {
@@ -94,6 +138,25 @@
       "title": "Lorem, ipsum dolor",
       "content":  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
       "date": "6:23pm",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [],
       "isResolved": true
     },
     {
@@ -103,6 +166,25 @@
       "content":
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
       "date": "6:23pm",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [],
       "isResolved": true
     }
   ]

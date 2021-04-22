@@ -5,9 +5,9 @@ const TicketItem = ({ ticket }) => {
   const { id, title, content, date, isResolved } = ticket;
 
   const ticketStatus = isResolved ? (
-    <span className='ticket-status closed'>[CLOSED]</span>
+    <strong className='ticket-status closed'>[CLOSED]</strong>
   ) : (
-    <span className='ticket-status'>[OPEN]</span>
+    <strong className='ticket-status'>[OPEN]</strong>
   );
 
   return (

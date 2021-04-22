@@ -5,42 +5,34 @@ import { sidebarHandleClick } from '../handlersMethods';
 
 import NavItem from './NavItem';
 
-const Sidebar = ({ isAdmin }) => {
+const Sidebar = ({ role }) => {
   useEffect(() => {
     sidebarHandleClick();
+    console.log(role);
   }, []);
 
-  const studentSidebar = (
-    <Fragment>
-      <span className='heading'>Student Panel</span>
-      <ul className='list-unstyled'>
-        <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
-      </ul>
-    </Fragment>
-  );
-
-  const adminSidebar = (
-    <Fragment>
-      <span className='heading'>Admin Panel</span>
-      <ul className='list-unstyled'>
-        <li>
-          <a
-            href='#menuDropdown'
-            aria-expanded='false'
-            data-bs-toggle='collapse'
-          >
-            <i className='icon-list-1'></i>
-            Dropdown Example
-          </a>
-          <ul className='list-unstyled collapse' id='menuDropdown'>
-            <NavItem path='/demo1' icon={'menu-right'} name='Department X' />
-            <NavItem path='/demo2' icon={'menu-right'} name='Department Y' />
-            <NavItem path='/demo3' icon={'menu-right'} name='Department Z' />
-          </ul>
-        </li>
-      </ul>
-    </Fragment>
-  );
+  const roleSwitch = () => {
+    switch (role) {
+      case 'student':
+        return (
+          <Fragment>
+            <span className='heading'>Student Panel</span>
+            <ul className='list-unstyled'>
+              <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
+            </ul>
+          </Fragment>
+        );
+      case 'employee':
+        return (
+          <Fragment>
+            <span className='heading'>Employee Panel</span>
+            <ul className='list-unstyled'>
+              <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
+            </ul>
+          </Fragment>
+        );
+    }
+  };
 
   return (
     <Fragment>
@@ -59,19 +51,38 @@ const Sidebar = ({ isAdmin }) => {
           <NavItem path='/home' icon='home' name='Home' />
           <NavItem path='/notifications' icon='bell' name='Notifications' />
         </ul>
-        {isAdmin ? adminSidebar : studentSidebar}
         {/* Sidebar Main Menu End */}
+        {/* Switch case for different user panel */}
+        {(() => roleSwitch())()}
       </nav>
     </Fragment>
   );
 };
 
 Sidebar.propTypes = {
-  isAdmin: PropTypes.bool,
+  role: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAdmin: state.auth.user.isAdmin,
+  role: state.auth.user.role,
 });
 
 export default connect(mapStateToProps)(Sidebar);
+
+/*
+<li>
+  <a
+    href='#menuDropdown'
+    aria-expanded='false'
+    data-bs-toggle='collapse'
+  >
+    <i className='icon-list-1'></i>
+    Dropdown Example
+  </a>
+  <ul className='list-unstyled collapse' id='menuDropdown'>
+    <NavItem path='/demo1' icon={'menu-right'} name='Department X' />
+    <NavItem path='/demo2' icon={'menu-right'} name='Department Y' />
+    <NavItem path='/demo3' icon={'menu-right'} name='Department Z' />
+  </ul>
+</li>
+*/

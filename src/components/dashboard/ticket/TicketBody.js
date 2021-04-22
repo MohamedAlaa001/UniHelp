@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,9 +7,16 @@ import PropTypes from 'prop-types';
 import { getTicketById } from '../../../actions/tickets';
 
 import Spinner from '../../layout/Spinner';
-import TicketReply from './TicketReply';
+import Replies from './replies/Replies';
+import ReplyForm from './replies/ReplyForm';
+import TicketTimeline from './TicketTimeline';
 
-const TicketBody = ({ match, getTicketById, ticket: { ticket, loading } }) => {
+const TicketBody = ({
+  match,
+  getTicketById,
+  tickets: { ticket, loading },
+  user: { role },
+}) => {
   useEffect(() => {
     getTicketById(match.params.id);
   }, [getTicketById, match.params.id]);
@@ -31,36 +39,59 @@ const TicketBody = ({ match, getTicketById, ticket: { ticket, loading } }) => {
           <li className='breadcrumb-item'>
             <Link to='/tickets'>Tickets</Link>
           </li>
-          <li className='breadcrumb-item active'>{'Ticket Name'}</li>
+          <li className='breadcrumb-item active'>{ticket.title}</li>
         </ul>
       </div>
       {/* Page Section */}
       <section>
         <div className='container-fluid'>
           <div className='tickets-block block'>
-            <div className='tickets'>
-              <div className='ticket d-flex align-items-center'>
-                <div className='content'>
-                  <div className='title'>
-                    <strong>
-                      {ticket.isResolved ? (
-                        <span className='ticket-status closed'>[CLOSED]</span>
-                      ) : (
-                        <span className='ticket-status'>[OPEN]</span>
-                      )}
-                      {ticket.title}
-                    </strong>
-                    <span className='d-block'>to {'Student Affairs'}</span>
-                    <small className='date d-block'>{ticket.date}</small>
+            <div className='row mb-3'>
+              <div className='col-sm-12 col-lg-9'>
+                <div className='tickets'>
+                  <div className='ticket d-flex align-items-center'>
+                    <div className='content'>
+                      <div className='title'>
+                        <strong>
+                          {ticket.isResolved ? (
+                            <strong className='ticket-status closed'>
+                              [CLOSED]
+                            </strong>
+                          ) : (
+                            <strong className='ticket-status'>[OPEN]</strong>
+                          )}
+                          {ticket.title}
+                        </strong>
+                        <span className='d-block'>to {'Student Affairs'}</span>
+                        <small className='date d-block'>{ticket.date}</small>
+                      </div>
+                      <p className='d-block ticket-content'>{ticket.content}</p>
+                    </div>
                   </div>
-                  <p className='d-block ticket-content'>{ticket.content}</p>
                 </div>
               </div>
-              {/* Ticket replies */}
-              <div className='alert alert-primary mt-3'>Replies goes here</div>
-              {/* Reply Form */}
-              <TicketReply />
+              {ticket.path.length > 0 ? (
+                <div className='col'>
+                  <div className='timeline card'>
+                    <div className='card-body'>
+                      <h4 className='card-title'>Ticket Path</h4>
+                      <div className='timeline-body'>
+                        {ticket.path.map((path) => (
+                          <TicketTimeline path={path} key={uuidv4()} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
             </div>
+            {/* Ticket Path */}
+
+            {/* Reply Form for employee only */}
+            {role !== 'student' ? <ReplyForm /> : null}
+            {/* <ReplyForm /> */}
+            {/* Ticket Replies */}
+            <Replies />
           </div>
         </div>
       </section>
@@ -68,12 +99,14 @@ const TicketBody = ({ match, getTicketById, ticket: { ticket, loading } }) => {
   );
 };
 TicketBody.propTypes = {
+  user: PropTypes.object.isRequired,
   getTicketById: PropTypes.func.isRequired,
-  ticket: PropTypes.object.isRequired,
+  tickets: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  ticket: state.ticket,
+  user: state.auth.user,
+  tickets: state.tickets,
 });
 
 export default connect(mapStateToProps, { getTicketById })(TicketBody);

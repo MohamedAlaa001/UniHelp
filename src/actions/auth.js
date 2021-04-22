@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from './types';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  LOGOUT,
+  CLEAR_NOTIFICATIONS,
+  CLEAR_TICKETS,
+  CLEAR_REPLIES,
+} from './types';
 import { setAlert } from './alert';
 
 export const login = (username2, password2) => async (dispatch) => {
@@ -30,4 +37,9 @@ export const login = (username2, password2) => async (dispatch) => {
   }
 };
 
-export const logout = () => ({ type: LOGOUT });
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT });
+  dispatch({ type: CLEAR_NOTIFICATIONS });
+  dispatch({ type: CLEAR_TICKETS });
+  dispatch({ type: CLEAR_REPLIES });
+};

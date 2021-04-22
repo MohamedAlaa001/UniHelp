@@ -3,6 +3,7 @@ import {
   GET_NOTIFICATION,
   SET_NOTIFICATION_READ,
   SET_ALL_NOTIFICATIONS_READ,
+  CLEAR_NOTIFICATIONS,
 } from '../actions/types';
 
 const initialState = {
@@ -45,6 +46,13 @@ function notificationReducer(state = initialState, action) {
           isRead: true,
         })),
         loading: false,
+      };
+    case CLEAR_NOTIFICATIONS:
+      return {
+        ...state,
+        notification: null,
+        notifications: [],
+        loading: true,
       };
     default:
       return state;

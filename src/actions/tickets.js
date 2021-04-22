@@ -1,7 +1,13 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_ALL_TICKETS, GET_TICKET, CREATE_TICKET } from './types';
+import {
+  GET_ALL_TICKETS,
+  GET_TICKET,
+  CREATE_TICKET,
+  CLEAR_REPLIES,
+} from './types';
 
+// Student
 export const getTicketsByUserId = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`http://localhost:5000/tickets?user=${userId}`);
@@ -33,3 +39,5 @@ export const createTicket = (ticket) => async (dispatch) => {
   // add dispatch create ticket
   dispatch(setAlert('Ticket Created', 'success', false, 3000));
 };
+
+// Employee

@@ -104,6 +104,7 @@ nav.navbar .message:hover {
 nav.navbar .message:last-of-type {
   border-bottom: none;
 }
+
 nav.navbar .message {
   color: #8a8d93;
   text-decoration: none;
@@ -124,58 +125,6 @@ nav.navbar .message .content span {
 
 nav.navbar .message .content .date {
   color: #70737a;
-}
-
-/*
-* ==========================================================
-* Forms
-* ==========================================================
-*/
-.form-floating > .form-control:focus ~ label.label-material,
-.form-floating > .form-control:not(:placeholder-shown) ~ label.label-material {
-  opacity: 1;
-  color: #379392;
-}
-.form-check.form-switch {
-  margin-bottom: 0.5rem;
-}
-
-.form-switch .form-check-input:focus {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
-}
-
-.form-switch .form-check-input:checked:focus {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-}
-
-.form-check-input:focus {
-  border-color: transparent;
-  box-shadow: none;
-  outline: none;
-}
-.form-check-input:checked {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-/*
-*
-* UTILLS
-*
-*/
-.message span.text-truncate,
-.ticket span.text-truncate {
-  max-width: 60vw;
-}
-
-/*
-*
-* Default bootstrap theme
-*
-*/
-a:focus,
-a:hover {
-  text-decoration: none;
 }
 
 /* Sidebar */
@@ -212,6 +161,65 @@ nav#sidebar li li a.active {
   background: #292c32;
 }
 
+/*
+* ==========================================================
+* Forms
+* ==========================================================
+*/
+.form-floating > textarea {
+  height: 100px !important;
+  border-radius: 10px;
+  resize: none;
+  transition: height 0.3s ease;
+}
+
+.form-floating > textarea:focus,
+.form-floating > textarea:not(:placeholder-shown) {
+  height: 300px !important;
+}
+@media (max-width: 575px) {
+  .form-floating > textarea:not(:placeholder-shown) {
+    height: 450px !important;
+  }
+}
+
+.form-floating > .form-control:focus ~ label.label-material,
+.form-floating > .form-control:not(:placeholder-shown) ~ label.label-material {
+  opacity: 1;
+  color: #379392;
+}
+
+.form-check.form-switch {
+  margin-bottom: 0.5rem;
+}
+
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input:focus {
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+.form-check-input:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+/*
+*
+* Default bootstrap theme
+*
+*/
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
 /* 
 *
 * Messages Section 
@@ -220,6 +228,7 @@ nav#sidebar li li a.active {
 .messages-block .message {
   position: relative;
 }
+
 .messages-block .message > .content:before {
   content: '';
   position: absolute;
@@ -240,52 +249,49 @@ nav#sidebar li li a.active {
 * Tickets Section
 *
 */
-.ticket .content {
-  width: 100%;
-}
-.ticket .ticket-status {
-  font-size: 1.25rem !important;
-  color: #a5a7ab !important;
-  font-weight: inherit !important;
-}
-.ticket .ticket-status {
+.tickets-block .ticket-status {
   margin-right: 0.25rem;
   color: var(--color-success) !important;
 }
 
-.ticket .ticket-status.closed {
+.tickets-block .ticket-status.closed {
   color: var(--color-danger) !important;
 }
-.ticket .ticket-content {
-  padding: 1.25rem;
-  border-radius: 5px;
-  /* box-shadow: 0 0 5px var(--color-dark); */
-  background-color: #2d3035;
+
+.tickets-block .ticket .ticket-content {
+  background-color: var(--color-dark-block);
 }
 
-section .messages-block a.message,
-section .tickets-block a.ticket {
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px var(--color-dark);
-  margin-bottom: 0.5rem;
-}
-
-/*
-*
-* Replies
-*
-*/
-/* .reply { */
-/* border: 1px solid #393c43;
-  border-radius: 10px; */
-/* } */
-.ticket,
-.reply {
-  width: 100%;
-  background-color: #282b2f;
+/* Replies */
+.tickets-block .reply {
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  background-color: var(--color-dark-block);
 }
-.reply .reply-header {
-  /* background-color: #282b2f; */
+
+.tickets-block .reply .ticket-content {
+  margin-top: 1rem;
+  background: var(--color-gray-block);
+}
+
+.tickets-block .reply-header {
+  cursor: pointer;
+  position: relative;
+}
+
+.tickets-block .reply-header .title > strong:after {
+  border: none !important;
+  float: right;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  content: '\f107';
+  /* vertical-align: middle; */
+  font-family: 'FontAwesome';
+  margin-left: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.tickets-block .reply-header[aria-expanded='true'] .title > strong:after {
+  content: '\f106';
 }

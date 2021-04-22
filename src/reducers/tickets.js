@@ -1,4 +1,9 @@
-import { GET_ALL_TICKETS, GET_TICKET, CREATE_TICKET } from '../actions/types';
+import {
+  GET_ALL_TICKETS,
+  GET_TICKET,
+  CREATE_TICKET,
+  CLEAR_TICKETS,
+} from '../actions/types';
 
 const initialState = {
   ticket: null,
@@ -27,6 +32,13 @@ function ticketReducer(state = initialState, action) {
         ...state,
         tickets: [payload, state.tickets],
         loading: false,
+      };
+    case CLEAR_TICKETS:
+      return {
+        ...state,
+        ticket: null,
+        tickets: [],
+        loading: true,
       };
     default:
       return state;

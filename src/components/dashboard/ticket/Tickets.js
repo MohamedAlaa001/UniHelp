@@ -1,12 +1,39 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import TicketItem from './TicketItem';
+// import { getTicketsByUserId } from '../../../actions/tickets';
+import { getTicketsByUserId } from '../../../actions/tickets';
 
-const Tickets = ({ tickets }) => {
-  return (
+import TicketItem from './TicketItem';
+import Spinner from '../../layout/Spinner';
+
+const Tickets = ({
+  getTicketsByUserId,
+  tickets: { loading, tickets },
+  user,
+}) => {
+  useEffect(() => {
+    ticketSwitch();
+  }, []);
+
+  const ticketSwitch = () => {
+    switch (user.role) {
+      case 'student':
+        getTicketsByUserId(user.id);
+        break;
+      case 'employee':
+        // getAssignedTicketByUserId(user.id);
+        break;
+      default:
+        return;
+    }
+  };
+
+  return loading || tickets === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       {/* Page Header */}
       <div className='page-header no-margin-bottom'>
@@ -46,10 +73,13 @@ const Tickets = ({ tickets }) => {
 };
 
 Tickets.propTypes = {
-  tickets: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  getTicketsByUserId: PropTypes.func.isRequired,
+  // tickets: PropTypes.array,
 };
 const mapStateToProps = (state) => ({
-  tickets: state.ticket.tickets,
+  user: state.auth.user,
+  tickets: state.tickets,
 });
 
-export default connect(mapStateToProps)(Tickets);
+export default connect(mapStateToProps, { getTicketsByUserId })(Tickets);
