@@ -251,11 +251,26 @@ a:hover {
 */
 .tickets-block .ticket-status {
   margin-right: 0.25rem;
+  text-transform: uppercase;
+  color: var(--color-warning) !important;
+}
+
+.statistic-block .ticket-status {
+  color: var(--color-warning) !important;
+}
+
+.tickets-block .ticket-status.open,
+.statistic-block .ticket-status.open {
   color: var(--color-success) !important;
 }
 
-.tickets-block .ticket-status.closed {
+.tickets-block .ticket-status.closed,
+.statistic-block .ticket-status.closed {
   color: var(--color-danger) !important;
+}
+.tickets-block .ticket-status.resolved,
+.statistic-block .ticket-status.resolved {
+  color: var(--color-info) !important;
 }
 
 .tickets-block .ticket .ticket-content {

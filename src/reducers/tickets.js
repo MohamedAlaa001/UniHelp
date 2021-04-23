@@ -30,7 +30,7 @@ function ticketReducer(state = initialState, action) {
     case CREATE_TICKET:
       return {
         ...state,
-        tickets: [payload, state.tickets],
+        tickets: [payload, ...state.tickets],
         loading: false,
       };
     case CLEAR_TICKETS:

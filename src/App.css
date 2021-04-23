@@ -851,7 +851,7 @@ nav#sidebar.shrinked a[aria-expanded='true']::after {
 }
 
 .statistic-block .icon {
-  margin-bottom: 5;
+  margin-bottom: 5px;
   font-size: 1.2rem;
   color: #8a8d93;
 }
@@ -1372,8 +1372,10 @@ section .tickets-block a.ticket {
 /* Ticket Timeline */
 .timeline {
   background: var(--color-dark-block);
+
   height: 100%;
-  border-radius: 10px;
+  border-radius: 5px !important;
+  box-shadow: 0 0 5px 5px var(--color-dark-block) !important;
 }
 
 .timeline .timeline-body {

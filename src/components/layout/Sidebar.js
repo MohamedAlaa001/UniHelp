@@ -8,7 +8,6 @@ import NavItem from './NavItem';
 const Sidebar = ({ role }) => {
   useEffect(() => {
     sidebarHandleClick();
-    console.log(role);
   }, []);
 
   const roleSwitch = () => {
@@ -28,6 +27,8 @@ const Sidebar = ({ role }) => {
             <span className='heading'>Employee Panel</span>
             <ul className='list-unstyled'>
               <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
+              <NavItem path='/dashboard' icon='chart' name='Dashboard' />
+              <NavItem path='/settings' icon='settings' name='Settings' />
             </ul>
           </Fragment>
         );

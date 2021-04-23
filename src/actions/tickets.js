@@ -38,6 +38,10 @@ export const createTicket = (ticket) => async (dispatch) => {
   console.log(ticket);
   // add dispatch create ticket
   dispatch(setAlert('Ticket Created', 'success', false, 3000));
+  dispatch({
+    type: CREATE_TICKET,
+    payload: ticket,
+  });
 };
 
 // Employee

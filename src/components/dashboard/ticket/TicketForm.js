@@ -10,7 +10,7 @@ import Alert from '../../layout/Alert';
 
 import TicketFormInput from './TicketFormInput';
 
-const TicketForm = ({ createTicket, user: { id }, setAlert }) => {
+const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
   const [ticketData, setTicketData] = useState({
     title: '',
     content: '',
@@ -67,12 +67,14 @@ const TicketForm = ({ createTicket, user: { id }, setAlert }) => {
       return;
     }
 
-    // Validate Form Here
     const ticketBody = {
       user: id,
       title,
       content,
       category: categoryValue,
+      date: 'Apr, 14,2021, 9:00 PM',
+      path: [],
+      replies: [],
       isResloved: false,
     };
     createTicket(ticketBody);
@@ -84,7 +86,7 @@ const TicketForm = ({ createTicket, user: { id }, setAlert }) => {
       errors: [],
     });
     document.querySelector('form').reset();
-    // history.
+    history.push('/tickets');
   };
   return (
     <Fragment>
@@ -110,9 +112,6 @@ const TicketForm = ({ createTicket, user: { id }, setAlert }) => {
       <section>
         <div className='container-fluid'>
           <Alert />
-          <div className='block alert-primary'>
-            <strong>Form Validation</strong>
-          </div>
           <form className='ticket-form' onSubmit={(e) => onSubmitHandler(e)}>
             <div className='row'>
               {/* Left Panel */}

@@ -24,7 +24,7 @@ const Tickets = ({
         getTicketsByUserId(user.id);
         break;
       case 'employee':
-        // getAssignedTicketByUserId(user.id);
+        // getAssignedTicketsByUserId(user.id);
         break;
       default:
         return;

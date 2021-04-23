@@ -87,6 +87,7 @@
       "id": 1,
       "title": "Lorem ipsum dolor sit amet.",
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nesciunt quisquam asperiores, ea, possimus laborum tempora explicabo ipsa excepturi officia facere, aperiam architecto minus aut perspiciatis aliquid sapiente necessitatibus itaque! At tempora iure soluta officiis explicabo recusandae suscipit accusantium, debitis impedit architecto eius quod corrupti esse alias, magnam sit veniam dolore beatae eos maiores minima excepturi, voluptate corporis repudiandae? Incidunt quia necessitatibus non temporibus! Obcaecati cupiditate labore dolor, officia quisquam perferendis itaque? Omnis dicta corrupti, repellendus ut veniam magni quo suscipit modi, cupiditate excepturi molestias id similique! Est ducimus optio repudiandae aliquid consequuntur aperiam a voluptatum in praesentium dolore eius autem, esse possimus vero quis eum harum ratione nobis veritatis ipsa alias voluptates id molestias provident! Amet delectus porro quisquam?",
+      "category": 1,
       "date": "Apr, 14,2021, 9:00 PM",
       "path": [
         {
@@ -130,13 +131,14 @@
         }
     
       ],
-      "isResolved": false
+      "status": "new"
     },
     {
       "user": 2,
       "id": 2,
       "title": "Lorem, ipsum dolor",
       "content":  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "category": 1,
       "date": "6:23pm",
       "path": [
         {
@@ -157,7 +159,7 @@
         }
       ],
       "replies": [],
-      "isResolved": true
+      "status": "open"
     },
     {
       "user": 2,
@@ -165,6 +167,7 @@
       "title": "Lorem, ipsum dolor",
       "content":
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "category": 1,
       "date": "6:23pm",
       "path": [
         {
@@ -185,7 +188,36 @@
         }
       ],
       "replies": [],
-      "isResolved": true
+      "status": "resolved"
+    },
+    {
+      "user": 2,
+      "id": 4,
+      "title": "Lorem, ipsum dolor",
+      "content":
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "category": 1,
+      "date": "6:23pm",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [],
+      "status": "closed"
     }
   ]
 }

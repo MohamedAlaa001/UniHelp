@@ -53,12 +53,20 @@ const TicketBody = ({
                     <div className='content'>
                       <div className='title'>
                         <strong>
-                          {ticket.isResolved ? (
+                          {ticket.status === 'open' ? (
+                            <strong className='ticket-status open'>
+                              [open]
+                            </strong>
+                          ) : ticket.status === 'closed' ? (
                             <strong className='ticket-status closed'>
-                              [CLOSED]
+                              [closed]
+                            </strong>
+                          ) : ticket.status === 'resolved' ? (
+                            <strong className='ticket-status resolved'>
+                              [resolved]
                             </strong>
                           ) : (
-                            <strong className='ticket-status'>[OPEN]</strong>
+                            <strong className='ticket-status'>[new]</strong>
                           )}
                           {ticket.title}
                         </strong>
