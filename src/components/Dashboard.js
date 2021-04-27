@@ -23,7 +23,7 @@ import TicketForm from './dashboard/ticket/TicketForm';
 // Panel
 import Panel from './dashboard/panel/Panel';
 // Settings
-import Settings from './dashboard/settings/Settings';
+import Perms from './dashboard/settings/Perms';
 
 import NotFound from './pages/NotFound';
 
@@ -63,7 +63,7 @@ const Dashboard = ({
             <PrivateRoute exact path='/tickets/create' component={TicketForm} />
             <PrivateRoute exact path='/tickets/:id' component={TicketBody} />
             <PrivateRoute exact path='/dashboard' component={Panel} />
-            <PrivateRoute exact path='/settings' component={Settings} />
+            <PrivateRoute exact path='/permissions' component={Perms} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

@@ -28,7 +28,19 @@ const Sidebar = ({ role }) => {
             <ul className='list-unstyled'>
               <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
               <NavItem path='/dashboard' icon='chart' name='Dashboard' />
-              <NavItem path='/settings' icon='settings' name='Settings' />
+              <li>
+                <a
+                  href='#menuDropdown'
+                  aria-expanded='false'
+                  data-bs-toggle='collapse'
+                >
+                  <i className='icon-settings'></i>
+                  Settings
+                </a>
+                <ul className='list-unstyled collapse' id='menuDropdown'>
+                  <NavItem path='/permissions' name='Permissions' />
+                </ul>
+              </li>
             </ul>
           </Fragment>
         );

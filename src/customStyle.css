@@ -153,10 +153,6 @@ nav#sidebar a.active i {
   color: #379392;
 }
 
-nav#sidebar li li a {
-  padding-left: 35px;
-}
-
 nav#sidebar li li a.active {
   background: #292c32;
 }
