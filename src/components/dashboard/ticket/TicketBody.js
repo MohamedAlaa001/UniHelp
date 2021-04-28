@@ -70,6 +70,7 @@ const TicketBody = ({
                           )}
                           {ticket.title}
                         </strong>
+                        <span className='d-block'>{ticket.id}</span>
                         <span className='d-block'>to {'Student Affairs'}</span>
                         <small className='date d-block'>{ticket.date}</small>
                       </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarChart = ({ maxValue = 50 }) => {
+const BarChart = () => {
   const [chartData, setChartData] = useState({
     labels: ['New', 'Opened', 'Closed', 'Resolved'],
     datasets: [
@@ -57,7 +57,6 @@ const BarChart = ({ maxValue = 50 }) => {
         },
       },
       x: {
-        max: maxValue,
         grid: {
           color: 'rgba(138, 141, 147, 0.2)',
         },

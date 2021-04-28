@@ -11,7 +11,7 @@
   --color-dark-block: #282b2f;
 }
 ::selection {
-  background: var(--color-primary);
+  background: #156464;
   color: var(--color-light);
 }
 
@@ -1488,6 +1488,7 @@ section .tickets-block a.ticket {
   position: relative;
   width: 18px;
   height: 18px;
+  border-radius: 50%;
   background: var(--color-primary);
 }
 .timeline .timeline-item:last-of-type .badge-dot {

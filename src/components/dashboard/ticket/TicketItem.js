@@ -25,6 +25,7 @@ const TicketItem = ({ ticket }) => {
             {(() => ticketStatus())()}
             {title}
           </strong>
+          <span className='d-block'>{id}</span>
         </div>
         <span className='d-block text-truncate'>{content}</span>
         <small className='date d-block'>{date}</small>

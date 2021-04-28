@@ -8,14 +8,31 @@ const Home = () => {
           <h2 className='h5 no-margin-bottom'>Home</h2>
         </div>
       </div>
-      <section>
+      <section style={{ textTransform: 'capitalize' }}>
         <div className='alert alert-primary lead'>
           Super User <br />
-          Perms:
           <ol>
-            <li>Get Categories</li>
-            <li>Get All Users</li>
-            <li>Change User Role</li>
+            <li>
+              Perms:
+              <ol>
+                <li>Get Categories</li>
+                <li>Get All Users</li>
+                <li>Change User Role</li>
+              </ol>
+            </li>
+            <li>
+              Dashboard:
+              <ol>
+                <li>Ticket Statistics</li>
+              </ol>
+            </li>
+            <li>
+              System Logs:
+              <ol>
+                <li>Actions</li>
+                <li>Search by Ticked Id</li>
+              </ol>
+            </li>
           </ol>
         </div>
         <div className='alert alert-primary lead'>
@@ -31,7 +48,19 @@ const Home = () => {
         <div className='alert alert-primary lead'>
           Employee:
           <ol>
-            <li>Get Tickets Assigned</li>
+            <li>Get Tickets Assigned // Get forward tickets</li>
+            <li>
+              Forward Ticket
+              <ul>
+                <li>Update ticket timeline</li>
+                <li>Only show the reply if not private</li>
+                <li></li>
+              </ul>
+            </li>
+            <li>
+              Resolve Ticket{' '}
+              <span className='text-dark text-bold'>Will be set pending</span>
+            </li>
           </ol>
         </div>
         <div className='alert alert-primary lead'>
@@ -46,9 +75,14 @@ const Home = () => {
           </ol>
         </div>
         <div className='alert alert-primary lead'>
-          Dashboard:
+          Ticket
           <ol>
-            <li>Ticket Statistics</li>
+            <li>
+              Custom Ticket Id, XXX-XXX-XXX <br /> VCE-NRQ-628
+            </li>
+            <li>Show Ticket Id</li>
+            <li>Ticket Timeline</li>
+            <li>Ticket Replies</li>
           </ol>
         </div>
       </section>

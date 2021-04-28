@@ -14,7 +14,7 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
   const [ticketData, setTicketData] = useState({
     title: '',
     content: '',
-    categoryValue: '',
+    categoryValue: null,
     errors: [],
   });
 
@@ -43,7 +43,7 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
     if (content.trim() === '') {
       errors.push('Ticket Content is Required');
     }
-    if (categoryValue === '') {
+    if (categoryValue === null) {
       errors.push('Ticket Category is Required');
     }
 
@@ -58,12 +58,17 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
       });
 
       // reset errors
+      if (document.querySelector('input[name="categorySwitch"]:checked')) {
+        document.querySelector(
+          'input[name="categorySwitch"]:checked'
+        ).checked = false;
+      }
+
       setTicketData({
         ...ticketData,
-        categoryValue: '',
+        categoryValue: null,
         errors: [],
       });
-      document.querySelector('form').reset();
       return;
     }
 
@@ -82,10 +87,15 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
     setTicketData({
       title: '',
       content: '',
-      categoryValue: '',
+      categoryValue: null,
       errors: [],
     });
-    document.querySelector('form').reset();
+
+    if (document.querySelector('input[name="categorySwitch"]:checked')) {
+      document.querySelector(
+        'input[name="categorySwitch"]:checked'
+      ).checked = false;
+    }
     history.push('/tickets');
   };
   return (
@@ -130,7 +140,7 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
                         placeholder=''
                         onChange={(e) => onChangeTextHandler(e)}
                       />
-                      <label htmlFor='subjec' className='label-material'>
+                      <label htmlFor='subject' className='label-material'>
                         Subject
                       </label>
                     </div>

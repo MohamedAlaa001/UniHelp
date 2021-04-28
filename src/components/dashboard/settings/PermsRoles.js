@@ -58,9 +58,39 @@ const PermsRoles = () => {
         </div>
         <div className='perms-body'>
           <div className='title'>
-            <strong>{category}</strong>
+            <h3>{category}</h3>
           </div>
-          <div className='perms-category'>{category}</div>
+          <div className='perms-category'>
+            <h5 className='d-flex align-item-center justify-content-between '>
+              <span className='perms-category-role'>Approve Ticket</span>
+              <div className='form-check form-switch'>
+                <input type='checkbox' className='form-check-input' />
+              </div>
+            </h5>
+            <h5 className='d-flex align-item-center justify-content-between'>
+              <span className='perms-category-role'>Resolve Ticket</span>
+              <div className='form-check form-switch'>
+                <input type='checkbox' className='form-check-input' checked />
+              </div>
+            </h5>
+            <h5 className='d-flex align-item-center justify-content-between'>
+              <span className='perms-category-role'>View System Logs</span>
+              <div className='form-check form-switch'>
+                <input type='checkbox' className='form-check-input' disabled />
+              </div>
+            </h5>
+            <h5 className='d-flex align-item-center justify-content-between'>
+              <span className='perms-category-role'>Edit Roles</span>
+              <div className='form-check form-switch'>
+                <input
+                  type='checkbox'
+                  className='form-check-input'
+                  checked
+                  disabled
+                />
+              </div>
+            </h5>
+          </div>
         </div>
       </div>
     </div>
