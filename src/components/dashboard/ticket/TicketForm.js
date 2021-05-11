@@ -1,24 +1,36 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { createTicket } from '../../../actions/tickets';
+import { createTicket, getCategories } from '../../../actions/tickets';
 import { setAlert } from '../../../actions/alert';
-// Alert
+
 import Alert from '../../layout/Alert';
+import Spinner from '../../layout/Spinner';
 
 import TicketFormInput from './TicketFormInput';
 
-const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
+const TicketForm = ({
+  getCategories,
+  categories,
+  createTicket,
+  user: { id },
+  setAlert,
+  history,
+}) => {
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
   const [ticketData, setTicketData] = useState({
     title: '',
     content: '',
-    categoryValue: null,
+    category_id: null,
     errors: [],
   });
 
-  const { title, content, categoryValue, errors } = ticketData;
+  const { title, content, category_id, errors } = ticketData;
 
   const onChangeTextHandler = (e) => {
     setTicketData({
@@ -30,7 +42,7 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
   const onChangeSwitchHandler = (e) => {
     setTicketData({
       ...ticketData,
-      categoryValue: e.target.value,
+      category_id: e.target.value,
     });
   };
 
@@ -43,7 +55,7 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
     if (content.trim() === '') {
       errors.push('Ticket Content is Required');
     }
-    if (categoryValue === null) {
+    if (category_id === null) {
       errors.push('Ticket Category is Required');
     }
 
@@ -66,28 +78,28 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
 
       setTicketData({
         ...ticketData,
-        categoryValue: null,
+        category_id: null,
         errors: [],
       });
       return;
     }
 
     const ticketBody = {
-      user: id,
+      student_id: id,
       title,
       content,
-      category: categoryValue,
-      date: 'Apr, 14,2021, 9:00 PM',
-      path: [],
-      replies: [],
-      isResloved: false,
+      category_id,
+      // date: 'Apr, 14,2021, 9:00 PM',
+      // path: [],
+      // replies: [],
+      // isResloved: false,
     };
     createTicket(ticketBody);
     // Form Reset
     setTicketData({
       title: '',
       content: '',
-      categoryValue: null,
+      category_id: null,
       errors: [],
     });
 
@@ -97,8 +109,13 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
       ).checked = false;
     }
     history.push('/tickets');
+
+    // setAlert('Ticket Created', 'success', false, 3000);
   };
-  return (
+
+  return categories === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       {/* Page Header */}
       <div className='page-header no-margin-bottom'>
@@ -166,26 +183,14 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
                     <strong className='d-block'>Select Category</strong>
                   </div>
                   <div className='block-body'>
-                    <TicketFormInput
-                      categoryValue={1}
-                      onChange={(e) => onChangeSwitchHandler(e)}
-                      label='Department 1'
-                    />
-                    <TicketFormInput
-                      categoryValue={2}
-                      onChange={(e) => onChangeSwitchHandler(e)}
-                      label='Department 2'
-                    />
-                    <TicketFormInput
-                      categoryValue={3}
-                      onChange={(e) => onChangeSwitchHandler(e)}
-                      label='Department 3'
-                    />
-                    <TicketFormInput
-                      categoryValue={4}
-                      onChange={(e) => onChangeSwitchHandler(e)}
-                      label='Department 4'
-                    />
+                    {categories.map((category) => (
+                      <TicketFormInput
+                        key={category.category_id}
+                        categoryId={category.category_id}
+                        onChange={(e) => onChangeSwitchHandler(e)}
+                        label={category.category_name}
+                      />
+                    ))}
                     <div className='d-grid mt-3 mx-md-auto col-md-8 col-lg-12'>
                       <input
                         type='submit'
@@ -206,10 +211,16 @@ const TicketForm = ({ createTicket, user: { id }, setAlert, history }) => {
 
 TicketForm.propTypes = {
   user: PropTypes.object.isRequired,
+  categories: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
+  categories: state.tickets.categories,
 });
 
-export default connect(mapStateToProps, { createTicket, setAlert })(TicketForm);
+export default connect(mapStateToProps, {
+  getCategories,
+  createTicket,
+  setAlert,
+})(TicketForm);

@@ -1,20 +1,32 @@
 import {
+  GET_CATEGORIES,
   GET_ALL_TICKETS,
   GET_TICKET,
   CREATE_TICKET,
   CLEAR_TICKETS,
+  MARK_APPROVE,
+  MARK_RESOLVED,
+  MARK_CLOSED,
 } from '../actions/types';
 
 const initialState = {
   ticket: null,
   tickets: [],
   loading: true,
+  categories: [],
 };
 
 function ticketReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case GET_CATEGORIES: {
+      return {
+        ...state,
+        categories: payload,
+        loading: false,
+      };
+    }
     case GET_TICKET:
       return {
         ...state,
@@ -40,6 +52,14 @@ function ticketReducer(state = initialState, action) {
         tickets: [],
         loading: true,
       };
+    case MARK_APPROVE:
+    case MARK_RESOLVED:
+    case MARK_CLOSED:
+      return {
+        ...state,
+        ticket: payload,
+      };
+
     default:
       return state;
   }

@@ -1,48 +1,52 @@
 import {
   LOGIN_SUCCESS,
-  LOGIN_ADMIN,
   LOGIN_FAILED,
+  USER_LOADED,
+  AUTH_ERROR,
   LOGOUT,
 } from '../actions/types';
 
 const initialState = {
-  isAuthenicated: null,
+  token: localStorage.getItem('token'),
+  isAuthenticated: null,
   loading: true,
   user: null,
-  // isAdmin: null,
 };
 
 function authReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isAuthenicated: true,
+        // ...payload,
+        isAuthenticated: true,
         loading: false,
         user: payload,
-        // isAdmin: false,
       };
-    // case LOGIN_ADMIN:
-    //   return {
-    //     ...state,
-    //     isAdmin: true,
-    //   };
     case LOGIN_FAILED:
       return {
         ...state,
-        isAuthenicated: false,
+        isAuthenticated: false,
         loading: false,
-        // isAdmin: false,
       };
+
+    case AUTH_ERROR:
     case LOGOUT:
       return {
         ...state,
-        isAuthenicated: false,
+        token: null,
+        isAuthenticated: false,
         loading: false,
         user: null,
-        // isAdmin: null,
       };
     default:
       return state;

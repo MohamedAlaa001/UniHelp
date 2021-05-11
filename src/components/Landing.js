@@ -6,14 +6,16 @@ import { connect } from 'react-redux';
 
 import Alert from './layout/Alert';
 import { login } from '../actions/auth';
+import { setAlert } from '../actions/alert';
 
-const Landing = ({ isAuthenicated, login }) => {
+const Landing = ({ isAuthenticated, login, setAlert }) => {
   const [loginData, setLoginData] = useState({
     username: '',
     password: '',
+    errors: [],
   });
 
-  const { username, password } = loginData;
+  const { username, password, errors } = loginData;
 
   const onChange = (e) => {
     setLoginData({
@@ -24,10 +26,44 @@ const Landing = ({ isAuthenicated, login }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (username.trim() === '') {
+      errors.push('Username is Required');
+    }
+    if (password.trim() === '') {
+      errors.push('Password is Required');
+    }
+
+    setLoginData({
+      ...loginData,
+      errors,
+    });
+
+    // Alert Errors
+    if (errors.length > 0) {
+      errors.forEach((err) => {
+        setAlert(err, 'danger', false, 3000);
+      });
+
+      setLoginData({
+        username: '',
+        password: '',
+        errors: [],
+      });
+
+      return;
+    }
+
     login(username, password);
+
+    setLoginData({
+      username: '',
+      password: '',
+      errors: [],
+    });
   };
 
-  if (isAuthenicated) {
+  if (isAuthenticated) {
     return <Redirect to='/home' />;
   }
 
@@ -73,14 +109,11 @@ const Landing = ({ isAuthenicated, login }) => {
                         <label htmlFor='username' className='label-material'>
                           Username
                         </label>
-                        <span className='is-invalid invalid-feedback'>
-                          Please enter your username
-                        </span>
                       </div>
                       <div className='form-floating mb-3'>
                         <input
                           type='password'
-                          className='form-control input-material is-invalid'
+                          className='form-control input-material'
                           name='password'
                           placeholder=''
                           value={password}
@@ -89,9 +122,6 @@ const Landing = ({ isAuthenicated, login }) => {
                         <label htmlFor='password' className='label-material'>
                           Password
                         </label>
-                        <span className='is-invalid invalid-feedback'>
-                          Please enter your password
-                        </span>
                       </div>
                       <button type='submit' className='btn btn-primary'>
                         Login
@@ -116,11 +146,11 @@ const Landing = ({ isAuthenicated, login }) => {
 
 Landing.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenicated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenicated: state.auth.isAuthenicated,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Landing);
+export default connect(mapStateToProps, { login, setAlert })(Landing);

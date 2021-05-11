@@ -1519,6 +1519,55 @@ section .tickets-block a.ticket {
   font-size: 0.8rem;
 }
 
+/* Forward User Search */
+.search-block {
+  position: relative;
+}
+
+.search-block .dropdown-menu,
+#searchUsers {
+  position: static !important;
+}
+
+.search-block .search-input:focus.active {
+  border-bottom: none;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color: var(--color-primary);
+}
+
+.search-block .search-display {
+  display: none;
+  max-height: 185px;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--color-dark-block);
+  border: 1px solid var(--color-primary);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.search-block .search-input:focus.active ~ .search-display {
+  display: block;
+}
+
+.search-block .search-display li {
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #494d53;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.search-block .search-display li:last-of-type {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.search-block .search-display li:hover {
+  background: var(--color-gray-block);
+}
+
 /* Modal */
 .modal-open .modal {
   z-index: 9999;

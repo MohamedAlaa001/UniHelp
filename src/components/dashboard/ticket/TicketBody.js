@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getTicketById } from '../../../actions/tickets';
+import {
+  getTicketById,
+  markTicketApprove,
+  markTicketResolved,
+  markTicketClosed,
+} from '../../../actions/tickets';
 
 import Spinner from '../../layout/Spinner';
 import Replies from './replies/Replies';
@@ -14,12 +19,16 @@ import TicketTimeline from './TicketTimeline';
 const TicketBody = ({
   match,
   getTicketById,
+  markTicketApprove,
+  markTicketResolved,
+  markTicketClosed,
   tickets: { ticket, loading },
   user: { role },
 }) => {
   useEffect(() => {
     getTicketById(match.params.id);
   }, [getTicketById, match.params.id]);
+
   return loading || ticket === null ? (
     <Spinner />
   ) : (
@@ -46,6 +55,33 @@ const TicketBody = ({
       <section>
         <div className='container-fluid'>
           <div className='tickets-block block'>
+            {role !== 'student' &&
+            (ticket.status === 'open' || ticket.status === 'new') ? (
+              <div className='mb-3'>
+                {ticket.status === 'new' ? (
+                  <input
+                    type='button'
+                    className='btn btn-outline-success me-3'
+                    value='Approve Ticket'
+                    onClick={() => markTicketApprove(ticket.id)}
+                  />
+                ) : null}
+                {ticket.status === 'open' ? (
+                  <input
+                    type='button'
+                    className='btn btn-outline-info me-3'
+                    value='Mark as resolved'
+                    onClick={() => markTicketResolved(ticket.id)}
+                  />
+                ) : null}
+                <input
+                  type='button'
+                  className='btn btn-outline-danger'
+                  value='Mark as closed'
+                  onClick={() => markTicketClosed(ticket.id)}
+                />
+              </div>
+            ) : null}
             <div className='row mb-3'>
               <div className='col-sm-12 col-lg-9'>
                 <div className='tickets'>
@@ -118,4 +154,9 @@ const mapStateToProps = (state) => ({
   tickets: state.tickets,
 });
 
-export default connect(mapStateToProps, { getTicketById })(TicketBody);
+export default connect(mapStateToProps, {
+  getTicketById,
+  markTicketApprove,
+  markTicketResolved,
+  markTicketClosed,
+})(TicketBody);

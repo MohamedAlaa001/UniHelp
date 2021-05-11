@@ -1,11 +1,11 @@
-const TicketFormInput = ({ categoryValue, onChange, label }) => {
+const TicketFormInput = ({ categoryId, onChange, label }) => {
   return (
     <div className='form-check form-switch'>
       <input
         type='radio'
         className='form-check-input'
         name='categorySwitch'
-        value={categoryValue}
+        value={categoryId}
         onChange={onChange}
       />
       <label className='form-check-label'>{label}</label>

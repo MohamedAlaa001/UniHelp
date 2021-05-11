@@ -3,9 +3,9 @@ export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 // Authenication
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ADMIN = 'LOGIN_ADMIN';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGOUT = 'LOGOUT';
 // Notificaitons
 export const GET_ALL_NOTIFICATIONS = 'GET_ALL_NOTIFICATIONS';
@@ -18,6 +18,11 @@ export const GET_ALL_TICKETS = 'GET_ALL_TICKETS';
 export const GET_TICKET = 'GET_TICKET';
 export const CREATE_TICKET = 'CREATE_TICKET';
 export const CLEAR_TICKETS = 'CLEAR_TICKETS';
+export const MARK_APPROVE = 'MARK_APPROVE';
+export const MARK_RESOLVED = 'MARK_RESOLVED';
+export const MARK_CLOSED = 'MARK_CLOSED';
+
+export const GET_CATEGORIES = 'GET_CATEGORIES';
 // Replies
 export const GET_TICKET_REPLIES = 'GET_TICKET_REPLIES';
 export const CREATE_TICKET_REPLY = 'CREATE_TICKET_REPLY';

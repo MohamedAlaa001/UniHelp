@@ -81,7 +81,127 @@
       "isRead": false
     }
   ],
-  "tickets" : [
+  "categories": [
+    {
+      "category_id": 1,
+      "category_name": "Academic Advising"
+    },
+    {
+      "category_id": 2,
+      "category_name": "Arrangement"
+    },
+    {
+      "category_id": 3,
+      "category_name": "Registration"
+    },
+    {
+      "category_id": 4,
+      "category_name": "Coordination"
+    },
+    {
+      "category_id": 5,
+      "category_name": "Student Affairs"
+    },
+    {
+      "category_id": 6,
+      "category_name": "Excuses"
+    },
+    {
+      "category_id": 7,
+      "category_name": "Control"
+    },
+    {
+      "category_id": 8,
+      "category_name": "Expenses"
+    },
+    {
+      "category_id": 9,
+      "category_name": "TEMP 1"
+    },
+    {
+      "category_id": 10,
+      "category_name": "TEMP 2"
+    }
+  ],
+  "tickets": [
+    {
+      "user": 1,
+      "id": 1,
+      "title": "Lorem ipsum dolor sit amet.",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nesciunt quisquam asperiores, ea, possimus laborum tempora explicabo ipsa excepturi officia facere, aperiam architecto minus aut perspiciatis aliquid sapiente necessitatibus itaque! At tempora iure soluta officiis explicabo recusandae suscipit accusantium, debitis impedit architecto eius quod corrupti esse alias, magnam sit veniam dolore beatae eos maiores minima excepturi, voluptate corporis repudiandae? Incidunt quia necessitatibus non temporibus! Obcaecati cupiditate labore dolor, officia quisquam perferendis itaque? Omnis dicta corrupti, repellendus ut veniam magni quo suscipit modi, cupiditate excepturi molestias id similique! Est ducimus optio repudiandae aliquid consequuntur aperiam a voluptatum in praesentium dolore eius autem, esse possimus vero quis eum harum ratione nobis veritatis ipsa alias voluptates id molestias provident! Amet delectus porro quisquam?",
+      "category": 1,
+      "date": "Apr, 14,2021, 9:00 PM",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [
+        {
+          "name": "Sys Admin",
+          "ticketId": 1,
+          "id": 1,
+          "content": "Reply 1",
+          "date": 1618426800000
+        },
+        {
+          "name": "Sys Admin",
+          "ticketId": 1,
+          "id": 2,
+          "content": "Reply 2",
+          "date": 1609570800000
+        },
+        {
+          "name": "Sys Admin",
+          "ticketId": 1,
+          "id": 3,
+          "content": "Reply 3",
+          "date": 1612614000000
+        }
+      ],
+      "status": "resolved"
+    },
+    {
+      "user": 1,
+      "id": 2,
+      "title": "Lorem, ipsum dolor",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "category": 1,
+      "date": "6:23pm",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [],
+      "status": "open"
+    },
     {
       "user": 2,
       "id": 1,
@@ -129,7 +249,6 @@
           "content": "Reply 3",
           "date": 1612614000000
         }
-    
       ],
       "status": "new"
     },
@@ -137,7 +256,7 @@
       "user": 2,
       "id": 2,
       "title": "Lorem, ipsum dolor",
-      "content":  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
       "category": 1,
       "date": "6:23pm",
       "path": [
@@ -165,8 +284,7 @@
       "user": 2,
       "id": 3,
       "title": "Lorem, ipsum dolor",
-      "content":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
       "category": 1,
       "date": "6:23pm",
       "path": [
@@ -194,8 +312,7 @@
       "user": 2,
       "id": 4,
       "title": "Lorem, ipsum dolor",
-      "content":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
       "category": 1,
       "date": "6:23pm",
       "path": [

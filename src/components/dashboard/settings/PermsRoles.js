@@ -70,7 +70,11 @@ const PermsRoles = () => {
             <h5 className='d-flex align-item-center justify-content-between'>
               <span className='perms-category-role'>Resolve Ticket</span>
               <div className='form-check form-switch'>
-                <input type='checkbox' className='form-check-input' checked />
+                <input
+                  type='checkbox'
+                  className='form-check-input'
+                  defaultChecked
+                />
               </div>
             </h5>
             <h5 className='d-flex align-item-center justify-content-between'>

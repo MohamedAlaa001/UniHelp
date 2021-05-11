@@ -4,13 +4,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // import { getTicketsByUserId } from '../../../actions/tickets';
-import { getTicketsByUserId } from '../../../actions/tickets';
+import {
+  getTicketsByUserId,
+  getAssignedTicketsByUserId,
+} from '../../../actions/tickets';
 
 import TicketItem from './TicketItem';
 import Spinner from '../../layout/Spinner';
+import Alert from '../../layout/Alert';
 
 const Tickets = ({
   getTicketsByUserId,
+  getAssignedTicketsByUserId,
   tickets: { loading, tickets },
   user,
 }) => {
@@ -24,7 +29,7 @@ const Tickets = ({
         getTicketsByUserId(user.id);
         break;
       case 'employee':
-        // getAssignedTicketsByUserId(user.id);
+        getAssignedTicketsByUserId(user.id);
         break;
       default:
         return;
@@ -56,10 +61,13 @@ const Tickets = ({
           <div className='block alert-primary'>
             <strong>Sorting by newest</strong>
           </div>
+          <Alert />
           <div className='tickets-block block'>
-            <Link className='btn btn-primary mb-3' to='/tickets/create'>
-              Create Ticket
-            </Link>
+            {user.role === 'student' ? (
+              <Link className='btn btn-primary mb-3' to='/tickets/create'>
+                Create Ticket
+              </Link>
+            ) : null}
             <div className='tickets'>
               {tickets.map((ticket) => (
                 <TicketItem key={ticket.id} ticket={ticket} />
@@ -82,4 +90,7 @@ const mapStateToProps = (state) => ({
   tickets: state.tickets,
 });
 
-export default connect(mapStateToProps, { getTicketsByUserId })(Tickets);
+export default connect(mapStateToProps, {
+  getTicketsByUserId,
+  getAssignedTicketsByUserId,
+})(Tickets);
