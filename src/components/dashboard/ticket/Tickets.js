@@ -18,6 +18,7 @@ import { GET_ALL_TICKETS } from '../../../actions/types';
 const Tickets = ({
   getTicketsByUserId,
   getAssignedTicketsByUserId,
+  getNewTickets,
   tickets: { loading, tickets },
   user,
 }) => {
@@ -34,7 +35,7 @@ const Tickets = ({
         getAssignedTicketsByUserId(user.id);
         break;
       case 'master':
-        getNewTickets();
+        getNewTickets(user.id);
         break;
       default:
         return;
@@ -98,4 +99,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getTicketsByUserId,
   getAssignedTicketsByUserId,
+  getNewTickets,
 })(Tickets);

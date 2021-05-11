@@ -111,13 +111,12 @@ export const markTicketClosed = (ticketId) => async (dispatch) => {
   }
 };
 // Master
-export const getNewTickets = () => async (dispatch) => {
+export const getNewTickets = (userId) => async (dispatch) => {
   try {
-    const res = await api.get(`http://localhost:5000/tickets`, {
-      status: 'new',
-    });
+    const res = await api.get(`http://localhost:5000/tickets?user=${userId}`);
+
     dispatch({
-      type: GET_ALL_TICKETS,
+      type: GET_ALL_NEW_TICKETS,
       payload: res.data,
     });
   } catch (err) {
