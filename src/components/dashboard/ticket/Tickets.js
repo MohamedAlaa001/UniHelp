@@ -35,7 +35,7 @@ const Tickets = ({
         getAssignedTicketsByUserId(user.id);
         break;
       case 'master':
-        getNewTickets(user.id);
+        getNewTickets();
         break;
       default:
         return;
