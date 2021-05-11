@@ -52,7 +52,7 @@ const PermsRoles = () => {
               value='Studnet'
               onClick={(e) => categoryClickHandler(e)}
             >
-              Studnet
+              Student
             </button>
           </div>
         </div>

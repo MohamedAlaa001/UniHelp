@@ -26,7 +26,7 @@ const PermsUsers = () => {
             <p className=''>Employee</p>
           </div>
           <div className='perms-item'>
-            <p className=''>Studnet</p>
+            <p className=''>Student</p>
           </div>
         </div>
       </div>

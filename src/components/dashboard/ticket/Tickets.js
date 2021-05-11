@@ -7,11 +7,13 @@ import PropTypes from 'prop-types';
 import {
   getTicketsByUserId,
   getAssignedTicketsByUserId,
+  getNewTickets,
 } from '../../../actions/tickets';
 
 import TicketItem from './TicketItem';
 import Spinner from '../../layout/Spinner';
 import Alert from '../../layout/Alert';
+import { GET_ALL_TICKETS } from '../../../actions/types';
 
 const Tickets = ({
   getTicketsByUserId,
@@ -30,6 +32,9 @@ const Tickets = ({
         break;
       case 'employee':
         getAssignedTicketsByUserId(user.id);
+        break;
+      case 'master':
+        getNewTickets();
         break;
       default:
         return;

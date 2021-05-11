@@ -44,6 +44,29 @@ const Sidebar = ({ role }) => {
             </ul>
           </Fragment>
         );
+      case 'master':
+        return (
+          <Fragment>
+            <span className='heading'>Master Panel</span>
+            <ul className='list-unstyled'>
+              <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
+              <NavItem path='/dashboard' icon='chart' name='Dashboard' />
+              <li>
+                <a
+                  href='#menuDropdown'
+                  aria-expanded='false'
+                  data-bs-toggle='collapse'
+                >
+                  <i className='icon-settings'></i>
+                  Settings
+                </a>
+                <ul className='list-unstyled collapse' id='menuDropdown'>
+                  <NavItem path='/permissions' name='Permissions' />
+                </ul>
+              </li>
+            </ul>
+          </Fragment>
+        );
     }
   };
 

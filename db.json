@@ -13,6 +13,13 @@
       "username": "std",
       "password": "std",
       "role": "student"
+    },
+    {
+      "id": 3,
+      "name": "Sys Master",
+      "username": "master",
+      "password": "master",
+      "role": "master"
     }
   ],
   "notifications": [
