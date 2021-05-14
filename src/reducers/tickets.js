@@ -8,6 +8,7 @@ import {
   MARK_RESOLVED,
   MARK_CLOSED,
   GET_ALL_NEW_TICKETS,
+  MARK_PENDINGRESOLVE,
 } from '../actions/types';
 
 const initialState = {
@@ -62,6 +63,7 @@ function ticketReducer(state = initialState, action) {
     case MARK_APPROVE:
     case MARK_RESOLVED:
     case MARK_CLOSED:
+    case MARK_PENDINGRESOLVE:
       return {
         ...state,
         ticket: payload,

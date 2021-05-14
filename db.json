@@ -257,7 +257,7 @@
           "date": 1612614000000
         }
       ],
-      "status": "new"
+      "status": "open"
     },
     {
       "user": 2,
@@ -342,6 +342,50 @@
       ],
       "replies": [],
       "status": "closed"
+    },
+    {
+      "user": 3,
+      "id": 5,
+      "title": "New Ticket",
+      "content": "New Ticket",
+      "category": 1,
+      "date": "6:23pm",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        },
+        {
+          "name": "Person 2",
+          "date": 1618226800000
+        },
+        {
+          "name": "Person 3",
+          "date": 1618326800000
+        },
+        {
+          "name": "Person 4",
+          "date": 1618426800000
+        }
+      ],
+      "replies": [],
+      "status": "new"
+    },
+    {
+      "user": 3,
+      "id": 6,
+      "title": "New Ticketv2",
+      "content": "New Ticketv2",
+      "category": 1,
+      "date": "6:23pm",
+      "path": [
+        {
+          "name": "Person 1",
+          "date": 1618126800000
+        }
+      ],
+      "replies": [],
+      "status": "new"
     }
   ]
 }

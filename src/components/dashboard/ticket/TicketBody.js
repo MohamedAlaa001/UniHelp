@@ -9,6 +9,7 @@ import {
   markTicketApprove,
   markTicketResolved,
   markTicketClosed,
+  markTicketPendingResolve
 } from '../../../actions/tickets';
 
 import Spinner from '../../layout/Spinner';
@@ -22,6 +23,7 @@ const TicketBody = ({
   markTicketApprove,
   markTicketResolved,
   markTicketClosed,
+  markTicketPendingResolve,
   tickets: { ticket, loading },
   user: { role },
 }) => {
@@ -56,7 +58,7 @@ const TicketBody = ({
         <div className='container-fluid'>
           <div className='tickets-block block'>
             {role !== 'student' &&
-            (ticket.status === 'open' || ticket.status === 'new') ? (
+            (ticket.status === 'open' || ticket.status === 'new' || ticket.status === 'pending resolve') ? (
               <div className='mb-3'>
                 {ticket.status === 'new' ? (
                   <input
@@ -66,20 +68,39 @@ const TicketBody = ({
                     onClick={() => markTicketApprove(ticket.id)}
                   />
                 ) : null}
+                {ticket.status === 'pending resolve' && role === 'master' ? (
+                  <input
+                    type='button'
+                    className='btn btn-outline-success me-3'
+                    value='Resolve Ticket'
+                    onClick={() => markTicketResolved(ticket.id)}
+                  />
+                ) : null}
+                {ticket.status === 'pending resolve' && role === 'master' ? (
+                  <input
+                    type='button'
+                    className='btn btn-outline-danger'
+                    value='Mark as unresolved'
+                    onClick={() => markTicketApprove(ticket.id)}
+                  />
+                ) : null}
                 {ticket.status === 'open' ? (
                   <input
                     type='button'
                     className='btn btn-outline-info me-3'
                     value='Mark as resolved'
-                    onClick={() => markTicketResolved(ticket.id)}
+                    onClick={() => markTicketPendingResolve(ticket.id)}
                   />
                 ) : null}
+                {ticket.status !=='pending resolve'? (
                 <input
                   type='button'
                   className='btn btn-outline-danger'
                   value='Mark as closed'
                   onClick={() => markTicketClosed(ticket.id)}
                 />
+                ) : null}
+                
               </div>
             ) : null}
             <div className='row mb-3'>
@@ -97,6 +118,10 @@ const TicketBody = ({
                             <strong className='ticket-status closed'>
                               [closed]
                             </strong>
+                          ) : ticket.status === 'pending resolve' ? (
+                            <strong className='ticket-status pending resolve'>
+                              [pending resolve]
+                            </strong>  
                           ) : ticket.status === 'resolved' ? (
                             <strong className='ticket-status resolved'>
                               [resolved]
@@ -159,4 +184,5 @@ export default connect(mapStateToProps, {
   markTicketApprove,
   markTicketResolved,
   markTicketClosed,
+  markTicketPendingResolve,
 })(TicketBody);

@@ -22,6 +22,7 @@ export const CLEAR_TICKETS = 'CLEAR_TICKETS';
 export const MARK_APPROVE = 'MARK_APPROVE';
 export const MARK_RESOLVED = 'MARK_RESOLVED';
 export const MARK_CLOSED = 'MARK_CLOSED';
+export const MARK_PENDINGRESOLVE = 'Pending_RESOLVE'
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 // Replies

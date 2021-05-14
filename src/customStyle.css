@@ -284,6 +284,10 @@ a:hover {
 .statistic-block .ticket-status.resolved {
   color: var(--color-info) !important;
 }
+.tickets-block .ticket-status.pending resolve,
+.statistic-block .ticket-status.pending resolve{
+  color: var(--color-danger) !important;
+}
 
 .tickets-block .ticket .ticket-content {
   background-color: var(--color-dark-block);

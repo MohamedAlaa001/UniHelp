@@ -31,7 +31,7 @@ const Dashboard = ({
   getAllNotifications,
   auth: {
     loading,
-    user: { id },
+    user: {id},
   },
   notifications,
 }) => {

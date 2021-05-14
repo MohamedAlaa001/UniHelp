@@ -9,6 +9,7 @@ import {
   // CLEAR_REPLIES,
   MARK_APPROVE,
   MARK_RESOLVED,
+  MARK_PENDINGRESOLVE,
   MARK_CLOSED,
 } from './types';
 
@@ -105,6 +106,17 @@ export const markTicketApprove = (ticketId) => async (dispatch) => {
   }
 };
 
+export const markTicketPendingResolve = (ticketId) => async (dispatch) => {
+  try {
+    const res = await api.patch(`http://localhost:5000/tickets/${ticketId}`, {
+      status: 'pending resolve',
+    });
+    dispatch({ type: MARK_PENDINGRESOLVE, payload: res.data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const markTicketResolved = (ticketId) => async (dispatch) => {
   try {
     const res = await api.patch(`http://localhost:5000/tickets/${ticketId}`, {
@@ -129,7 +141,8 @@ export const markTicketClosed = (ticketId) => async (dispatch) => {
 // Master
 export const getNewTickets = () => async (dispatch) => {
   try {
-    const res = await api.get('http://localhost:5000/tickets?status=new');
+    //const res = await api.get('http://localhost:5000/tickets?status=new');
+    const res = await api.get('http://localhost:5000/tickets?status=new&status=pending+resolve');
     dispatch({
       type: GET_ALL_NEW_TICKETS,
       payload: res.data,
