@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -57,8 +57,7 @@ const Navbar = ({
             {/* Messages box */}
             <div className='list-inline-item dropdown'>
               <a
-                href='#'
-                id='messageMenu'
+                href='#messageMenu'
                 className='nav-link messages-toggle '
                 data-bs-toggle='dropdown'
                 role='button'
@@ -71,6 +70,7 @@ const Navbar = ({
               <div
                 className='dropdown-menu messages messages-block'
                 aria-labelledby='messagesMenu'
+                id='messageMenu'
               >
                 <div
                   className='messages-header d-flex justify-content-between align-items-center'
@@ -107,8 +107,7 @@ const Navbar = ({
             {/* Languages */}
             <div className='list-inline-item dropdown'>
               <a
-                href='#'
-                id='languageMenu'
+                href='#languageMenu'
                 className='nav-link language dropdown-toggle'
                 data-bs-toggle='dropdown'
                 role='button'
@@ -116,10 +115,10 @@ const Navbar = ({
               >
                 <span className='d-inline-block'>English</span>
               </a>
-              <div className='dropdown-menu' id='languagesCollapse'>
-                <a href='#' className='dropdown-item'>
+              <div className='dropdown-menu' id='languageMenu'>
+                <span href='#' className='dropdown-item'>
                   <span>Arabic</span>
-                </a>
+                </span>
               </div>
             </div>
 

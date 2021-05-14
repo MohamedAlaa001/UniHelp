@@ -1,5 +1,5 @@
 // import logo from '../../images/logo.png';\
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -129,9 +129,9 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                     </form>
                     <p className=''>
                       Forgot Password?
-                      <a href='#' className=' ms-2'>
+                      {/* <a href='#' className=' ms-2'>
                         Submit Ticket
-                      </a>
+                      </a> */}
                     </p>
                   </div>
                 </div>

@@ -44,6 +44,8 @@ const Sidebar = ({ role }) => {
             </ul>
           </Fragment>
         );
+      default:
+        return null;
     }
   };
 

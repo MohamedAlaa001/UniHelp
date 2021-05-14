@@ -2,7 +2,7 @@ import React from 'react';
 
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { setNotificationRead } from '../../../actions/notifications';
 

@@ -4,6 +4,10 @@ import { Pie } from 'react-chartjs-2';
 const PieChart = () => {
   const [chartData, setChartData] = useState({
     labels: ['New', 'Opened', 'Closed', 'Resolved'],
+  });
+
+  setChartData({
+    ...chartData,
     datasets: [
       {
         // label: 'Tickets',

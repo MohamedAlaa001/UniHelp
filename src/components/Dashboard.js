@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Route, Switch, useRouteMatch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PrivateRoute from './routing/PrivateRoute';
@@ -37,7 +37,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getAllNotifications(id);
-  }, [getAllNotifications]);
+  }, [getAllNotifications, id]);
 
   return loading || notifications === null ? (
     <Spinner />

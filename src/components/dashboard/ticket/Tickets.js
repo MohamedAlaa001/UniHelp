@@ -20,10 +20,6 @@ const Tickets = ({
   user,
 }) => {
   useEffect(() => {
-    ticketSwitch();
-  }, []);
-
-  const ticketSwitch = () => {
     switch (user.role) {
       case 'student':
         getTicketsByUserId(user.id);
@@ -34,7 +30,20 @@ const Tickets = ({
       default:
         return;
     }
-  };
+  });
+
+  // const ticketSwitch = () => {
+  //   switch (user.role) {
+  //     case 'student':
+  //       getTicketsByUserId(user.id);
+  //       break;
+  //     case 'employee':
+  //       getAssignedTicketsByUserId(user.id);
+  //       break;
+  //     default:
+  //       return;
+  //   }
+  // };
 
   return loading || tickets === null ? (
     <Spinner />
