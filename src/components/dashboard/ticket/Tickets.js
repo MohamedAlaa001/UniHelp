@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import { getTicketsByUserId } from '../../../actions/tickets';
 import { ticketSwitch } from '../../../actions/tickets';
 
 import TicketItem from './TicketItem';

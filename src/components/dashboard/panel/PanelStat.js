@@ -9,14 +9,14 @@ const PanelStat = () => {
       <div className='col-sm-6 col-md-3'>
         <PanelStatItem
           icon='paper-and-pencil'
-          title='Tickets new'
+          title='New Tickets'
           number={15}
         />
       </div>
       <div className='col-sm-6 col-md-3'>
         <PanelStatItem
           icon='paper-and-pencil'
-          title='Tickets open'
+          title='Open Tickets'
           status='open'
           number={19}
         />
@@ -24,7 +24,7 @@ const PanelStat = () => {
       <div className='col-sm-6 col-md-3'>
         <PanelStatItem
           icon='paper-and-pencil'
-          title='Tickets closed'
+          title='Closed Tickets'
           status='closed'
           number={6}
         />
@@ -32,7 +32,7 @@ const PanelStat = () => {
       <div className='col-sm-6 col-md-3'>
         <PanelStatItem
           icon='paper-and-pencil'
-          title='Ticket resolved'
+          title='Resolved Tickets'
           status='resolved'
           number={10}
         />

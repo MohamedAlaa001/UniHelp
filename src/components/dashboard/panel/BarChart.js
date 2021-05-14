@@ -3,10 +3,7 @@ import { Bar } from 'react-chartjs-2';
 
 const BarChart = () => {
   const [chartData, setChartData] = useState({
-    labels: ['New', 'Opened', 'Closed', 'Resolved'],
-  });
-  setChartData({
-    ...chartData,
+    labels: ['New', 'Open', 'Closed', 'Resolved'],
     datasets: [
       {
         label: 'System Tickets',

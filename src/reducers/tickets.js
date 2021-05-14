@@ -7,6 +7,7 @@ import {
   MARK_APPROVE,
   MARK_RESOLVED,
   MARK_CLOSED,
+  GET_ALL_NEW_TICKETS,
 } from '../actions/types';
 
 const initialState = {
@@ -39,6 +40,12 @@ function ticketReducer(state = initialState, action) {
         tickets: payload,
         loading: false,
       };
+    case GET_ALL_NEW_TICKETS:
+      return {
+        ...state,
+        tickets: payload,
+        loading: false,
+      }
     case CREATE_TICKET:
       return {
         ...state,

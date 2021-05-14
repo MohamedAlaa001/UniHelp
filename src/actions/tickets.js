@@ -3,6 +3,7 @@ import { setAlert } from './alert';
 import {
   GET_CATEGORIES,
   GET_ALL_TICKETS,
+  GET_ALL_NEW_TICKETS,
   GET_TICKET,
   // CREATE_TICKET,
   // CLEAR_REPLIES,
@@ -18,6 +19,9 @@ export const ticketSwitch = (user) => (dispatch) => {
       break;
     case 'employee':
       dispatch(getAssignedTicketsByUserId(user.id));
+      break;
+    case 'master':
+      dispatch(getNewTickets());
       break;
     default:
       return;
@@ -118,6 +122,18 @@ export const markTicketClosed = (ticketId) => async (dispatch) => {
       status: 'closed',
     });
     dispatch({ type: MARK_CLOSED, payload: res.data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+// Master
+export const getNewTickets = () => async (dispatch) => {
+  try {
+    const res = await api.get('http://localhost:5000/tickets?status=new');
+    dispatch({
+      type: GET_ALL_NEW_TICKETS,
+      payload: res.data,
+    });
   } catch (err) {
     console.log(err);
   }
