@@ -4,46 +4,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // import { getTicketsByUserId } from '../../../actions/tickets';
-import {
-  getTicketsByUserId,
-  getAssignedTicketsByUserId,
-} from '../../../actions/tickets';
+import { ticketSwitch } from '../../../actions/tickets';
 
 import TicketItem from './TicketItem';
 import Spinner from '../../layout/Spinner';
 import Alert from '../../layout/Alert';
 
-const Tickets = ({
-  getTicketsByUserId,
-  getAssignedTicketsByUserId,
-  tickets: { loading, tickets },
-  user,
-}) => {
+const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
   useEffect(() => {
-    switch (user.role) {
-      case 'student':
-        getTicketsByUserId(user.id);
-        break;
-      case 'employee':
-        getAssignedTicketsByUserId(user.id);
-        break;
-      default:
-        return;
-    }
-  });
-
-  // const ticketSwitch = () => {
-  //   switch (user.role) {
-  //     case 'student':
-  //       getTicketsByUserId(user.id);
-  //       break;
-  //     case 'employee':
-  //       getAssignedTicketsByUserId(user.id);
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // };
+    // *************************
+    // Moved Ticket Switch under actions/ticket
+    // *************************
+    ticketSwitch(user);
+  }, [ticketSwitch, user]);
 
   return loading || tickets === null ? (
     <Spinner />
@@ -100,6 +73,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getTicketsByUserId,
-  getAssignedTicketsByUserId,
+  ticketSwitch,
 })(Tickets);

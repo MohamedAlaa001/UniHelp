@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import PanelStat from './PanelStat';
 
-import PieChart from './PieChart';
-import BarChart from './BarChart';
+// import PieChart from './PieChart';
+// import BarChart from './BarChart';
 
 const Panel = () => {
   return (
@@ -33,12 +33,8 @@ const Panel = () => {
       <section>
         <div className='container-fluid'>
           <div className='row'>
-            <div className='col-sm-12 col-md-6'>
-              <PieChart />
-            </div>
-            <div className='col-sm-12 col-md-6'>
-              <BarChart />
-            </div>
+            <div className='col-sm-12 col-md-6'>{/* <PieChart />  */}</div>
+            <div className='col-sm-12 col-md-6'>{/* <BarChart />  */}</div>
           </div>
         </div>
       </section>

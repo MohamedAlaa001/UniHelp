@@ -9,9 +9,7 @@ const ReplyForm = () => {
   });
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const [users, setUsers] = useState([]);
-
-  setUsers([
+  const [users, setUsers] = useState([
     {
       id: 1,
       name: 'Mostafa',

@@ -11,6 +11,19 @@ import {
   MARK_CLOSED,
 } from './types';
 
+export const ticketSwitch = (user) => (dispatch) => {
+  switch (user.role) {
+    case 'student':
+      dispatch(getTicketsByUserId(user.id));
+      break;
+    case 'employee':
+      dispatch(getAssignedTicketsByUserId(user.id));
+      break;
+    default:
+      return;
+  }
+};
+
 // Student
 export const getTicketsByUserId = (userId) => async (dispatch) => {
   try {
