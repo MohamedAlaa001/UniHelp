@@ -10,7 +10,8 @@
 /coverage
 
 # production
-/build
+# /build
+/package-lock
 
 # misc
 .DS_Store

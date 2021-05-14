@@ -12,8 +12,7 @@ const PermsRoles = () => {
       <div className='card-body p-3'>
         <div className='dropdown mb-3'>
           <a
-            href='#'
-            id='rolesPerms'
+            href='#rolesPerms'
             className='dropdown-toggle'
             data-bs-toggle='dropdown'
             role='button'
