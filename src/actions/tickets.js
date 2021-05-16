@@ -32,7 +32,7 @@ export const ticketSwitch = (user) => (dispatch) => {
 // Student
 export const getTicketsByUserId = (userId) => async (dispatch) => {
   try {
-    const res = await api.get(`http://localhost:5000/tickets?user=${userId}`);
+    const res = await api.get(`/tickets?user=${userId}`);
 
     dispatch({
       type: GET_ALL_TICKETS,
@@ -45,7 +45,7 @@ export const getTicketsByUserId = (userId) => async (dispatch) => {
 
 export const getTicketById = (ticketId) => async (dispatch) => {
   try {
-    const res = await api.get(`http://localhost:5000/tickets/${ticketId}`);
+    const res = await api.get(`/tickets/${ticketId}`);
 
     dispatch({
       type: GET_TICKET,
@@ -59,7 +59,7 @@ export const getTicketById = (ticketId) => async (dispatch) => {
 // Get Categories
 export const getCategories = () => async (dispatch) => {
   try {
-    const res = await api.get('http://localhost:5000/categories');
+    const res = await api.get('/categories');
 
     dispatch({
       type: GET_CATEGORIES,
@@ -74,7 +74,7 @@ export const createTicket = (ticket) => async (dispatch) => {
   console.log(ticket);
 
   try {
-    api.post('/submit_ticket', ticket);
+    // api.post('/submit_ticket', ticket);
     dispatch(setAlert('Ticket Created', 'success', false, 3000));
   } catch (err) {
     console.log(err);
@@ -84,7 +84,7 @@ export const createTicket = (ticket) => async (dispatch) => {
 // Employee
 export const getAssignedTicketsByUserId = (userId) => async (dispatch) => {
   try {
-    const res = await api.get(`http://localhost:5000/tickets?user=${userId}`);
+    const res = await api.get(`/tickets?user=${userId}`);
 
     dispatch({
       type: GET_ALL_TICKETS,
@@ -97,7 +97,7 @@ export const getAssignedTicketsByUserId = (userId) => async (dispatch) => {
 
 export const markTicketApprove = (ticketId) => async (dispatch) => {
   try {
-    const res = await api.patch(`http://localhost:5000/tickets/${ticketId}`, {
+    const res = await api.patch(`/tickets/${ticketId}`, {
       status: 'open',
     });
     dispatch({ type: MARK_APPROVE, payload: res.data });
@@ -108,7 +108,7 @@ export const markTicketApprove = (ticketId) => async (dispatch) => {
 
 export const markTicketPendingResolve = (ticketId) => async (dispatch) => {
   try {
-    const res = await api.patch(`http://localhost:5000/tickets/${ticketId}`, {
+    const res = await api.patch(`/tickets/${ticketId}`, {
       status: 'pending resolve',
     });
     dispatch({ type: MARK_PENDINGRESOLVE, payload: res.data });
@@ -119,7 +119,7 @@ export const markTicketPendingResolve = (ticketId) => async (dispatch) => {
 
 export const markTicketResolved = (ticketId) => async (dispatch) => {
   try {
-    const res = await api.patch(`http://localhost:5000/tickets/${ticketId}`, {
+    const res = await api.patch(`/tickets/${ticketId}`, {
       status: 'resolved',
     });
     dispatch({ type: MARK_RESOLVED, payload: res.data });
@@ -130,7 +130,7 @@ export const markTicketResolved = (ticketId) => async (dispatch) => {
 
 export const markTicketClosed = (ticketId) => async (dispatch) => {
   try {
-    const res = await api.patch(`http://localhost:5000/tickets/${ticketId}`, {
+    const res = await api.patch(`/tickets/${ticketId}`, {
       status: 'closed',
     });
     dispatch({ type: MARK_CLOSED, payload: res.data });
@@ -142,7 +142,7 @@ export const markTicketClosed = (ticketId) => async (dispatch) => {
 export const getNewTickets = () => async (dispatch) => {
   try {
     //const res = await api.get('http://localhost:5000/tickets?status=new');
-    const res = await api.get('http://localhost:5000/tickets?status=new&status=pending+resolve');
+    const res = await api.get('/tickets?status=new&status=pending+resolve');
     dispatch({
       type: GET_ALL_NEW_TICKETS,
       payload: res.data,

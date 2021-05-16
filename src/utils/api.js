@@ -3,7 +3,7 @@ import store from '../store';
 import { LOGOUT } from '../actions/types';
 
 const api = axios.create({
-  // baseURL: '/api',
+  baseURL: 'https://my-json-server.typicode.com/MohamedAlaa001/UniHelp',
   headers: {
     'Content-Type': 'application/json',
   },

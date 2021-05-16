@@ -14,7 +14,7 @@ import { setAlert } from './alert';
 export const login = (username2, password2) => async (dispatch) => {
   try {
     const res = await api.get(
-      `http://localhost:5000/users?username=${username2}&password=${password2}`
+      `/users?username=${username2}&password=${password2}`
     );
     dispatch({
       type: LOGIN_SUCCESS,

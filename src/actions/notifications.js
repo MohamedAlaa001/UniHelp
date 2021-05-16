@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 // import { setAlert } from './alert';
 import {
   GET_NOTIFICATION,
@@ -9,9 +9,7 @@ import {
 
 export const getAllNotifications = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(
-      `http://localhost:5000/notifications?user=${id}`
-    );
+    const res = await api.get(`/notifications?user=${id}`);
 
     dispatch({
       type: GET_ALL_NOTIFICATIONS,
@@ -24,7 +22,7 @@ export const getAllNotifications = (id) => async (dispatch) => {
 
 export const getNotification = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:5000/notifications/${id}`);
+    const res = await api.get(`/notifications/${id}`);
     dispatch({
       type: GET_NOTIFICATION,
       payload: res.data,
@@ -36,7 +34,7 @@ export const getNotification = (id) => async (dispatch) => {
 
 export const setNotificationRead = (notification) => async (dispatch) => {
   // try {
-  //   await axios.put(`http://localhost:5000/notifications/${notification.id}`, {
+  //   await api.put(`http://localhost:5000/notifications/${notification.id}`, {
   //     ...notification,
   //     isRead: true,
   //   });
@@ -57,7 +55,7 @@ export const setAllNotificationsRead = () => ({
 //   dispatch
 // ) => {
 //   // try {
-//   // const res = await axios.put(`http://localhost:5000/notifications/${id}`, {
+//   // const res = await api.put(`http://localhost:5000/notifications/${id}`, {
 //   //   ...notification,
 //   //   isRead: true,
 //   // });
