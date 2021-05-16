@@ -8,7 +8,7 @@ const TicketsFilter = () => {
     const tickets = Array.from(
       document.querySelectorAll('.tickets > a.ticket')
     );
-    tickets.map((ticket) => {
+    tickets.forEach((ticket) => {
       if (
         !filterValue.includes(ticket.dataset.status) &&
         filterValue.length > 0
