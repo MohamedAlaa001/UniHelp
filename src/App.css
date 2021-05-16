@@ -376,6 +376,11 @@ nav.navbar a {
   color: inherit;
 }
 
+nav.navbar a:hover,
+nav.navbar a:focus {
+  color: #225b5b;
+}
+
 nav.navbar .brand-text {
   display: none;
   font-weight: 700;
@@ -521,14 +526,6 @@ nav.navbar .dropdown .dropdown-menu.active {
   }
   nav.navbar a.nav-link {
     font-size: 0.85rem;
-  }
-  nav.navbar a.nav-link .badge {
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    color: #fff;
-    text-align: center;
-    font-size: 0.6rem;
   }
 }
 

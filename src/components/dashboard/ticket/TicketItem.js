@@ -13,14 +13,23 @@ const TicketItem = ({ ticket }) => {
       case 'resolved':
         return <strong className='ticket-status resolved'>[resolved]</strong>;
       case 'pending resolve':
-        return <strong className='ticket-status pending resolve'>[pending resolve]</strong>;
+        return (
+          <strong className='ticket-status pending resolve'>
+            [pending resolve]
+          </strong>
+        );
       default:
         return <strong className='ticket-status'>[new]</strong>;
     }
   };
 
   return (
-    <Link to={`/tickets/${id}`} className='ticket d-flex align-items-center'>
+    <Link
+      to={`/tickets/${id}`}
+      className='ticket d-flex align-items-center'
+      data-filter='false'
+      data-status={status}
+    >
       <div className='content'>
         <div className='title'>
           <strong>

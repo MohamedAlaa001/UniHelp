@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { ticketSwitch } from '../../../actions/tickets';
 
 import TicketItem from './TicketItem';
+import TicketsFilter from './TicketsFilter';
 import Spinner from '../../layout/Spinner';
 import Alert from '../../layout/Alert';
 
@@ -44,15 +45,24 @@ const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
           </div>
           <Alert />
           <div className='tickets-block block'>
-            {user.role === 'student' ? (
-              <Link className='btn btn-primary mb-3' to='/tickets/create'>
-                Create Ticket
-              </Link>
-            ) : null}
-            <div className='tickets'>
-              {tickets.map((ticket) => (
-                <TicketItem key={ticket.id} ticket={ticket} />
-              ))}
+            <div className='mb-3'>
+              {user.role === 'student' ? (
+                <Link className='btn btn-primary me-4' to='/tickets/create'>
+                  Create Ticket
+                </Link>
+              ) : null}
+            </div>
+            <div className='row flex-column-reverse flex-md-row-reverse '>
+              <div className='col-sm-12 col-md-9'>
+                <div className='tickets'>
+                  {tickets.map((ticket) => (
+                    <TicketItem key={ticket.id} ticket={ticket} />
+                  ))}
+                </div>
+              </div>
+              <div className='col mb-md-0 mb-3'>
+                <TicketsFilter />
+              </div>
             </div>
           </div>
         </div>
@@ -63,7 +73,6 @@ const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
 
 Tickets.propTypes = {
   user: PropTypes.object.isRequired,
-  getTicketsByUserId: PropTypes.func.isRequired,
   // tickets: PropTypes.array,
 };
 const mapStateToProps = (state) => ({

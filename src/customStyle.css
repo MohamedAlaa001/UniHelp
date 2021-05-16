@@ -73,8 +73,8 @@
 * Navbar
 * ==========================================================
 */
-nav.navbar .right-menu {
-  font-size: 1.25rem;
+nav.navbar .right-menu a.nav-link {
+  font-size: 1.25rem !important;
 }
 
 nav.navbar .dropdown-menu {
@@ -197,6 +197,11 @@ nav#sidebar li li a.active {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
 }
 
+.form-switch .form-check-input:checked ~ label {
+  font-weight: bolder;
+  color: var(--color-light);
+}
+
 .form-check-input:focus {
   border-color: transparent;
   box-shadow: none;
@@ -261,6 +266,10 @@ a:hover {
 * Tickets Section
 *
 */
+.tickets-block .ticket[data-filter='true'] {
+  display: none !important;
+}
+
 .tickets-block .ticket-status {
   margin-right: 0.25rem;
   text-transform: uppercase;
@@ -285,13 +294,37 @@ a:hover {
   color: var(--color-info) !important;
 }
 .tickets-block .ticket-status.pending resolve,
-.statistic-block .ticket-status.pending resolve{
+.statistic-block .ticket-status.pending resolve {
   color: var(--color-danger) !important;
 }
 
 .tickets-block .ticket .ticket-content {
   background-color: var(--color-dark-block);
 }
+
+/* Filter */
+.tickets-filter {
+  height: 100%;
+  padding: 6px 10px;
+  background: var(--color-dark-block);
+  border: 1px solid #393c43;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px var(--color-dark-block);
+}
+
+/* .tickets-filter .dropdown-menu {
+  padding: 0.5rem;
+}
+
+.tickets-filter .dropdown-menu > li {
+  border-bottom: 2px solid #393c43;
+  padding-bottom: 0.25rem;
+}
+
+.tickets-filter .dropdown-menu > li:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+} */
 
 /* Replies */
 .tickets-block .reply {
