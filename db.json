@@ -32,59 +32,11 @@
       "isRead": true
     },
     {
-      "user": 1,
-      "id": 2,
-      "name": "Sara Wood",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "10:30pm",
-      "isRead": false
-    },
-    {
-      "id": 3,
-      "user": 1,
-      "name": "Sam Kaheil",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "6:55am",
-      "isRead": false
-    },
-    {
-      "user": 1,
-      "id": 4,
-      "name": "Nadia Halsey",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "9:30am",
-      "isRead": true
-    },
-    {
-      "id": 5,
-      "user": 1,
-      "name": "Sam Kaheil",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "6:55am",
-      "isRead": false
-    },
-    {
-      "user": 1,
-      "id": 6,
-      "name": "Sam Kaheil",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "6:55am",
-      "isRead": true
-    },
-    {
       "id": 7,
       "user": 2,
       "name": "Sara Wood",
       "message": "lorem ipsum dolor sit amit",
       "date": "10:30pm",
-      "isRead": false
-    },
-    {
-      "id": 8,
-      "user": 2,
-      "name": "Nader Magdy",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "9:47pm",
       "isRead": false
     }
   ],
