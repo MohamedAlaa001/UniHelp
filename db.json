@@ -29,47 +29,7 @@
       "name": "Nadia Halsey",
       "message": "lorem ipsum dolor sit amit",
       "date": "9:30am",
-      "isRead": true
-    },
-    {
-      "user": 1,
-      "id": 2,
-      "name": "Sara Wood",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "10:30pm",
       "isRead": false
-    },
-    {
-      "id": 3,
-      "user": 1,
-      "name": "Sam Kaheil",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "6:55am",
-      "isRead": false
-    },
-    {
-      "user": 1,
-      "id": 4,
-      "name": "Nadia Halsey",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "9:30am",
-      "isRead": true
-    },
-    {
-      "id": 5,
-      "user": 1,
-      "name": "Sam Kaheil",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "6:55am",
-      "isRead": false
-    },
-    {
-      "user": 1,
-      "id": 6,
-      "name": "Sam Kaheil",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "6:55am",
-      "isRead": true
     },
     {
       "id": 7,
@@ -77,14 +37,6 @@
       "name": "Sara Wood",
       "message": "lorem ipsum dolor sit amit",
       "date": "10:30pm",
-      "isRead": false
-    },
-    {
-      "id": 8,
-      "user": 2,
-      "name": "Nader Magdy",
-      "message": "lorem ipsum dolor sit amit",
-      "date": "9:47pm",
       "isRead": false
     }
   ],
@@ -135,7 +87,7 @@
       "user": 1,
       "id": 1,
       "title": "Lorem ipsum dolor sit amet.",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nesciunt quisquam asperiores, ea, possimus laborum tempora explicabo ipsa excepturi officia facere, aperiam architecto minus aut perspiciatis aliquid sapiente necessitatibus itaque! At tempora iure soluta officiis explicabo recusandae suscipit accusantium, debitis impedit architecto eius quod corrupti esse alias, magnam sit veniam dolore beatae eos maiores minima excepturi, voluptate corporis repudiandae? Incidunt quia necessitatibus non temporibus! Obcaecati cupiditate labore dolor, officia quisquam perferendis itaque? Omnis dicta corrupti, repellendus ut veniam magni quo suscipit modi, cupiditate excepturi molestias id similique! Est ducimus optio repudiandae aliquid consequuntur aperiam a voluptatum in praesentium dolore eius autem, esse possimus vero quis eum harum ratione nobis veritatis ipsa alias voluptates id molestias provident! Amet delectus porro quisquam?",
+      "content": "Lorem ipsum dolor sit",
       "category": 1,
       "date": "Apr, 14,2021, 9:00 PM",
       "path": [
@@ -185,7 +137,7 @@
       "user": 1,
       "id": 2,
       "title": "Lorem, ipsum dolor",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit",
       "category": 1,
       "date": "6:23pm",
       "path": [
@@ -211,9 +163,9 @@
     },
     {
       "user": 2,
-      "id": 1,
+      "id": 3,
       "title": "Lorem ipsum dolor sit amet.",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nesciunt quisquam asperiores, ea, possimus laborum tempora explicabo ipsa excepturi officia facere, aperiam architecto minus aut perspiciatis aliquid sapiente necessitatibus itaque! At tempora iure soluta officiis explicabo recusandae suscipit accusantium, debitis impedit architecto eius quod corrupti esse alias, magnam sit veniam dolore beatae eos maiores minima excepturi, voluptate corporis repudiandae? Incidunt quia necessitatibus non temporibus! Obcaecati cupiditate labore dolor, officia quisquam perferendis itaque? Omnis dicta corrupti, repellendus ut veniam magni quo suscipit modi, cupiditate excepturi molestias id similique! Est ducimus optio repudiandae aliquid consequuntur aperiam a voluptatum in praesentium dolore eius autem, esse possimus vero quis eum harum ratione nobis veritatis ipsa alias voluptates id molestias provident! Amet delectus porro quisquam?",
+      "content": "Lorem ipsum dolor sit",
       "category": 1,
       "date": "Apr, 14,2021, 9:00 PM",
       "path": [
@@ -261,9 +213,9 @@
     },
     {
       "user": 2,
-      "id": 2,
+      "id": 4,
       "title": "Lorem, ipsum dolor",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit",
       "category": 1,
       "date": "6:23pm",
       "path": [
@@ -289,9 +241,9 @@
     },
     {
       "user": 2,
-      "id": 3,
+      "id": 5,
       "title": "Lorem, ipsum dolor",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit",
       "category": 1,
       "date": "6:23pm",
       "path": [
@@ -317,9 +269,9 @@
     },
     {
       "user": 2,
-      "id": 4,
+      "id": 6,
       "title": "Lorem, ipsum dolor",
-      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestiae ipsum vero placeat ab autem architecto laudantium eum similique illum. Tempore voluptatum provident voluptate illum possimus, illo animi eligendi harum!",
+      "content": "Lorem ipsum dolor sit",
       "category": 1,
       "date": "6:23pm",
       "path": [
@@ -345,7 +297,7 @@
     },
     {
       "user": 3,
-      "id": 5,
+      "id": 7,
       "title": "New Ticket",
       "content": "New Ticket",
       "category": 1,
@@ -373,7 +325,7 @@
     },
     {
       "user": 3,
-      "id": 6,
+      "id": 8,
       "title": "New Ticketv2",
       "content": "New Ticketv2",
       "category": 1,
