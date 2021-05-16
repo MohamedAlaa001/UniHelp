@@ -14,9 +14,7 @@ const TicketItem = ({ ticket }) => {
         return <strong className='ticket-status resolved'>[resolved]</strong>;
       case 'pending resolve':
         return (
-          <strong className='ticket-status pending resolve'>
-            [pending resolve]
-          </strong>
+          <strong className='ticket-status pending'>[pending resolve]</strong>
         );
       default:
         return <strong className='ticket-status'>[new]</strong>;

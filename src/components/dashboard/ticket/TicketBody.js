@@ -9,7 +9,7 @@ import {
   markTicketApprove,
   markTicketResolved,
   markTicketClosed,
-  markTicketPendingResolve
+  markTicketPendingResolve,
 } from '../../../actions/tickets';
 
 import Spinner from '../../layout/Spinner';
@@ -58,7 +58,9 @@ const TicketBody = ({
         <div className='container-fluid'>
           <div className='tickets-block block'>
             {role !== 'student' &&
-            (ticket.status === 'open' || ticket.status === 'new' || ticket.status === 'pending resolve') ? (
+            (ticket.status === 'open' ||
+              ticket.status === 'new' ||
+              ticket.status === 'pending resolve') ? (
               <div className='mb-3'>
                 {ticket.status === 'new' ? (
                   <input
@@ -71,7 +73,7 @@ const TicketBody = ({
                 {ticket.status === 'pending resolve' && role === 'master' ? (
                   <input
                     type='button'
-                    className='btn btn-outline-success me-3'
+                    className='btn btn-outline-primary me-3'
                     value='Resolve Ticket'
                     onClick={() => markTicketResolved(ticket.id)}
                   />
@@ -92,15 +94,14 @@ const TicketBody = ({
                     onClick={() => markTicketPendingResolve(ticket.id)}
                   />
                 ) : null}
-                {ticket.status !=='pending resolve'? (
-                <input
-                  type='button'
-                  className='btn btn-outline-danger'
-                  value='Mark as closed'
-                  onClick={() => markTicketClosed(ticket.id)}
-                />
+                {ticket.status !== 'pending resolve' ? (
+                  <input
+                    type='button'
+                    className='btn btn-outline-danger'
+                    value='Mark as closed'
+                    onClick={() => markTicketClosed(ticket.id)}
+                  />
                 ) : null}
-                
               </div>
             ) : null}
             <div className='row mb-3'>
@@ -121,7 +122,7 @@ const TicketBody = ({
                           ) : ticket.status === 'pending resolve' ? (
                             <strong className='ticket-status pending resolve'>
                               [pending resolve]
-                            </strong>  
+                            </strong>
                           ) : ticket.status === 'resolved' ? (
                             <strong className='ticket-status resolved'>
                               [resolved]

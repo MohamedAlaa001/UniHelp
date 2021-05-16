@@ -293,9 +293,9 @@ a:hover {
 .statistic-block .ticket-status.resolved {
   color: var(--color-info) !important;
 }
-.tickets-block .ticket-status.pending resolve,
-.statistic-block .ticket-status.pending resolve {
-  color: var(--color-danger) !important;
+.tickets-block .ticket-status.pending,
+.statistic-block .ticket-status.pending {
+  color: var(--color-primary) !important;
 }
 
 .tickets-block .ticket .ticket-content {
