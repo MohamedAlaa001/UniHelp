@@ -65,8 +65,11 @@ const TicketForm = ({
     });
 
     if (errors.length > 0) {
+      // scroll up
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
       errors.forEach((err) => {
-        setAlert(err, 'danger', false, 1000);
+        setAlert(err, 'danger', false, 3000);
       });
 
       // reset errors
@@ -109,6 +112,8 @@ const TicketForm = ({
       ).checked = false;
     }
     history.push('/tickets');
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
     // setAlert('Ticket Created', 'success', false, 3000);
   };

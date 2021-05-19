@@ -8,7 +8,7 @@ export const setAlert =
 
     dispatch({
       type: SET_ALERT,
-      payload: { msg, alertType, dismiss, id },
+      payload: { msg, alertType, dismiss, id, timeout },
     });
     if (!dismiss) {
       setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);

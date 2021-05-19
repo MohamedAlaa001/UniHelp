@@ -102,8 +102,8 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                           className='form-control input-material'
                           name='username'
                           autoComplete='off'
-                          autocorrect='off'
-                          autocapitalize='off'
+                          autoCorrect='off'
+                          autoCapitalize='off'
                           placeholder=''
                           value={username}
                           onChange={(e) => onChange(e)}
@@ -117,8 +117,8 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                           type='password'
                           className='form-control input-material'
                           name='password'
-                          autocorrect='off'
-                          autocapitalize='off'
+                          autoCorrect='off'
+                          autoCapitalize='off'
                           placeholder=''
                           value={password}
                           onChange={(e) => onChange(e)}
