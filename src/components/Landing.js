@@ -28,7 +28,7 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
     e.preventDefault();
 
     if (username.trim() === '') {
-      errors.push('Username is Required');
+      errors.push('Academic ID is Required');
     }
     if (password.trim() === '') {
       errors.push('Password is Required');
@@ -108,9 +108,7 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                           value={username}
                           onChange={(e) => onChange(e)}
                         />
-                        <label htmlFor='username' className='label-material'>
-                          Username
-                        </label>
+                        <label className='label-material'>Username</label>
                       </div>
                       <div className='form-floating mb-3'>
                         <input

@@ -11,7 +11,7 @@ import {
 } from './types';
 import { setAlert } from './alert';
 
-export const login = (username2, password2) => async (dispatch) => {
+export const login2 = (username2, password2) => async (dispatch) => {
   try {
     const res = await api.get(
       `/users?username=${username2}&password=${password2}`
@@ -47,11 +47,14 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Login User, Authenicate user and get token
-export const login2 = (username, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
   const body = { username, password };
 
   try {
-    const res = await api.post('/login', body);
+    const res = await api.post(
+      'https://floating-scrubland-82329.herokuapp.com/api/login',
+      body
+    );
 
     dispatch({
       type: LOGIN_SUCCESS,
