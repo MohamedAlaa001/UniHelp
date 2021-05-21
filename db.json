@@ -84,7 +84,7 @@
   ],
   "tickets": [
     {
-      "user": 1,
+      "username": 1,
       "id": 1,
       "title": "Lorem ipsum dolor sit amet.",
       "content": "Lorem ipsum dolor sit",
@@ -134,7 +134,7 @@
       "status": "resolved"
     },
     {
-      "user": 1,
+      "username": 1,
       "id": 2,
       "title": "Lorem, ipsum dolor",
       "content": "Lorem ipsum dolor sit",
@@ -162,7 +162,7 @@
       "status": "open"
     },
     {
-      "user": 2,
+      "username": 4661,
       "id": 3,
       "title": "Lorem ipsum dolor sit amet.",
       "content": "Lorem ipsum dolor sit",
@@ -212,7 +212,7 @@
       "status": "open"
     },
     {
-      "user": 2,
+      "username": 4661,
       "id": 4,
       "title": "Lorem, ipsum dolor",
       "content": "Lorem ipsum dolor sit",
@@ -240,7 +240,7 @@
       "status": "open"
     },
     {
-      "user": 2,
+      "username": 4661,
       "id": 5,
       "title": "Lorem, ipsum dolor",
       "content": "Lorem ipsum dolor sit",
@@ -268,7 +268,7 @@
       "status": "resolved"
     },
     {
-      "user": 2,
+      "username": 4661,
       "id": 6,
       "title": "Lorem, ipsum dolor",
       "content": "Lorem ipsum dolor sit",
@@ -296,7 +296,7 @@
       "status": "closed"
     },
     {
-      "user": 3,
+      "username": 3,
       "id": 7,
       "title": "New Ticket",
       "content": "New Ticket",
@@ -324,7 +324,7 @@
       "status": "new"
     },
     {
-      "user": 3,
+      "username": 3,
       "id": 8,
       "title": "New Ticketv2",
       "content": "New Ticketv2",
