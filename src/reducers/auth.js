@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
@@ -7,7 +8,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: Cookies.get('csrftoken'),
   isAuthenticated: null,
   loading: true,
   user: null,

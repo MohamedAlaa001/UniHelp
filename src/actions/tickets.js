@@ -16,10 +16,10 @@ import {
 export const ticketSwitch = (user) => (dispatch) => {
   switch (user.role) {
     case 'student':
-      dispatch(getTicketsByUserId(user.id));
+      dispatch(getTicketsByUserId(user.username));
       break;
     case 'employee':
-      dispatch(getAssignedTicketsByUserId(user.id));
+      dispatch(getAssignedTicketsByUserId(user.username));
       break;
     case 'master':
       dispatch(getNewTickets());
@@ -30,9 +30,9 @@ export const ticketSwitch = (user) => (dispatch) => {
 };
 
 // Student
-export const getTicketsByUserId = (userId) => async (dispatch) => {
+export const getTicketsByUserId = (username) => async (dispatch) => {
   try {
-    const res = await api.get(`/tickets?user=${userId}`);
+    const res = await api.get(`/tickets?username=${username}`);
 
     dispatch({
       type: GET_ALL_TICKETS,
@@ -82,9 +82,9 @@ export const createTicket = (ticket) => async (dispatch) => {
 };
 
 // Employee
-export const getAssignedTicketsByUserId = (userId) => async (dispatch) => {
+export const getAssignedTicketsByUserId = (username) => async (dispatch) => {
   try {
-    const res = await api.get(`/tickets?user=${userId}`);
+    const res = await api.get(`/tickets?username=${username}`);
 
     dispatch({
       type: GET_ALL_TICKETS,

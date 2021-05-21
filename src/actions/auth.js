@@ -10,6 +10,8 @@ import {
   CLEAR_REPLIES,
 } from './types';
 import { setAlert } from './alert';
+import { setCSRFToken } from '../utils/setCSRFToken';
+import Cookies from 'js-cookie';
 
 export const login2 = (username2, password2) => async (dispatch) => {
   try {
@@ -60,8 +62,8 @@ export const login = (username, password) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-
-    dispatch(loadUser());
+    console.log(document.cookie);
+    // dispatch(loadUser());
   } catch (err) {
     dispatch(setAlert(err.response, 'danger', false, 3000));
     dispatch({ type: LOGIN_FAILED });
@@ -74,4 +76,20 @@ export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_NOTIFICATIONS });
   dispatch({ type: CLEAR_TICKETS });
   dispatch({ type: CLEAR_REPLIES });
+};
+
+export const getCookie = (name) => {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    let cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + '=') {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  // console.log(cookieValue);
+  return cookieValue;
 };
