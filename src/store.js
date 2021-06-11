@@ -1,30 +1,44 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-import setAuthToken from './utils/setAuthToken';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const initialState = {};
 
 const middleware = [thunk];
 
-const store = createStore(
-  rootReducer,
+// const store = createStore(
+//   rootReducer,
+//   initialState,
+//   composeWithDevTools(applyMiddleware(...middleware))
+// );
+
+// export default () => {
+//   let store = createStore(
+//     persistedReducer,
+//     // initialState,
+//     composeWithDevTools(applyMiddleware(...middleware))
+//   );
+//   let persistor = persistStore(store);
+//   return { store, persistor };
+// };
+
+export let store = createStore(
+  persistedReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
-let currentState = store.getState();
+export let persistor = persistStore(store);
 
-store.subscribe(() => {
-  // keep track of the previous and current state to compare changes
-  let previousState = currentState;
-  currentState = store.getState();
-  // if the token changes set the value in localStorage and axios headers
-  if (previousState.auth.token !== currentState.auth.token) {
-    const token = currentState.auth.token;
-    // setAuthToken(token);
-  }
-});
-
-export default store;
+// export default store;

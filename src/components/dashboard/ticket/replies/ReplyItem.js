@@ -7,7 +7,7 @@ import Collapse from 'react-bootstrap/Collapse';
 const ReplyItem = ({ ticket, reply }) => {
   const [open, setOpen] = useState(false);
 
-  const date = format(toDate(reply.date), 'MMM, d, yyyy, h:mm aa');
+  // const date = format(toDate(reply.date), 'MMM, d, yyyy, h:mm aa');
   return (
     <div className='reply d-flex flex-column mb-3'>
       <div className='content'>
@@ -23,6 +23,10 @@ const ReplyItem = ({ ticket, reply }) => {
                 <strong className='ticket-status open'>[open]</strong>
               ) : ticket.status === 'closed' ? (
                 <strong className='ticket-status closed'>[closed]</strong>
+              ) : ticket.status === 'pending' ? (
+                <strong className='ticket-status pending resolve'>
+                  [pending Resolve]
+                </strong>
               ) : ticket.status === 'resolved' ? (
                 <strong className='ticket-status resolved'>[resolved]</strong>
               ) : (
@@ -30,8 +34,10 @@ const ReplyItem = ({ ticket, reply }) => {
               )}
               {ticket.title}
             </strong>
-            <span className='d-block'>by {reply.name}</span>
-            <small className='date d-block'>{date}</small>
+            <span className='d-block'>
+              by {reply.first_name} {reply.last_name}
+            </span>
+            <small className='date d-block'>{reply.timestamp}</small>
           </div>
         </div>
       </div>

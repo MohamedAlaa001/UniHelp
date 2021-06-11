@@ -380,6 +380,10 @@ nav.navbar a:hover,
 nav.navbar a:focus {
   color: #225b5b;
 }
+nav.navbar a.navbar-brand:hover,
+nav.navbar a.navbar-brand:focus {
+  color: inherit;
+}
 
 nav.navbar .brand-text {
   display: none;
@@ -601,6 +605,11 @@ nav#sidebar .sidebar-header h1 {
 
 nav#sidebar .sidebar-header p {
   font-size: 0.9rem;
+}
+
+nav#sidebar .sidebar-header p.role {
+  text-align: center;
+  text-transform: capitalize;
 }
 
 nav#sidebar span.heading {

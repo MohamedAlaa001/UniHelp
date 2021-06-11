@@ -7,22 +7,27 @@ import {
   GET_TICKET,
   // CREATE_TICKET,
   // CLEAR_REPLIES,
+  CHANGE_STATUS,
   MARK_APPROVE,
   MARK_RESOLVED,
-  MARK_PENDINGRESOLVE,
+  MARK_PENDING_RESOLVE,
   MARK_CLOSED,
+  CREATE_TICKET,
+  CREATE_TICKET_REPLY,
 } from './types';
 
 export const ticketSwitch = (user) => (dispatch) => {
   switch (user.role) {
     case 'student':
-      dispatch(getTicketsByUserId(user.username));
+      dispatch(getTicketsByUser());
       break;
     case 'employee':
-      dispatch(getAssignedTicketsByUserId(user.username));
+      dispatch(getTicketsByUser());
+      // dispatch(getAssignedTicketsByUserId(user.username));
       break;
     case 'master':
-      dispatch(getNewTickets());
+      dispatch(getTicketsByUser());
+      // dispatch(getNewTickets());
       break;
     default:
       return;
@@ -30,54 +35,67 @@ export const ticketSwitch = (user) => (dispatch) => {
 };
 
 // Student
-export const getTicketsByUserId = (username) => async (dispatch) => {
+export const getTicketsByUser = () => async (dispatch) => {
   try {
-    const res = await api.get(`/tickets?username=${username}`);
+    const res = await api.get('/view_tickets');
 
     dispatch({
       type: GET_ALL_TICKETS,
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data.error);
   }
 };
 
-export const getTicketById = (ticketId) => async (dispatch) => {
+export const getTicketById = (ticket_id) => async (dispatch) => {
+  const body = { ticket_id };
   try {
-    const res = await api.get(`/tickets/${ticketId}`);
+    // get ticket from tickets and replies request
+    const res = await api.post('/view_reply', body);
 
     dispatch({
       type: GET_TICKET,
-      payload: res.data,
+      payload: { ticket_id, replies: res.data },
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data.error);
   }
 };
 
 // Get Categories
 export const getCategories = () => async (dispatch) => {
   try {
-    const res = await api.get('/categories');
+    const res = await api.get('/get_category');
 
     dispatch({
       type: GET_CATEGORIES,
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data.error);
   }
 };
 
+// Create Ticket
 export const createTicket = (ticket) => async (dispatch) => {
-  console.log(ticket);
-
+  const body = { ...ticket };
   try {
-    // api.post('/submit_ticket', ticket);
-    dispatch(setAlert('Ticket Created', 'success', false, 3000));
+    const res = await api.post('/submit_ticket', body);
+    dispatch({
+      type: CREATE_TICKET,
+      payload: res.data,
+    });
+    dispatch(
+      setAlert(
+        `Ticket Created with ID ${res.data.ticket_id} `,
+        'success',
+        false,
+        3000
+      )
+    );
   } catch (err) {
-    console.log(err);
+    console.log(err.respone.data.error);
   }
 };
 
@@ -91,53 +109,24 @@ export const getAssignedTicketsByUserId = (username) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data.error);
   }
 };
 
-export const markTicketApprove = (ticketId) => async (dispatch) => {
+// Change Ticket Status
+export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
+  const body = { ticket_id, status };
   try {
-    const res = await api.patch(`/tickets/${ticketId}`, {
-      status: 'open',
+    const res = await api.put('/change_status', body);
+    dispatch({
+      type: CHANGE_STATUS,
+      payload: res.data.status,
     });
-    dispatch({ type: MARK_APPROVE, payload: res.data });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data.error);
   }
 };
 
-export const markTicketPendingResolve = (ticketId) => async (dispatch) => {
-  try {
-    const res = await api.patch(`/tickets/${ticketId}`, {
-      status: 'pending resolve',
-    });
-    dispatch({ type: MARK_PENDINGRESOLVE, payload: res.data });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const markTicketResolved = (ticketId) => async (dispatch) => {
-  try {
-    const res = await api.patch(`/tickets/${ticketId}`, {
-      status: 'resolved',
-    });
-    dispatch({ type: MARK_RESOLVED, payload: res.data });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const markTicketClosed = (ticketId) => async (dispatch) => {
-  try {
-    const res = await api.patch(`/tickets/${ticketId}`, {
-      status: 'closed',
-    });
-    dispatch({ type: MARK_CLOSED, payload: res.data });
-  } catch (err) {
-    console.log(err);
-  }
-};
 // Master
 export const getNewTickets = () => async (dispatch) => {
   try {
@@ -148,6 +137,28 @@ export const getNewTickets = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data.error);
+  }
+};
+
+// REPLIES
+export const createReply = (reply) => async (dispatch) => {
+  const body = { ...reply };
+  try {
+    const res = await api.post('/submit_reply', body);
+    dispatch({
+      type: CREATE_TICKET_REPLY,
+      payload: res.data,
+    });
+    dispatch(
+      setAlert(
+        'Your reply has been successfully submitted',
+        'success',
+        false,
+        3000
+      )
+    );
+  } catch (err) {
+    dispatch(setAlert(err.response.data.error, 'success', false, 3000));
   }
 };

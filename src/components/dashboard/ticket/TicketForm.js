@@ -88,14 +88,10 @@ const TicketForm = ({
     }
 
     const ticketBody = {
-      student_id: id,
       title,
       content,
+      priority: 0,
       category_id,
-      // date: 'Apr, 14,2021, 9:00 PM',
-      // path: [],
-      // replies: [],
-      // isResloved: false,
     };
     createTicket(ticketBody);
     // Form Reset
@@ -144,7 +140,12 @@ const TicketForm = ({
       <section>
         <div className='container-fluid'>
           <Alert />
-          <form className='ticket-form' onSubmit={(e) => onSubmitHandler(e)}>
+          <form
+            className='ticket-form'
+            autoComplete='off'
+            autoCorrect='off'
+            onSubmit={(e) => onSubmitHandler(e)}
+          >
             <div className='row'>
               {/* Left Panel */}
               <div className='col-md-12 col-lg-8'>
@@ -193,7 +194,7 @@ const TicketForm = ({
                         key={category.category_id}
                         categoryId={category.category_id}
                         onChange={(e) => onChangeSwitchHandler(e)}
-                        label={category.category_name}
+                        label={category.title}
                       />
                     ))}
                     <div className='d-grid mt-3 mx-md-auto col-md-8 col-lg-12'>

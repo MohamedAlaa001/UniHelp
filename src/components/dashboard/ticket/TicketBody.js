@@ -4,26 +4,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  getTicketById,
-  markTicketApprove,
-  markTicketResolved,
-  markTicketClosed,
-  markTicketPendingResolve,
-} from '../../../actions/tickets';
+import { getTicketById } from '../../../actions/tickets';
 
 import Spinner from '../../layout/Spinner';
+import Alert from '../../layout/Alert';
+
+import TicketControl from './TicketControl';
+import TicketStatus from './TicketStatus';
+import TicketTimeline from './TicketTimeline';
+
 import Replies from './replies/Replies';
 import ReplyForm from './replies/ReplyForm';
-import TicketTimeline from './TicketTimeline';
 
 const TicketBody = ({
   match,
   getTicketById,
-  markTicketApprove,
-  markTicketResolved,
-  markTicketClosed,
-  markTicketPendingResolve,
   tickets: { ticket, loading },
   user: { role },
 }) => {
@@ -57,91 +52,34 @@ const TicketBody = ({
       <section>
         <div className='container-fluid'>
           <div className='tickets-block block'>
-            {role !== 'student' &&
-            (ticket.status === 'open' ||
-              ticket.status === 'new' ||
-              ticket.status === 'pending resolve') ? (
-              <div className='mb-3'>
-                {ticket.status === 'new' ? (
-                  <input
-                    type='button'
-                    className='btn btn-outline-success me-3'
-                    value='Approve Ticket'
-                    onClick={() => markTicketApprove(ticket.id)}
-                  />
-                ) : null}
-                {ticket.status === 'pending resolve' && role === 'master' ? (
-                  <input
-                    type='button'
-                    className='btn btn-outline-primary me-3'
-                    value='Resolve Ticket'
-                    onClick={() => markTicketResolved(ticket.id)}
-                  />
-                ) : null}
-                {ticket.status === 'pending resolve' && role === 'master' ? (
-                  <input
-                    type='button'
-                    className='btn btn-outline-danger'
-                    value='Mark as unresolved'
-                    onClick={() => markTicketApprove(ticket.id)}
-                  />
-                ) : null}
-                {ticket.status === 'open' ? (
-                  <input
-                    type='button'
-                    className='btn btn-outline-info me-3'
-                    value='Mark as resolved'
-                    onClick={() => markTicketPendingResolve(ticket.id)}
-                  />
-                ) : null}
-                {ticket.status !== 'pending resolve' ? (
-                  <input
-                    type='button'
-                    className='btn btn-outline-danger'
-                    value='Mark as closed'
-                    onClick={() => markTicketClosed(ticket.id)}
-                  />
-                ) : null}
-              </div>
-            ) : null}
+            <Alert />
+            <TicketControl ticket={ticket} role={role} />
+
             <div className='row mb-3'>
               <div className='col-sm-12 col-lg-9'>
+                {/* Ticket */}
                 <div className='tickets'>
                   <div className='ticket d-flex align-items-center'>
                     <div className='content'>
                       <div className='title'>
-                        <strong>
-                          {ticket.status === 'open' ? (
-                            <strong className='ticket-status open'>
-                              [open]
-                            </strong>
-                          ) : ticket.status === 'closed' ? (
-                            <strong className='ticket-status closed'>
-                              [closed]
-                            </strong>
-                          ) : ticket.status === 'pending resolve' ? (
-                            <strong className='ticket-status pending resolve'>
-                              [pending resolve]
-                            </strong>
-                          ) : ticket.status === 'resolved' ? (
-                            <strong className='ticket-status resolved'>
-                              [resolved]
-                            </strong>
-                          ) : (
-                            <strong className='ticket-status'>[new]</strong>
-                          )}
-                          {ticket.title}
-                        </strong>
-                        <span className='d-block'>{ticket.id}</span>
-                        <span className='d-block'>to {'Student Affairs'}</span>
-                        <small className='date d-block'>{ticket.date}</small>
+                        <TicketStatus
+                          status={ticket.status}
+                          title={ticket.title}
+                        />
+                        <span className='d-block'>{ticket.ticket_id}</span>
+                        <span className='d-block'>To {ticket.category}</span>
+                        <small className='date d-block'>
+                          {ticket.timestamp}
+                        </small>
                       </div>
                       <p className='d-block ticket-content'>{ticket.content}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              {ticket.path.length > 0 ? (
+
+              {/* Ticket Path */}
+              {/* {ticket.path.length > 0 ? (
                 <div className='col'>
                   <div className='timeline card'>
                     <div className='card-body'>
@@ -154,13 +92,14 @@ const TicketBody = ({
                     </div>
                   </div>
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
-            {/* Ticket Path */}
 
-            {/* Reply Form for employee only */}
-            {role !== 'student' ? <ReplyForm /> : null}
-            {/* <ReplyForm /> */}
+            {/* Reply Form */}
+            {ticket.status !== 'closed' && ticket.status !== 'resolved' ? (
+              <ReplyForm />
+            ) : null}
+
             {/* Ticket Replies */}
             <Replies />
           </div>
@@ -182,8 +121,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getTicketById,
-  markTicketApprove,
-  markTicketResolved,
-  markTicketClosed,
-  markTicketPendingResolve,
 })(TicketBody);

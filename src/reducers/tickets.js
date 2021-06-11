@@ -3,12 +3,10 @@ import {
   GET_ALL_TICKETS,
   GET_TICKET,
   CREATE_TICKET,
+  CREATE_TICKET_REPLY,
   CLEAR_TICKETS,
-  MARK_APPROVE,
-  MARK_RESOLVED,
-  MARK_CLOSED,
+  CHANGE_STATUS,
   GET_ALL_NEW_TICKETS,
-  MARK_PENDINGRESOLVE,
 } from '../actions/types';
 
 const initialState = {
@@ -32,7 +30,12 @@ function ticketReducer(state = initialState, action) {
     case GET_TICKET:
       return {
         ...state,
-        ticket: payload,
+        ticket: {
+          ...state.tickets.find(
+            (ticket) => ticket.ticket_id == payload.ticket_id
+          ),
+          replies: [...payload.replies],
+        },
         loading: false,
       };
     case GET_ALL_TICKETS:
@@ -46,11 +49,20 @@ function ticketReducer(state = initialState, action) {
         ...state,
         tickets: payload,
         loading: false,
-      }
+      };
     case CREATE_TICKET:
       return {
         ...state,
         tickets: [payload, ...state.tickets],
+        loading: false,
+      };
+    case CREATE_TICKET_REPLY:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          replies: payload,
+        },
         loading: false,
       };
     case CLEAR_TICKETS:
@@ -60,13 +72,13 @@ function ticketReducer(state = initialState, action) {
         tickets: [],
         loading: true,
       };
-    case MARK_APPROVE:
-    case MARK_RESOLVED:
-    case MARK_CLOSED:
-    case MARK_PENDINGRESOLVE:
+    case CHANGE_STATUS:
       return {
         ...state,
-        ticket: payload,
+        ticket: {
+          ...state.ticket,
+          status: payload,
+        },
       };
 
     default:

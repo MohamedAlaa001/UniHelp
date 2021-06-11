@@ -5,7 +5,7 @@ import { sidebarHandleClick } from '../handlersMethods';
 
 import NavItem from './NavItem';
 
-const Sidebar = ({ role }) => {
+const Sidebar = ({ user: { role, first_name, last_name } }) => {
   useEffect(() => {
     sidebarHandleClick();
   }, []);
@@ -79,8 +79,10 @@ const Sidebar = ({ role }) => {
         {/* sidebar header */}
         <div className='sidebar-header d-flex align-items-center justify-content-center'>
           <div className='title'>
-            <h1 className='h5'>Fname Lname</h1>
-            <p>Lorem, ipsum dolor.</p> {/* Could be removed */}
+            <h1 className='h5'>
+              {first_name} {last_name}
+            </h1>
+            <p className='role'>{role} user</p>
           </div>
         </div>
         {/* Sidebar Main Menu start */}
@@ -98,11 +100,11 @@ const Sidebar = ({ role }) => {
 };
 
 Sidebar.propTypes = {
-  role: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  role: state.auth.user.role,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps)(Sidebar);

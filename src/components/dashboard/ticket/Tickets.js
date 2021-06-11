@@ -40,9 +40,6 @@ const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
       {/* Page Section */}
       <section>
         <div className='container-fluid'>
-          <div className='block alert-primary'>
-            <strong>Sorting by newest</strong>
-          </div>
           <Alert />
           <div className='tickets-block block'>
             <div className='mb-3'>
@@ -56,7 +53,7 @@ const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
               <div className='col-sm-12 col-md-9'>
                 <div className='tickets'>
                   {tickets.map((ticket) => (
-                    <TicketItem key={ticket.id} ticket={ticket} />
+                    <TicketItem key={ticket.ticket_id} ticket={ticket} />
                   ))}
                 </div>
               </div>

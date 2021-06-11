@@ -19,13 +19,10 @@ export const GET_ALL_NEW_TICKETS = 'GET_ALL_NEW_TICKETS';
 export const GET_TICKET = 'GET_TICKET';
 export const CREATE_TICKET = 'CREATE_TICKET';
 export const CLEAR_TICKETS = 'CLEAR_TICKETS';
-export const MARK_APPROVE = 'MARK_APPROVE';
-export const MARK_RESOLVED = 'MARK_RESOLVED';
-export const MARK_CLOSED = 'MARK_CLOSED';
-export const MARK_PENDINGRESOLVE = 'Pending_RESOLVE'
-
-export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const CHANGE_STATUS = 'CHANGE_STATUS';
 // Replies
 export const GET_TICKET_REPLIES = 'GET_TICKET_REPLIES';
 export const CREATE_TICKET_REPLY = 'CREATE_TICKET_REPLY';
 export const CLEAR_REPLIES = 'CLEAR_REPLIES';
+// Categories
+export const GET_CATEGORIES = 'GET_CATEGORIES';

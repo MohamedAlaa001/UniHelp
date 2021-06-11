@@ -7,12 +7,13 @@ import ReplyItem from './ReplyItem';
 const Replies = ({ ticket }) => {
   return ticket.replies.length > 0 ? (
     <Fragment>
-      <div className='title'>
+      <div className='title' id='replies'>
         <strong>Replies</strong>
       </div>
+
       <div className='replies'>
         {ticket.replies.map((reply) => (
-          <ReplyItem ticket={ticket} reply={reply} key={reply.id} />
+          <ReplyItem ticket={ticket} reply={reply} key={reply.reply_id} />
         ))}
       </div>
     </Fragment>
