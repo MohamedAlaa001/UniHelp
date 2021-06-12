@@ -1,89 +1,26 @@
 import { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { setAlert } from '../../../../actions/alert';
 import { createReply } from '../../../../actions/tickets';
+import ReplyFormSearch from './ReplyFormSearch';
 
 const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
   const [replyData, setReplyData] = useState({
     content: '',
-    searchInput: '',
     is_private: false,
     errors: [],
   });
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: 'Mostafa',
-    },
-    {
-      id: 2,
-      name: 'Mohamed',
-    },
-    {
-      id: 3,
-      name: 'Ahmed',
-    },
-    {
-      id: 4,
-      name: 'mahmoud',
-    },
-    {
-      id: 5,
-      name: 'Zakerya El derdar',
-    },
-    {
-      id: 6,
-      name: 'Zakerya El derdar',
-    },
-    {
-      id: 7,
-      name: 'Zakerya El derdar',
-    },
-    {
-      id: 8,
-      name: 'Zakerya El derdar',
-    },
-    {
-      id: 9,
-      name: 'Zakerya El derdar',
-    },
-    {
-      id: 10,
-      name: 'Zakerya El derdar',
-    },
-  ]);
-
-  const { content, searchInput, is_private, errors } = replyData;
-
-  const searchBlock = classNames('search-input form-control form-control-lg', {
-    active: searchInput.trim().length > 2,
-  });
+  const { content, is_private, errors } = replyData;
 
   const onChangeContentHandler = (e) => {
     setReplyData({
       ...replyData,
       content: e.target.value,
     });
-  };
-
-  const onChangeSearchHandler = (e) => {
-    setReplyData({
-      ...replyData,
-      searchInput: e.target.value,
-    });
-
-    setFilteredUsers(
-      users.filter((user) => {
-        return user.name
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase().trim());
-      })
-    );
   };
 
   const onSubmitReplyHandler = (e) => {
@@ -126,7 +63,6 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
     // Resest Form
     setReplyData({
       content: '',
-      searchInput: '',
       is_private: false,
       errors: [],
     });
@@ -155,7 +91,7 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
             {/* Search FOR EMPLOYEES ONLY*/}
             {role !== 'student' ? (
               <div>
-                <div className='mb-3 dropdown'>
+                {/* <div className='mb-3 dropdown'>
                   <a
                     href='#searchUsers'
                     className='dropdown-toggle'
@@ -192,10 +128,12 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
                       </ul>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 {/* Search */}
-                <div className='mb-3 search-block'>
+                <ReplyFormSearch />
+                {/* <div className='mb-3 search-block'>
                   <label className='form-label'>Forward ticket to:</label>
+
                   <input
                     type='text'
                     className={searchBlock}
@@ -216,7 +154,7 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
                       )}
                     </ul>
                   </div>
-                </div>
+                </div> */}
                 {/* Private Reply */}
                 <div className='form-check form-switch'>
                   <label className='form-check-label ms-1'>
