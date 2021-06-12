@@ -6,6 +6,8 @@ import './customStyle.css';
 import { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { getCookie } from './utils/cookies';
+
 // Redux
 import { Provider } from 'react-redux';
 import { store, persistor } from './store';
@@ -19,7 +21,9 @@ import Dashboard from './components/Dashboard';
 
 const App = () => {
   useEffect(() => {
-    store.dispatch(loadUser());
+    if (getCookie('sessionid')) {
+      store.dispatch(loadUser());
+    }
   }, []);
 
   return (

@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { toDate, format } from 'date-fns';
 
 import Collapse from 'react-bootstrap/Collapse';
 
 const ReplyItem = ({ ticket, reply }) => {
   const [open, setOpen] = useState(false);
 
-  // const date = format(toDate(reply.date), 'MMM, d, yyyy, h:mm aa');
   return (
     <div className='reply d-flex flex-column mb-3'>
       <div className='content'>

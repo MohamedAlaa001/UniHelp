@@ -8,28 +8,27 @@ import {
 } from './types';
 
 export const getAllNotifications = (id) => async (dispatch) => {
-  try {
-    const res = await api.get(`/notifications?user=${id}`);
-
-    dispatch({
-      type: GET_ALL_NOTIFICATIONS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   const res = await api.get(`/notifications?user=${id}`);
+  //   dispatch({
+  //     type: GET_ALL_NOTIFICATIONS,
+  //     payload: res.data,
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 };
 
 export const getNotification = (id) => async (dispatch) => {
-  try {
-    const res = await api.get(`/notifications/${id}`);
-    dispatch({
-      type: GET_NOTIFICATION,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   const res = await api.get(`/notifications/${id}`);
+  //   dispatch({
+  //     type: GET_NOTIFICATION,
+  //     payload: res.data,
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 };
 
 export const setNotificationRead = (notification) => async (dispatch) => {
@@ -38,11 +37,10 @@ export const setNotificationRead = (notification) => async (dispatch) => {
   //     ...notification,
   //     isRead: true,
   //   });
-
-  dispatch({
-    type: SET_NOTIFICATION_READ,
-    payload: notification.id,
-  });
+  // dispatch({
+  //   type: SET_NOTIFICATION_READ,
+  //   payload: notification.id,
+  // });
   // } catch (err) {
   //   console.log(err);
   // }

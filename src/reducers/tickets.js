@@ -32,6 +32,7 @@ function ticketReducer(state = initialState, action) {
         ...state,
         ticket: {
           ...state.tickets.find(
+            // eslint-disable-next-line
             (ticket) => ticket.ticket_id == payload.ticket_id
           ),
           replies: [...payload.replies],

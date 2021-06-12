@@ -13,7 +13,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const initialState = {};
+// const initialState = {};
 
 const middleware = [thunk];
 
@@ -35,7 +35,7 @@ const middleware = [thunk];
 
 export let store = createStore(
   persistedReducer,
-  initialState,
+  // initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

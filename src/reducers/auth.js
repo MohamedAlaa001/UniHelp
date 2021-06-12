@@ -42,7 +42,6 @@ function authReducer(state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        token: null,
         isAuthenticated: false,
         loading: false,
         user: null,
