@@ -1,73 +1,40 @@
-import { useState } from 'react';
-import classNames from 'classnames';
+import { Fragment, useState } from 'react';
+import classnames from 'classnames';
 
-const ReplyFormSearch = () => {
-  const [searchInput, setSearchInput] = useState('');
-  const [filteredUsers, setFilteredUsers] = useState([]);
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: 'Mostafa',
-    },
-    {
-      id: 2,
-      name: 'Mohamed',
-    },
-    {
-      id: 3,
-      name: 'Ahmed',
-    },
-    {
-      id: 4,
-      name: 'mahmoud',
-    },
-    {
-      id: 5,
-      name: 'Zakerya El derdar',
-    },
-  ]);
+import SearchPanel from './SearchPanel';
 
-  const searchBlock = classNames('search-input form-control form-control-lg', {
-    active: searchInput.trim().length > 2,
-  });
-
-  const onChangeSearchHandler = (e) => {
-    setSearchInput(e.target.value);
-
-    setFilteredUsers(
-      users.filter((user) => {
-        return user.name
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase().trim());
-      })
-    );
-  };
+const ReplyFormSearch = ({ isPrivate }) => {
+  const [employees, setSelectedEmployees] = useState([]);
 
   return (
-    <div className='mb-3 search-block'>
-      <label className='form-label'>Forward ticket to:</label>
-
-      <input
-        type='text'
-        className={searchBlock}
-        placeholder='Enter employee name...'
-        value={searchInput}
-        onChange={(e) => onChangeSearchHandler(e)}
+    <Fragment>
+      <SearchPanel
+        isPrivate={isPrivate}
+        employees={employees}
+        setSelectedEmployees={setSelectedEmployees}
       />
-      <div className='search-display dropdown-menu'>
-        <ul className='list-unstyled mb-0'>
-          {filteredUsers.length > 0 ? (
-            filteredUsers.map((user) => (
-              <li key={user.id}>
-                <strong>{user.name}</strong>
+      <div className='mb-2'>
+        <div
+          className='btn w-100 search-open'
+          onClick={() => {
+            document.querySelector('#search-panel').classList.add('d-block');
+            document.body.classList.add('no-scroll');
+          }}
+        >
+          Forward Ticket
+        </div>
+
+        <div className='search-results'>
+          <ul className='list-unstyled mb-0'>
+            {employees.map((employee) => (
+              <li key={employee.id} style={{ textTransform: 'capitalize' }}>
+                <strong>{employee.name}</strong>
               </li>
-            ))
-          ) : (
-            <strong>Nothing Found...</strong>
-          )}
-        </ul>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

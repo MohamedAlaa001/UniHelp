@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { setAlert } from '../../../../actions/alert';
 import { createReply } from '../../../../actions/tickets';
@@ -69,6 +70,13 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
     document.getElementById('replies').scrollIntoView();
   };
 
+  const isPrivateLabelStyle = classnames('form-check-label ms-1', {
+    active: is_private,
+  });
+  const isPrivateInputStyle = classnames('form-check-input', {
+    active: is_private,
+  });
+
   return (
     <Fragment>
       <form onSubmit={(e) => onSubmitReplyHandler(e)}>
@@ -86,83 +94,19 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
                 Reply's Content
               </label>
             </div>
-          </div>
-          <div className='col'>
-            {/* Search FOR EMPLOYEES ONLY*/}
-            {role !== 'student' ? (
-              <div>
-                {/* <div className='mb-3 dropdown'>
-                  <a
-                    href='#searchUsers'
-                    className='dropdown-toggle'
-                    data-bs-toggle='dropdown'
-                    role='button'
-                    aria-expanded='false'
-                  >
-                    <strong>Search</strong>
-                  </a>
-                  <div
-                    className='mb-3 dropdown-menu  search-block p-3'
-                    id='searchUsers'
-                  >
-                    <label className='form-label'>Search...</label>
-                    <input
-                      type='text'
-                      className={searchBlock}
-                      placeholder=''
-                      value={searchInput}
-                      onChange={(e) => onChangeSearchHandler(e)}
-                    />
-
-                    <div className='search-display'>
-                      <ul className='list-unstyled mb-0'>
-                        {filteredUsers.length > 0 ? (
-                          filteredUsers.map((user) => (
-                            <li key={user.id}>
-                              <strong>{user.name}</strong>
-                            </li>
-                          ))
-                        ) : (
-                          <strong>Nothing Found...</strong>
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div> */}
-                {/* Search */}
-                <ReplyFormSearch />
-                {/* <div className='mb-3 search-block'>
-                  <label className='form-label'>Forward ticket to:</label>
-
-                  <input
-                    type='text'
-                    className={searchBlock}
-                    placeholder='Enter employee name...'
-                    value={searchInput}
-                    onChange={(e) => onChangeSearchHandler(e)}
-                  />
-                  <div className='search-display dropdown-menu'>
-                    <ul className='list-unstyled mb-0'>
-                      {filteredUsers.length > 0 ? (
-                        filteredUsers.map((user) => (
-                          <li key={user.id}>
-                            <strong>{user.name}</strong>
-                          </li>
-                        ))
-                      ) : (
-                        <strong>Nothing Found...</strong>
-                      )}
-                    </ul>
-                  </div>
-                </div> */}
-                {/* Private Reply */}
-                <div className='form-check form-switch'>
-                  <label className='form-check-label ms-1'>
-                    Private Forward
-                  </label>
+            {/* Submit Reply*/}
+            <div className='d-flex mb-3'>
+              <button
+                type='submit'
+                className='btn btn-primary flex-grow-1 me-1'
+              >
+                Submit Reply
+              </button>
+              {role !== 'student' ? (
+                <div className='ms-1'>
                   <input
                     type='checkbox'
-                    className='form-check-input'
+                    className='btn-check'
                     checked={is_private}
                     onChange={() =>
                       setReplyData({
@@ -171,16 +115,35 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
                       })
                     }
                   />
+                  <label
+                    className='btn btn-outline-private'
+                    onClick={() =>
+                      setReplyData({
+                        ...replyData,
+                        is_private: !is_private,
+                      })
+                    }
+                  >
+                    Private Reply
+                    <i
+                      className='icon-private ms-2'
+                      style={{
+                        transform: 'none',
+                      }}
+                    ></i>
+                  </label>
                 </div>
+              ) : null}
+            </div>
+          </div>
+          <div className='col'>
+            {/* Search FOR EMPLOYEES ONLY*/}
+            {role !== 'student' ? (
+              <div>
+                {/* Search */}
+                <ReplyFormSearch isPrivate={is_private} />
               </div>
             ) : null}
-
-            {/* Submit */}
-            <input
-              type='submit'
-              className='btn btn-outline-primary w-100'
-              value='Submit'
-            />
           </div>
         </div>
       </form>

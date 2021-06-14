@@ -187,3 +187,9 @@
 .icon-menu-right:before {
   content: "\58";
 }
+.icon-forward:before {
+  content: "\59";
+}
+.icon-private:before {
+  content: "\5a";
+}
