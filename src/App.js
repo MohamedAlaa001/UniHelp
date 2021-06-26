@@ -18,12 +18,14 @@ import { loadUser } from './actions/auth';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
+import { CLEAR_CONFIRMATIONS } from './actions/types';
 
 const App = () => {
   useEffect(() => {
     if (getCookie('sessionid')) {
       store.dispatch(loadUser());
     }
+    store.dispatch({ type: CLEAR_CONFIRMATIONS });
   }, []);
 
   return (

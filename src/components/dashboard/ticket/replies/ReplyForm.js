@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 
 import { setAlert } from '../../../../actions/alert';
 import { createReply } from '../../../../actions/tickets';
+import { setConfirmation } from '../../../../actions/confirmation';
+
 import ReplyFormSearch from './ReplyFormSearch';
 
-import Confirmation from '../../../layout/Confirmation';
-
-const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
+const ReplyForm = ({
+  ticket,
+  user: { role },
+  createReply,
+  setAlert,
+  setConfirmation,
+}) => {
   const [replyData, setReplyData] = useState({
     content: '',
     is_private: false,
@@ -16,7 +22,10 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
   });
   const [isConfirm, setIsConfirm] = useState(false);
   useEffect(() => {
-    console.log(isConfirm);
+    if (isConfirm) {
+      onSubmitReplyHandler();
+    }
+    // eslint-disable-next-line
   }, [isConfirm]);
   // const [filteredUsers, setFilteredUsers] = useState([]);
 
@@ -29,8 +38,8 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
     });
   };
 
-  const onSubmitReplyHandler = (e) => {
-    e.preventDefault();
+  const onSubmitReplyHandler = () => {
+    // e.preventDefault();
 
     // form validation
     if (content.trim() === '') {
@@ -72,24 +81,22 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
       is_private: false,
       errors: [],
     });
+    setIsConfirm(false);
   };
 
   return (
     <Fragment>
-      <Confirmation
-        title='Ticket Reply'
-        message={`Are you sure you want to submit this ${
-          is_private ? 'private' : ''
-        } reply`}
-        setIsConfirm={setIsConfirm}
-      />
       {/* onSubmit={(e) => onSubmitReplyHandler(e)} */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          document
-            .querySelector('.confirmation-window-wrapper')
-            .classList.add('d-block');
+          setConfirmation(
+            'Ticket Reply',
+            `Are you sure you want to submit this ${
+              is_private ? 'private' : ''
+            } reply`,
+            setIsConfirm
+          );
         }}
       >
         <div className='row'>
@@ -173,4 +180,8 @@ const mapStateToProps = (state) => ({
   ticket: state.tickets.ticket,
 });
 
-export default connect(mapStateToProps, { setAlert, createReply })(ReplyForm);
+export default connect(mapStateToProps, {
+  setAlert,
+  createReply,
+  setConfirmation,
+})(ReplyForm);

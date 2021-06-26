@@ -5,9 +5,14 @@ import classnames from 'classnames';
 
 import UsersList from './UsersList';
 
-import Confirmation from '../../../layout/Confirmation';
+import { setConfirmation } from '../../../../actions/confirmation';
 
-const SearchPanel = ({ isPrivate, selectedEmployee, setSelectedEmployee }) => {
+const SearchPanel = ({
+  isPrivate,
+  selectedEmployee,
+  setSelectedEmployee,
+  setConfirmation,
+}) => {
   const [isConfirm, setIsConfirm] = useState(false);
   useEffect(() => {
     if (isConfirm) {
@@ -21,27 +26,27 @@ const SearchPanel = ({ isPrivate, selectedEmployee, setSelectedEmployee }) => {
   const [users, setUsers] = useState([
     {
       id: 1,
-      name: 'Mostafa',
+      name: 'Marwa Martins',
     },
     {
       id: 2,
-      name: 'Mohamed',
+      name: 'Percy Owen',
     },
     {
       id: 3,
-      name: 'Ahmed',
+      name: 'Warren Daugherty',
     },
     {
       id: 4,
-      name: 'Mahmoud',
+      name: 'Shanaya Arroyo',
     },
     {
       id: 5,
-      name: 'Zakerya',
+      name: 'Elliott Davey',
     },
     {
       id: 6,
-      name: 'Hamed',
+      name: 'Stephanie Gilbert',
     },
   ]);
 
@@ -123,21 +128,27 @@ const SearchPanel = ({ isPrivate, selectedEmployee, setSelectedEmployee }) => {
               )}
             </ul>
           </div>
-          {selectedEmployee !== null ? (
-            <Confirmation
-              title='Transfer Request'
-              message={`Are you sure you want to transfer ticket to ${selectedEmployee.name}`}
-              setIsConfirm={setIsConfirm}
-            />
-          ) : null}
+          {/* {selectedEmployee !== null ? (
+            // <Confirmation
+            //   title='Transfer Request'
+            //   message={`Are you sure you want to transfer ticket to ${selectedEmployee.name}`}
+            //   setIsConfirm={setIsConfirm}
+            // />
+            <Confirmation />
+          ) : null} */}
 
           {selectedEmployee !== null ? (
             <div
               className='btn mt-2 w-100 search-open'
               onClick={() => {
-                document
-                  .querySelector('.confirmation-window-wrapper')
-                  .classList.add('d-block');
+                // document
+                // .querySelector('.confirmation-window-wrapper')
+                // .classList.add('d-block');
+                setConfirmation(
+                  'Transfer Request',
+                  `Are you sure you want to transfer ticket to ${selectedEmployee.name}`,
+                  setIsConfirm
+                );
               }}
             >
               Transfer Ticket
@@ -152,4 +163,4 @@ SearchPanel.propTyeps = {};
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps)(SearchPanel);
+export default connect(mapStateToProps, { setConfirmation })(SearchPanel);

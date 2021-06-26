@@ -11,6 +11,7 @@ import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
 import Footer from './layout/Footer';
 import Spinner from './layout/Spinner';
+import Confirmation from './layout/Confirmation';
 // Home
 import Home from './dashboard/Home';
 // Notifications
@@ -31,7 +32,7 @@ const Dashboard = ({
   getAllNotifications,
   auth: {
     loading,
-    user: {id},
+    user: { id },
   },
   notifications,
 }) => {
@@ -43,6 +44,7 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
+      <Confirmation />
       <Navbar />
       <div className='d-flex align-items-stretch'>
         <Sidebar />

@@ -1,6 +1,10 @@
 // Alerts
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+// Confirmations
+export const SET_CONFIRMATION = 'SET_CONFIRMATION';
+export const REMOVE_CONFIRMATION = 'REMOVE_CONFIRMATION';
+export const CLEAR_CONFIRMATIONS = 'CLEAR_CONFIRMATIONS';
 // Authenication
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
