@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -78,21 +77,8 @@ const TicketBody = ({
                 </div>
               </div>
 
-              {/* Ticket Path */}
-              {/* {ticket.path.length > 0 ? (
-                <div className='col'>
-                  <div className='timeline card'>
-                    <div className='card-body'>
-                      <h4 className='card-title'>Ticket Path</h4>
-                      <div className='timeline-body'>
-                        {ticket.path.map((path) => (
-                          <TicketTimeline path={path} key={uuidv4()} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : null} */}
+              {/* Ticket Log */}
+              <TicketTimeline />
             </div>
 
             {/* Reply Form */}
@@ -108,6 +94,7 @@ const TicketBody = ({
     </Fragment>
   );
 };
+
 TicketBody.propTypes = {
   user: PropTypes.object.isRequired,
   getTicketById: PropTypes.func.isRequired,

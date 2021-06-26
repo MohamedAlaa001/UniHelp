@@ -1,17 +1,16 @@
 import { Fragment, useState } from 'react';
-import classnames from 'classnames';
 
 import SearchPanel from './SearchPanel';
 
 const ReplyFormSearch = ({ isPrivate }) => {
-  const [employees, setSelectedEmployees] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   return (
     <Fragment>
       <SearchPanel
         isPrivate={isPrivate}
-        employees={employees}
-        setSelectedEmployees={setSelectedEmployees}
+        selectedEmployee={selectedEmployee}
+        setSelectedEmployee={setSelectedEmployee}
       />
       <div className='mb-2'>
         <div
@@ -26,11 +25,11 @@ const ReplyFormSearch = ({ isPrivate }) => {
 
         <div className='search-results'>
           <ul className='list-unstyled mb-0'>
-            {employees.map((employee) => (
-              <li key={employee.id} style={{ textTransform: 'capitalize' }}>
-                <strong>{employee.name}</strong>
+            {selectedEmployee !== null ? (
+              <li style={{ textTransform: 'capitalize' }}>
+                <strong>* {selectedEmployee.name}</strong>
               </li>
-            ))}
+            ) : null}
           </ul>
         </div>
       </div>

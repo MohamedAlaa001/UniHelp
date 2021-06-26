@@ -5,8 +5,16 @@ import classnames from 'classnames';
 
 import UsersList from './UsersList';
 
-const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
-  useEffect(() => {}, []);
+import Confirmation from '../../../layout/Confirmation';
+
+const SearchPanel = ({ isPrivate, selectedEmployee, setSelectedEmployee }) => {
+  const [isConfirm, setIsConfirm] = useState(false);
+  useEffect(() => {
+    if (isConfirm) {
+      transferTicket();
+    }
+    // eslint-disable-next-line
+  }, [isConfirm]);
 
   const [searchInput, setSearchInput] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -25,7 +33,7 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
     },
     {
       id: 4,
-      name: 'mahmoud',
+      name: 'Mahmoud',
     },
     {
       id: 5,
@@ -33,7 +41,7 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
     },
     {
       id: 6,
-      name: 'hamed',
+      name: 'Hamed',
     },
   ]);
 
@@ -49,6 +57,12 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
           .includes(e.target.value.toLowerCase().trim());
       })
     );
+  };
+
+  const transferTicket = () => {
+    console.log(selectedEmployee);
+    // Reset Confirmation dialogue
+    setIsConfirm(false);
   };
 
   return (
@@ -79,6 +93,9 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
               Private Reply
             </div>
           </div>
+          {selectedEmployee !== null ? (
+            <strong className='ms-2 mt-2'>* {selectedEmployee.name}</strong>
+          ) : null}
           <div className='search-display'>
             <ul className='list-unstyled mb-0'>
               {searchInput === '' ? (
@@ -86,8 +103,8 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
                   <UsersList
                     key={user.id}
                     user={user}
-                    employees={employees}
-                    setSelectedEmployees={setSelectedEmployees}
+                    selectedEmployee={selectedEmployee}
+                    setSelectedEmployee={setSelectedEmployee}
                   />
                 ))
               ) : filteredUsers.length > 0 ? (
@@ -95,8 +112,8 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
                   <UsersList
                     key={user.id}
                     user={user}
-                    employees={employees}
-                    setSelectedEmployees={setSelectedEmployees}
+                    selectedEmployee={selectedEmployee}
+                    setSelectedEmployee={setSelectedEmployee}
                   />
                 ))
               ) : (
@@ -106,7 +123,26 @@ const SearchPanel = ({ isPrivate, employees, setSelectedEmployees }) => {
               )}
             </ul>
           </div>
-          <div className='btn mt-2 w-100 search-open'>Transfer Ticket</div>
+          {selectedEmployee !== null ? (
+            <Confirmation
+              title='Transfer Request'
+              message={`Are you sure you want to transfer ticket to ${selectedEmployee.name}`}
+              setIsConfirm={setIsConfirm}
+            />
+          ) : null}
+
+          {selectedEmployee !== null ? (
+            <div
+              className='btn mt-2 w-100 search-open'
+              onClick={() => {
+                document
+                  .querySelector('.confirmation-window-wrapper')
+                  .classList.add('d-block');
+              }}
+            >
+              Transfer Ticket
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
@@ -116,4 +152,4 @@ SearchPanel.propTyeps = {};
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {})(SearchPanel);
+export default connect(mapStateToProps)(SearchPanel);

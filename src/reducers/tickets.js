@@ -7,6 +7,7 @@ import {
   CLEAR_TICKETS,
   CHANGE_STATUS,
   GET_ALL_NEW_TICKETS,
+  GET_TICKET_TIMELINE,
 } from '../actions/types';
 
 const initialState = {
@@ -36,6 +37,15 @@ function ticketReducer(state = initialState, action) {
             (ticket) => ticket.ticket_id == payload.ticket_id
           ),
           replies: [...payload.replies],
+        },
+        loading: false,
+      };
+    case GET_TICKET_TIMELINE:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          timeline: [...payload],
         },
         loading: false,
       };
@@ -71,6 +81,7 @@ function ticketReducer(state = initialState, action) {
         ...state,
         ticket: null,
         tickets: [],
+        categories: [],
         loading: true,
       };
     case CHANGE_STATUS:

@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './store';
 // import persistor from './store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { loadUser, logout } from './actions/auth';
+import { loadUser } from './actions/auth';
 
 import PrivateRoute from './components/routing/PrivateRoute';
 import Landing from './components/Landing';

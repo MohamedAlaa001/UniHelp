@@ -314,7 +314,7 @@ a:hover {
 /* Filter */
 .tickets-filter {
   height: 100%;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem;
   background: var(--color-dark-block);
   border: 1px solid #393c43;
   border-radius: 5px;

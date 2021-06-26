@@ -1450,6 +1450,7 @@ section .tickets-block a.ticket {
   height: 100%;
   border-radius: 5px !important;
   box-shadow: 0 0 5px 5px var(--color-dark-block) !important;
+  cursor: default;
 }
 
 .timeline .timeline-body {
@@ -1658,6 +1659,77 @@ section .tickets-block a.ticket {
   }
   #search-panel .search-display li {
     font-size: 1rem;
+  }
+}
+
+/* Confirmation Window */
+.confirmation-window-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(45, 48, 53, 0.9);
+  z-index: 1000;
+}
+
+.confirmation-window {
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.confirmation-window .top-bar {
+  height: 0.75rem;
+  border-radius: 0.25rem 0.25rem 0 0;
+  background-color: #379392;
+}
+
+.confirmation-window .confirmation-inner {
+  border: 1px solid #379392;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.confirmation-window .confirmation-body {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.confirmation-window .confirmation-icon {
+  margin: 0 1.5rem 0 0;
+  padding: 0.5rem 1rem;
+  border-radius: 50% 50%;
+  background-color: #379392;
+  color: white;
+  font-size: 2rem;
+}
+
+.confirmation-window .confirmation-message {
+  color: var(--color-border-text) !important;
+}
+
+.confirmation-window .confirmation-message .title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.confirmation-window .confirmation-footer {
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #444951;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 575px) {
+  .confirmation-window .confirmation-footer {
+    justify-content: center;
   }
 }
 

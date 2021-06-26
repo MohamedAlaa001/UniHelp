@@ -8,6 +8,7 @@ import {
   CHANGE_STATUS,
   CREATE_TICKET,
   CREATE_TICKET_REPLY,
+  GET_TICKET_TIMELINE,
 } from './types';
 
 export const ticketSwitch = (user) => (dispatch) => {
@@ -46,14 +47,19 @@ export const getTicketById = (ticket_id) => async (dispatch) => {
   const body = { ticket_id };
   try {
     // get ticket from tickets and replies request
-    const res = await api.post('/view_reply', body);
+    const resReply = await api.post('/view_reply', body);
+    const resTimeline = await api.post('/view_ticket_log', body);
 
     dispatch({
       type: GET_TICKET,
-      payload: { ticket_id, replies: res.data },
+      payload: { ticket_id, replies: resReply.data },
+    });
+    dispatch({
+      type: GET_TICKET_TIMELINE,
+      payload: resTimeline.data,
     });
   } catch (err) {
-    console.log(err.response.data.error);
+    console.log(err);
   }
 };
 

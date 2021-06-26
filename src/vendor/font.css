@@ -193,3 +193,6 @@
 .icon-private:before {
   content: "\5a";
 }
+.icon-exclamation:before {
+  content: "\5b";
+}

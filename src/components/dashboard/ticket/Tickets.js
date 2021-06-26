@@ -57,7 +57,7 @@ const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
                   ))}
                 </div>
               </div>
-              <div className='col mb-md-0 mb-3'>
+              <div className='col-sm-12 col-md-3 mb-md-0 mb-3'>
                 <TicketsFilter />
               </div>
             </div>

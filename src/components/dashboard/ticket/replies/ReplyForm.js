@@ -1,11 +1,12 @@
 import { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import { setAlert } from '../../../../actions/alert';
 import { createReply } from '../../../../actions/tickets';
 import ReplyFormSearch from './ReplyFormSearch';
+
+import Confirmation from '../../../layout/Confirmation';
 
 const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
   const [replyData, setReplyData] = useState({
@@ -13,7 +14,11 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
     is_private: false,
     errors: [],
   });
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [isConfirm, setIsConfirm] = useState(false);
+  useEffect(() => {
+    console.log(isConfirm);
+  }, [isConfirm]);
+  // const [filteredUsers, setFilteredUsers] = useState([]);
 
   const { content, is_private, errors } = replyData;
 
@@ -67,19 +72,26 @@ const ReplyForm = ({ ticket, user: { role }, createReply, setAlert }) => {
       is_private: false,
       errors: [],
     });
-    document.getElementById('replies').scrollIntoView();
   };
-
-  const isPrivateLabelStyle = classnames('form-check-label ms-1', {
-    active: is_private,
-  });
-  const isPrivateInputStyle = classnames('form-check-input', {
-    active: is_private,
-  });
 
   return (
     <Fragment>
-      <form onSubmit={(e) => onSubmitReplyHandler(e)}>
+      <Confirmation
+        title='Ticket Reply'
+        message={`Are you sure you want to submit this ${
+          is_private ? 'private' : ''
+        } reply`}
+        setIsConfirm={setIsConfirm}
+      />
+      {/* onSubmit={(e) => onSubmitReplyHandler(e)} */}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          document
+            .querySelector('.confirmation-window-wrapper')
+            .classList.add('d-block');
+        }}
+      >
         <div className='row'>
           <div className='col-sm-12 col-md-8 col-lg-9'>
             <div className='form-floating mb-3 '>

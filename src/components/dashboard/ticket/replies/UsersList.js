@@ -1,25 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
-const UsersList = ({ user, employees, setSelectedEmployees }) => {
+const UsersList = ({ user, selectedEmployee, setSelectedEmployee }) => {
   const [isChecked, setIsChecked] = useState(() => {
-    if (employees.some((employee) => employee.id === user.id)) {
+    if (selectedEmployee !== null && selectedEmployee.id === user.id) {
       return true;
     } else {
       return false;
     }
   });
-  const onChangeHandler = (e) => {
-    setIsChecked(!isChecked);
-
-    if (!isChecked) {
-      setSelectedEmployees([...employees, user]);
+  useEffect(() => {
+    if (selectedEmployee !== null && selectedEmployee.id === user.id) {
+      setIsChecked(true);
     } else {
-      setSelectedEmployees(
-        employees.filter((employee) => {
-          return employee.id !== user.id;
-        })
-      );
+      setIsChecked(false);
+    }
+  }, [selectedEmployee, user.id]);
+  const onChangeHandler = () => {
+    if (!isChecked) {
+      setSelectedEmployee(user);
+    } else {
+      setSelectedEmployee(null);
     }
   };
 
