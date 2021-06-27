@@ -3,12 +3,12 @@ import { setAlert } from './alert';
 import {
   GET_CATEGORIES,
   GET_ALL_TICKETS,
-  GET_ALL_NEW_TICKETS,
   GET_TICKET,
   CHANGE_STATUS,
   CREATE_TICKET,
   CREATE_TICKET_REPLY,
   GET_TICKET_TIMELINE,
+  TICKET_TRANSFER,
 } from './types';
 
 export const ticketSwitch = (user) => (dispatch) => {
@@ -43,6 +43,7 @@ export const getTicketsByUser = () => async (dispatch) => {
   }
 };
 
+// get a single ticket
 export const getTicketById = (ticket_id) => async (dispatch) => {
   const body = { ticket_id };
   try {
@@ -77,6 +78,20 @@ export const getCategories = () => async (dispatch) => {
   }
 };
 
+// Change Ticket Status
+export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
+  const body = { ticket_id, status };
+  try {
+    const res = await api.put('/change_status', body);
+    dispatch({
+      type: CHANGE_STATUS,
+      payload: res.data.status,
+    });
+  } catch (err) {
+    console.log(err.response.data.error);
+  }
+};
+
 // Create Ticket
 export const createTicket = (ticket) => async (dispatch) => {
   const body = { ...ticket };
@@ -99,48 +114,6 @@ export const createTicket = (ticket) => async (dispatch) => {
   }
 };
 
-// Employee
-export const getAssignedTicketsByUserId = (username) => async (dispatch) => {
-  try {
-    const res = await api.get(`/tickets?username=${username}`);
-
-    dispatch({
-      type: GET_ALL_TICKETS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err.response.data.error);
-  }
-};
-
-// Change Ticket Status
-export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
-  const body = { ticket_id, status };
-  try {
-    const res = await api.put('/change_status', body);
-    dispatch({
-      type: CHANGE_STATUS,
-      payload: res.data.status,
-    });
-  } catch (err) {
-    console.log(err.response.data.error);
-  }
-};
-
-// Master
-export const getNewTickets = () => async (dispatch) => {
-  try {
-    //const res = await api.get('http://localhost:5000/tickets?status=new');
-    const res = await api.get('/tickets?status=new&status=pending+resolve');
-    dispatch({
-      type: GET_ALL_NEW_TICKETS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err.response.data.error);
-  }
-};
-
 // REPLIES
 export const createReply = (reply) => async (dispatch) => {
   const body = { ...reply };
@@ -159,6 +132,23 @@ export const createReply = (reply) => async (dispatch) => {
       )
     );
   } catch (err) {
-    dispatch(setAlert(err.response.data.error, 'success', false, 3000));
+    dispatch(setAlert(err.response.data.error, 'danger', false, 3000));
+  }
+};
+
+// transfer ticket
+export const transferTicket = (ticket_id, to_username) => async (dispatch) => {
+  const body = { ticket_id, to_username };
+  try {
+    await api.put('/transfer_ticket', body);
+    dispatch({
+      type: TICKET_TRANSFER,
+      payload: ticket_id,
+    });
+    dispatch(
+      setAlert('Ticket successfully transferred', 'success', false, 3000)
+    );
+  } catch (err) {
+    dispatch(setAlert(err.response.data.error, 'danger', false, 3000));
   }
 };

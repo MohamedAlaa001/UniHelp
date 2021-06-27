@@ -10,13 +10,13 @@ const TicketControl = ({ ticket, role, changeTicketStatus }) => {
       (ticket.status === 'open' ||
         ticket.status === 'new' ||
         ticket.status === 'pending') ? (
-        <div className='mb-3'>
+        <div className='mb-3 d-grid gap-2 d-md-inline'>
           {/* Employee */}
           {/* if open -> mark resolved */}
           {ticket.status === 'open' ? (
             <input
               type='button'
-              className='btn btn-outline-info me-3'
+              className='btn btn-outline-info me-md-3'
               value='Mark As Resolved'
               onClick={() => changeTicketStatus(ticket.ticket_id, 'pending')}
             />
@@ -26,7 +26,7 @@ const TicketControl = ({ ticket, role, changeTicketStatus }) => {
           {ticket.status === 'new' && role === 'master' ? (
             <input
               type='button'
-              className='btn btn-outline-success me-3'
+              className='btn btn-outline-success me-md-3'
               value='Approve Ticket'
               onClick={() => changeTicketStatus(ticket.ticket_id, 'open')}
             />
@@ -46,7 +46,7 @@ const TicketControl = ({ ticket, role, changeTicketStatus }) => {
             <div>
               <input
                 type='button'
-                className='btn btn-outline-primary me-3'
+                className='btn btn-outline-primary me-md-3'
                 value='Resolve Ticket'
                 onClick={() => changeTicketStatus(ticket.ticket_id, 'resolved')}
               />

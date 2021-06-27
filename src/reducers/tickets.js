@@ -6,8 +6,8 @@ import {
   CREATE_TICKET_REPLY,
   CLEAR_TICKETS,
   CHANGE_STATUS,
-  GET_ALL_NEW_TICKETS,
   GET_TICKET_TIMELINE,
+  TICKET_TRANSFER,
 } from '../actions/types';
 
 const initialState = {
@@ -55,12 +55,6 @@ function ticketReducer(state = initialState, action) {
         tickets: payload,
         loading: false,
       };
-    case GET_ALL_NEW_TICKETS:
-      return {
-        ...state,
-        tickets: payload,
-        loading: false,
-      };
     case CREATE_TICKET:
       return {
         ...state,
@@ -74,6 +68,16 @@ function ticketReducer(state = initialState, action) {
           ...state.ticket,
           replies: payload,
         },
+        loading: false,
+      };
+    case TICKET_TRANSFER:
+      return {
+        ...state,
+        ticket: null,
+        tickets: state.tickets.filter((ticket) => {
+          return ticket.ticket_id !== payload;
+        }),
+
         loading: false,
       };
     case CLEAR_TICKETS:

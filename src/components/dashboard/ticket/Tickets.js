@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { ticketSwitch } from '../../../actions/tickets';
+import { getTicketsByUser } from '../../../actions/tickets';
 
 import TicketItem from './TicketItem';
 import TicketsFilter from './TicketsFilter';
 import Spinner from '../../layout/Spinner';
 import Alert from '../../layout/Alert';
 
-const Tickets = ({ ticketSwitch, tickets: { loading, tickets }, user }) => {
+const Tickets = ({ getTicketsByUser, tickets: { loading, tickets }, user }) => {
   useEffect(() => {
     // *************************
     // Moved Ticket Switch under actions/ticket
     // *************************
-    ticketSwitch(user);
-  }, [ticketSwitch, user]);
+    getTicketsByUser(user);
+  }, [getTicketsByUser, user]);
 
   return loading || tickets === null ? (
     <Spinner />
@@ -78,5 +78,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  ticketSwitch,
+  getTicketsByUser,
 })(Tickets);

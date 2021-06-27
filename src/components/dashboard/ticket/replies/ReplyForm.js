@@ -82,6 +82,8 @@ const ReplyForm = ({
       errors: [],
     });
     setIsConfirm(false);
+    // Scroll to bottom
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   return (

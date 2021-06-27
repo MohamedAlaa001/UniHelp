@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import classnames from 'classnames';
@@ -6,17 +7,21 @@ import classnames from 'classnames';
 import UsersList from './UsersList';
 
 import { setConfirmation } from '../../../../actions/confirmation';
+import { transferTicket } from '../../../../actions/tickets';
 
 const SearchPanel = ({
   isPrivate,
   selectedEmployee,
   setSelectedEmployee,
   setConfirmation,
+  transferTicket,
+  ticket_id,
 }) => {
+  const history = useHistory();
   const [isConfirm, setIsConfirm] = useState(false);
   useEffect(() => {
     if (isConfirm) {
-      transferTicket();
+      transferTicketHandler();
     }
     // eslint-disable-next-line
   }, [isConfirm]);
@@ -64,10 +69,18 @@ const SearchPanel = ({
     );
   };
 
-  const transferTicket = () => {
-    console.log(selectedEmployee);
-    // Reset Confirmation dialogue
+  const transferTicketHandler = () => {
+    console.log(ticket_id, selectedEmployee);
+    transferTicket(ticket_id, 6000);
+    // transferTicket(ticket_id, selectedEmployee.username)
+
+    // Reset document scroll & Confirmation dialogue
     setIsConfirm(false);
+    document.querySelector('#search-panel').classList.remove('d-block');
+    document.body.classList.remove('no-scroll');
+    setSearchInput('');
+    // return to /tickets
+    history.replace('/tickets');
   };
 
   return (
@@ -128,22 +141,11 @@ const SearchPanel = ({
               )}
             </ul>
           </div>
-          {/* {selectedEmployee !== null ? (
-            // <Confirmation
-            //   title='Transfer Request'
-            //   message={`Are you sure you want to transfer ticket to ${selectedEmployee.name}`}
-            //   setIsConfirm={setIsConfirm}
-            // />
-            <Confirmation />
-          ) : null} */}
 
           {selectedEmployee !== null ? (
             <div
               className='btn mt-2 w-100 search-open'
               onClick={() => {
-                // document
-                // .querySelector('.confirmation-window-wrapper')
-                // .classList.add('d-block');
                 setConfirmation(
                   'Transfer Request',
                   `Are you sure you want to transfer ticket to ${selectedEmployee.name}`,
@@ -159,8 +161,12 @@ const SearchPanel = ({
     </div>
   );
 };
-SearchPanel.propTyeps = {};
+SearchPanel.propTypes = {};
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  ticket_id: state.tickets.ticket.ticket_id,
+});
 
-export default connect(mapStateToProps, { setConfirmation })(SearchPanel);
+export default connect(mapStateToProps, { setConfirmation, transferTicket })(
+  SearchPanel
+);
