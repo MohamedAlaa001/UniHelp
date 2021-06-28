@@ -7,6 +7,7 @@ import {
   CLEAR_TICKETS,
   CHANGE_STATUS,
   GET_TICKET_TIMELINE,
+  GET_ALL_EMPLOYEES,
   TICKET_TRANSFER,
 } from '../actions/types';
 
@@ -15,6 +16,7 @@ const initialState = {
   tickets: [],
   loading: true,
   categories: [],
+  employees: [],
 };
 
 function ticketReducer(state = initialState, action) {
@@ -70,6 +72,12 @@ function ticketReducer(state = initialState, action) {
         },
         loading: false,
       };
+    case GET_ALL_EMPLOYEES:
+      return {
+        ...state,
+        employees: payload,
+        loading: false,
+      };
     case TICKET_TRANSFER:
       return {
         ...state,
@@ -86,6 +94,7 @@ function ticketReducer(state = initialState, action) {
         ticket: null,
         tickets: [],
         categories: [],
+        employees: [],
         loading: true,
       };
     case CHANGE_STATUS:

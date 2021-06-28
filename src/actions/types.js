@@ -23,6 +23,7 @@ export const GET_TICKET = 'GET_TICKET';
 export const CREATE_TICKET = 'CREATE_TICKET';
 export const CLEAR_TICKETS = 'CLEAR_TICKETS';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const GET_ALL_EMPLOYEES = 'GET_ALL_EMPLOYEES';
 export const TICKET_TRANSFER = 'TICKET_TRANSFER';
 // Replies
 export const GET_TICKET_REPLIES = 'GET_TICKET_REPLIES';

@@ -16,6 +16,7 @@ const SearchPanel = ({
   setConfirmation,
   transferTicket,
   ticket_id,
+  employees,
 }) => {
   const history = useHistory();
   const [isConfirm, setIsConfirm] = useState(false);
@@ -28,32 +29,6 @@ const SearchPanel = ({
 
   const [searchInput, setSearchInput] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: 'Marwa Martins',
-    },
-    {
-      id: 2,
-      name: 'Percy Owen',
-    },
-    {
-      id: 3,
-      name: 'Warren Daugherty',
-    },
-    {
-      id: 4,
-      name: 'Shanaya Arroyo',
-    },
-    {
-      id: 5,
-      name: 'Elliott Davey',
-    },
-    {
-      id: 6,
-      name: 'Stephanie Gilbert',
-    },
-  ]);
 
   const isPrivateStyle = classnames('input-group-text', { active: isPrivate });
 
@@ -61,8 +36,8 @@ const SearchPanel = ({
     setSearchInput(e.target.value);
 
     setFilteredUsers(
-      users.filter((user) => {
-        return user.name
+      employees.filter((employee) => {
+        return employee.name
           .toLowerCase()
           .includes(e.target.value.toLowerCase().trim());
       })
@@ -117,19 +92,19 @@ const SearchPanel = ({
           <div className='search-display'>
             <ul className='list-unstyled mb-0'>
               {searchInput === '' ? (
-                users.map((user) => (
+                employees.map((employee) => (
                   <UsersList
-                    key={user.id}
-                    user={user}
+                    key={employee.username}
+                    employee={employee}
                     selectedEmployee={selectedEmployee}
                     setSelectedEmployee={setSelectedEmployee}
                   />
                 ))
               ) : filteredUsers.length > 0 ? (
-                filteredUsers.map((user) => (
+                filteredUsers.map((employee) => (
                   <UsersList
-                    key={user.id}
-                    user={user}
+                    key={employee.username}
+                    employee={employee}
                     selectedEmployee={selectedEmployee}
                     setSelectedEmployee={setSelectedEmployee}
                   />
@@ -161,10 +136,13 @@ const SearchPanel = ({
     </div>
   );
 };
-SearchPanel.propTypes = {};
+SearchPanel.propTypes = {
+  employees: PropTypes.array,
+};
 
 const mapStateToProps = (state) => ({
   ticket_id: state.tickets.ticket.ticket_id,
+  employees: state.tickets.employees,
 });
 
 export default connect(mapStateToProps, { setConfirmation, transferTicket })(

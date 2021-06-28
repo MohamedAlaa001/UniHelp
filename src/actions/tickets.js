@@ -8,6 +8,7 @@ import {
   CREATE_TICKET,
   CREATE_TICKET_REPLY,
   GET_TICKET_TIMELINE,
+  GET_ALL_EMPLOYEES,
   TICKET_TRANSFER,
 } from './types';
 
@@ -133,6 +134,19 @@ export const createReply = (reply) => async (dispatch) => {
     );
   } catch (err) {
     dispatch(setAlert(err.response.data.error, 'danger', false, 3000));
+  }
+};
+
+// get all employees
+export const getAllEmployees = () => async (dispatch) => {
+  try {
+    const res = await api.get('/get_employees');
+    dispatch({
+      type: GET_ALL_EMPLOYEES,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response.data.error);
   }
 };
 

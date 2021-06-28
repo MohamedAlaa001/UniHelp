@@ -23,6 +23,7 @@ const TicketBody = ({
 }) => {
   useEffect(() => {
     getTicketById(match.params.id);
+    // eslint-disable-next-line
   }, [getTicketById, match.params.id]);
 
   return loading || ticket === null ? (

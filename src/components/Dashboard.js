@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import PrivateRoute from './routing/PrivateRoute';
 
 import { getAllNotifications } from '../actions/notifications';
-
+import { getAllEmployees } from '../actions/tickets';
 // layout
 import Navbar from './layout/Navbar';
 import Sidebar from './layout/Sidebar';
@@ -32,12 +32,17 @@ const Dashboard = ({
   getAllNotifications,
   auth: {
     loading,
-    user: { id },
+    user: { id, role },
   },
   notifications,
+  getAllEmployees,
 }) => {
   useEffect(() => {
     getAllNotifications(id);
+    if (role !== 'student') {
+      getAllEmployees();
+    }
+    // eslint-disable-next-line
   }, [getAllNotifications, id]);
 
   return loading || notifications === null ? (
@@ -87,4 +92,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getAllNotifications,
+  getAllEmployees,
 })(Dashboard);

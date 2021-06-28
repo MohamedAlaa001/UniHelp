@@ -159,7 +159,7 @@ const ReplyForm = ({
           </div>
           <div className='col'>
             {/* Search FOR EMPLOYEES ONLY*/}
-            {role !== 'student' ? (
+            {role !== 'student' && ticket.status !== 'new' ? (
               <div>
                 {/* Search */}
                 <ReplyFormSearch isPrivate={is_private} />

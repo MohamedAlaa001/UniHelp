@@ -1,24 +1,30 @@
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
-const UsersList = ({ user, selectedEmployee, setSelectedEmployee }) => {
+const UsersList = ({ employee, selectedEmployee, setSelectedEmployee }) => {
   const [isChecked, setIsChecked] = useState(() => {
-    if (selectedEmployee !== null && selectedEmployee.id === user.id) {
+    if (
+      selectedEmployee !== null &&
+      selectedEmployee.username === employee.username
+    ) {
       return true;
     } else {
       return false;
     }
   });
   useEffect(() => {
-    if (selectedEmployee !== null && selectedEmployee.id === user.id) {
+    if (
+      selectedEmployee !== null &&
+      selectedEmployee.username === employee.username
+    ) {
       setIsChecked(true);
     } else {
       setIsChecked(false);
     }
-  }, [selectedEmployee, user.id]);
+  }, [selectedEmployee, employee.username]);
   const onChangeHandler = () => {
     if (!isChecked) {
-      setSelectedEmployee(user);
+      setSelectedEmployee(employee);
     } else {
       setSelectedEmployee(null);
     }
@@ -30,7 +36,7 @@ const UsersList = ({ user, selectedEmployee, setSelectedEmployee }) => {
 
   return (
     <li className={blockStyle} onClick={(e) => onChangeHandler(e)}>
-      <strong>{user.name}</strong>
+      <strong>{employee.name}</strong>
       <div className='d-none'>
         <input
           className=''

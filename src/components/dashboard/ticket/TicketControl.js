@@ -10,7 +10,7 @@ const TicketControl = ({ ticket, role, changeTicketStatus }) => {
       (ticket.status === 'open' ||
         ticket.status === 'new' ||
         ticket.status === 'pending') ? (
-        <div className='mb-3 d-grid gap-2 d-md-inline'>
+        <div className='mb-3 d-grid gap-2 d-md-block'>
           {/* Employee */}
           {/* if open -> mark resolved */}
           {ticket.status === 'open' ? (
