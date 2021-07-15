@@ -1,10 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import TicketStatus from './TicketStatus';
+import TicketStatus from "./TicketStatus";
 
 const TicketItem = ({ ticket }) => {
-  const { ticket_id, category, title, content, timestamp, status } = ticket;
+  const {
+    ticket_id,
+    student,
+    master,
+    category,
+    title,
+    content,
+    timestamp,
+    status,
+  } = ticket;
 
   return (
     <Link
@@ -15,9 +24,15 @@ const TicketItem = ({ ticket }) => {
     >
       <div className='content'>
         <div className='title'>
-          <TicketStatus status={status} title={title} />
+          <TicketStatus master={master} status={status} title={title} />
+          {master !== "null" && (
+            <strong className='ticket-master d-block'>{`Ticket Master: ${master}`}</strong>
+          )}
           <span className='d-block'>{ticket_id}</span>
           <span className='d-block'>To {category}</span>
+          <span className='d-block'>
+            By {student.first_name} {student.last_name}
+          </span>
         </div>
         <span className='d-block text-truncate'>{content}</span>
         <small className='date d-block'>{timestamp}</small>

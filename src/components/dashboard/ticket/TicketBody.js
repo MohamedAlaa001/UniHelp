@@ -1,19 +1,19 @@
-import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { getTicketById } from '../../../actions/tickets';
+import { getTicketById, getTicketTimeline } from "../../../actions/tickets";
 
-import Spinner from '../../layout/Spinner';
-import Alert from '../../layout/Alert';
+import Spinner from "../../layout/Spinner";
+import Alert from "../../layout/Alert";
 
-import TicketControl from './TicketControl';
-import TicketStatus from './TicketStatus';
-import TicketTimeline from './TicketTimeline';
+import TicketControl from "./TicketControl";
+import TicketStatus from "./TicketStatus";
+import TicketTimeline from "./TicketTimeline";
 
-import Replies from './replies/Replies';
-import ReplyForm from './replies/ReplyForm';
+import Replies from "./replies/Replies";
+import ReplyForm from "./replies/ReplyForm";
 
 const TicketBody = ({
   match,
@@ -22,6 +22,7 @@ const TicketBody = ({
   user: { role },
 }) => {
   useEffect(() => {
+    // clearTicket();
     getTicketById(match.params.id);
     // eslint-disable-next-line
   }, [getTicketById, match.params.id]);
@@ -63,11 +64,26 @@ const TicketBody = ({
                     <div className='content'>
                       <div className='title'>
                         <TicketStatus
+                          master={ticket.master}
                           status={ticket.status}
                           title={ticket.title}
                         />
+                        {ticket.master !== "null" && (
+                          <strong className='ticket-master d-block'>{`Ticket Master: ${ticket.master}`}</strong>
+                        )}
                         <span className='d-block'>{ticket.ticket_id}</span>
                         <span className='d-block'>To {ticket.category}</span>
+                        <div className=''>
+                          <span className='me-3'>
+                            By
+                            {` ${ticket.student.first_name} ${ticket.student.last_name}`}
+                          </span>
+                          <Link
+                            to={`/tickets/students/${ticket.student.username}`}
+                          >
+                            Click to view student history
+                          </Link>
+                        </div>
                         <small className='date d-block'>
                           {ticket.timestamp}
                         </small>
@@ -79,11 +95,14 @@ const TicketBody = ({
               </div>
 
               {/* Ticket Log */}
-              <TicketTimeline />
+              <TicketTimeline
+                ticket_id={ticket.ticket_id}
+                status={ticket.status}
+              />
             </div>
 
             {/* Reply Form */}
-            {ticket.status !== 'closed' && ticket.status !== 'resolved' ? (
+            {ticket.status !== "rejected" && ticket.status !== "resolved" ? (
               <ReplyForm />
             ) : null}
 
@@ -109,4 +128,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getTicketById,
+  getTicketTimeline,
 })(TicketBody);

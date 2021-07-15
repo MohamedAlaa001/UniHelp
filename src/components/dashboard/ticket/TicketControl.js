@@ -1,67 +1,80 @@
-import { Fragment } from 'react';
-import { connect } from 'react-redux';
+import { Fragment } from "react";
+import { connect } from "react-redux";
 
-import { changeTicketStatus } from '../../../actions/tickets';
+import { changeTicketStatus } from "../../../actions/tickets";
 
 const TicketControl = ({ ticket, role, changeTicketStatus }) => {
   return (
     <Fragment>
-      {role !== 'student' &&
-      (ticket.status === 'open' ||
-        ticket.status === 'new' ||
-        ticket.status === 'pending') ? (
-        <div className='mb-3 d-grid gap-2 d-md-block'>
-          {/* Employee */}
-          {/* if open -> mark resolved */}
-          {ticket.status === 'open' ? (
+      {role !== "student" &&
+        (ticket.status === "pending_master" ? (
+          <div className='mb-3 d-grid gap-2 d-md-block'>
             <input
               type='button'
               className='btn btn-outline-info me-md-3'
-              value='Mark As Resolved'
-              onClick={() => changeTicketStatus(ticket.ticket_id, 'pending')}
+              value='Receive Ticket'
+              onClick={() =>
+                changeTicketStatus(ticket.ticket_id, "master_received")
+              }
             />
-          ) : null}
-
-          {/* Master */}
-          {ticket.status === 'new' && role === 'master' ? (
-            <input
-              type='button'
-              className='btn btn-outline-success me-md-3'
-              value='Approve Ticket'
-              onClick={() => changeTicketStatus(ticket.ticket_id, 'open')}
-            />
-          ) : null}
-
-          {/* Mark As Closed if any state other than pending resolve */}
-          {ticket.status !== 'pending' ? (
-            <input
-              type='button'
-              className='btn btn-outline-danger'
-              value='Mark As Closed'
-              onClick={() => changeTicketStatus(ticket.ticket_id, 'closed')}
-            />
-          ) : null}
-
-          {ticket.status === 'pending' && role === 'master' ? (
-            <div>
+          </div>
+        ) : (
+          ticket.status === "open" && (
+            <div className='mb-3 d-grid gap-2 d-md-block'>
               <input
                 type='button'
                 className='btn btn-outline-primary me-md-3'
-                value='Resolve Ticket'
-                onClick={() => changeTicketStatus(ticket.ticket_id, 'resolved')}
+                value='Mark as resolved'
+                onClick={() => changeTicketStatus(ticket.ticket_id, "resolved")}
               />
               <input
                 type='button'
-                className='btn btn-outline-danger'
-                value='Mark As Unresolved'
-                onClick={() => changeTicketStatus(ticket.ticket_id, 'open')}
+                className='btn btn-outline-danger me-md-3'
+                value='Close / Reject'
+                onClick={() => changeTicketStatus(ticket.ticket_id, "rejected")}
               />
             </div>
-          ) : null}
-        </div>
-      ) : null}
+          )
+        ))}
     </Fragment>
   );
 };
 
 export default connect(null, { changeTicketStatus })(TicketControl);
+
+/*
+<div className='mb-3 d-grid gap-2 d-md-block'>
+              <input
+                type='button'
+                className='btn btn-outline-info me-md-3'
+                value='Receive Ticket'
+                onClick={() =>
+                  changeTicketStatus(ticket.ticket_id, "master_received")
+                }
+              />
+            </div>
+*/
+/*
+<Fragment>
+              <div className='mb-3 d-grid gap-2 d-md-block'>
+                <input
+                  type='button'
+                  className='btn btn-outline-info me-md-3'
+                  value='Mark as resolved'
+                  onClick={() =>
+                    changeTicketStatus(ticket.ticket_id, "resolved")
+                  }
+                />
+              </div>
+              <div className='mb-3 d-grid gap-2 d-md-block'>
+                <input
+                  type='button'
+                  className='btn btn-outline-info me-md-3'
+                  value='Close / Reject'
+                  onClick={() =>
+                    changeTicketStatus(ticket.ticket_id, "rejected")
+                  }
+                />
+              </div>
+            </Fragment>
+*/

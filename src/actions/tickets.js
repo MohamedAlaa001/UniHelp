@@ -1,5 +1,5 @@
-import api from '../utils/api';
-import { setAlert } from './alert';
+import api from "../utils/api";
+import { setAlert } from "./alert";
 import {
   GET_CATEGORIES,
   GET_ALL_TICKETS,
@@ -10,18 +10,20 @@ import {
   GET_TICKET_TIMELINE,
   GET_ALL_EMPLOYEES,
   TICKET_TRANSFER,
-} from './types';
+  GET_STUDENT_TICKETS,
+  CLEAR_TICKET_TIMELINE,
+} from "./types";
 
 export const ticketSwitch = (user) => (dispatch) => {
   switch (user.role) {
-    case 'student':
+    case "student":
       dispatch(getTicketsByUser());
       break;
-    case 'employee':
+    case "employee":
       dispatch(getTicketsByUser());
       // dispatch(getAssignedTicketsByUserId(user.username));
       break;
-    case 'master':
+    case "master":
       dispatch(getTicketsByUser());
       // dispatch(getNewTickets());
       break;
@@ -33,7 +35,7 @@ export const ticketSwitch = (user) => (dispatch) => {
 // Student
 export const getTicketsByUser = () => async (dispatch) => {
   try {
-    const res = await api.get('/view_tickets');
+    const res = await api.get("/view_tickets");
 
     dispatch({
       type: GET_ALL_TICKETS,
@@ -49,26 +51,35 @@ export const getTicketById = (ticket_id) => async (dispatch) => {
   const body = { ticket_id };
   try {
     // get ticket from tickets and replies request
-    const resReply = await api.post('/view_reply', body);
-    const resTimeline = await api.post('/view_ticket_log', body);
+    const res = await api.post("/view_reply", body);
 
     dispatch({
       type: GET_TICKET,
-      payload: { ticket_id, replies: resReply.data },
-    });
-    dispatch({
-      type: GET_TICKET_TIMELINE,
-      payload: resTimeline.data,
+      payload: { ticket_id, replies: res.data },
     });
   } catch (err) {
     console.log(err);
   }
 };
+// get Ticket timeline
+export const getTicketTimeline = (ticket_id) => async (dispatch) => {
+  const body = { ticket_id };
+  try {
+    // get ticket from tickets and replies request
+    const res = await api.post("/view_ticket_log", body);
 
+    dispatch({
+      type: GET_TICKET_TIMELINE,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 // Get Categories
 export const getCategories = () => async (dispatch) => {
   try {
-    const res = await api.get('/get_category');
+    const res = await api.get("/get_category");
 
     dispatch({
       type: GET_CATEGORIES,
@@ -83,10 +94,10 @@ export const getCategories = () => async (dispatch) => {
 export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
   const body = { ticket_id, status };
   try {
-    const res = await api.put('/change_status', body);
+    const res = await api.put("/change_status", body);
     dispatch({
       type: CHANGE_STATUS,
-      payload: res.data.status,
+      payload: { ...res.data, ticket_id },
     });
   } catch (err) {
     console.log(err.response.data.error);
@@ -97,7 +108,7 @@ export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
 export const createTicket = (ticket) => async (dispatch) => {
   const body = { ...ticket };
   try {
-    const res = await api.post('/submit_ticket', body);
+    const res = await api.post("/submit_ticket", body);
     dispatch({
       type: CREATE_TICKET,
       payload: res.data,
@@ -105,7 +116,7 @@ export const createTicket = (ticket) => async (dispatch) => {
     dispatch(
       setAlert(
         `Ticket Created with ID ${res.data.ticket_id} `,
-        'success',
+        "success",
         false,
         3000
       )
@@ -119,28 +130,28 @@ export const createTicket = (ticket) => async (dispatch) => {
 export const createReply = (reply) => async (dispatch) => {
   const body = { ...reply };
   try {
-    const res = await api.post('/submit_reply', body);
+    const res = await api.post("/submit_reply", body);
     dispatch({
       type: CREATE_TICKET_REPLY,
       payload: res.data,
     });
     dispatch(
       setAlert(
-        'Your reply has been successfully submitted',
-        'success',
+        "Your reply has been successfully submitted",
+        "success",
         false,
         3000
       )
     );
   } catch (err) {
-    dispatch(setAlert(err.response.data.error, 'danger', false, 3000));
+    dispatch(setAlert(err.response.data.error, "danger", false, 3000));
   }
 };
 
 // get all employees
 export const getAllEmployees = () => async (dispatch) => {
   try {
-    const res = await api.get('/get_employees');
+    const res = await api.get("/get_employees");
     dispatch({
       type: GET_ALL_EMPLOYEES,
       payload: res.data,
@@ -154,15 +165,33 @@ export const getAllEmployees = () => async (dispatch) => {
 export const transferTicket = (ticket_id, to_username) => async (dispatch) => {
   const body = { ticket_id, to_username };
   try {
-    await api.put('/transfer_ticket', body);
+    await api.put("/transfer_ticket", body);
     dispatch({
       type: TICKET_TRANSFER,
       payload: ticket_id,
     });
     dispatch(
-      setAlert('Ticket successfully transferred', 'success', false, 3000)
+      setAlert("Ticket successfully transferred", "success", false, 3000)
     );
   } catch (err) {
-    dispatch(setAlert(err.response.data.error, 'danger', false, 3000));
+    dispatch(setAlert(err.response.data.error, "danger", false, 3000));
   }
+};
+
+//GET student tickets 'history'
+export const getStudentTickets = (username) => async (dispatch) => {
+  const body = { username };
+  try {
+    const res = await api.post("/student_ticket_history", body);
+
+    dispatch({ type: GET_STUDENT_TICKETS, payload: res.data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const clearTicketTimeline = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_TICKET_TIMELINE,
+  });
 };

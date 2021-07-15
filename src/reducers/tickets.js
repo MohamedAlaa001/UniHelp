@@ -9,11 +9,14 @@ import {
   GET_TICKET_TIMELINE,
   GET_ALL_EMPLOYEES,
   TICKET_TRANSFER,
-} from '../actions/types';
+  GET_STUDENT_TICKETS,
+  CLEAR_TICKET_TIMELINE,
+} from "../actions/types";
 
 const initialState = {
   ticket: null,
   tickets: [],
+  studentTickets: [],
   loading: true,
   categories: [],
   employees: [],
@@ -31,17 +34,39 @@ function ticketReducer(state = initialState, action) {
       };
     }
     case GET_TICKET:
-      return {
-        ...state,
-        ticket: {
-          ...state.tickets.find(
-            // eslint-disable-next-line
-            (ticket) => ticket.ticket_id == payload.ticket_id
-          ),
-          replies: [...payload.replies],
-        },
-        loading: false,
-      };
+      const ticket = state.tickets.find(
+        // eslint-disable-next-line
+        (ticket) => ticket.ticket_id == payload.ticket_id
+      );
+
+      if (ticket) {
+        return {
+          ...state,
+          ticket: {
+            ...state.tickets.find(
+              // eslint-disable-next-line
+              (ticket) => ticket.ticket_id == payload.ticket_id
+            ),
+            replies: [...payload.replies],
+            timeline: [],
+          },
+          loading: false,
+        };
+      } else {
+        return {
+          ...state,
+          ticket: {
+            ...state.studentTickets.find(
+              // eslint-disable-next-line
+              (ticket) => ticket.ticket_id == payload.ticket_id
+            ),
+            replies: [...payload.replies],
+            timeline: [],
+          },
+          loading: false,
+        };
+      }
+
     case GET_TICKET_TIMELINE:
       return {
         ...state,
@@ -88,6 +113,21 @@ function ticketReducer(state = initialState, action) {
 
         loading: false,
       };
+    case GET_STUDENT_TICKETS:
+      return {
+        ...state,
+        studentTickets: payload,
+        loading: false,
+      };
+    case CLEAR_TICKET_TIMELINE:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          timeline: [],
+        },
+        loading: false,
+      };
     case CLEAR_TICKETS:
       return {
         ...state,
@@ -102,8 +142,21 @@ function ticketReducer(state = initialState, action) {
         ...state,
         ticket: {
           ...state.ticket,
-          status: payload,
+          status: payload.status,
+          master: payload.master_name,
         },
+        tickets: [
+          ...state.tickets.map((ticket) => {
+            if (ticket.ticket_id === payload.ticket_id) {
+              return {
+                ...ticket,
+                status: payload.status,
+              };
+            } else {
+              return ticket;
+            }
+          }),
+        ],
       };
 
     default:

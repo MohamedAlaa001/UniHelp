@@ -1,15 +1,15 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Fragment, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { createTicket, getCategories } from '../../../actions/tickets';
-import { setAlert } from '../../../actions/alert';
+import { createTicket, getCategories } from "../../../actions/tickets";
+import { setAlert } from "../../../actions/alert";
 
-import Alert from '../../layout/Alert';
-import Spinner from '../../layout/Spinner';
+import Alert from "../../layout/Alert";
+import Spinner from "../../layout/Spinner";
 
-import TicketFormInput from './TicketFormInput';
+import TicketFormInput from "./TicketFormInput";
 
 const TicketForm = ({
   getCategories,
@@ -24,8 +24,8 @@ const TicketForm = ({
   }, [getCategories]);
 
   const [ticketData, setTicketData] = useState({
-    title: '',
-    content: '',
+    title: "",
+    content: "",
     category_id: null,
     errors: [],
   });
@@ -49,14 +49,14 @@ const TicketForm = ({
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (title.trim() === '') {
-      errors.push('Ticket Title is Required');
+    if (title.trim() === "") {
+      errors.push("Ticket Title is Required");
     }
-    if (content.trim() === '') {
-      errors.push('Ticket Content is Required');
+    if (content.trim() === "") {
+      errors.push("Ticket Content is Required");
     }
     if (category_id === null) {
-      errors.push('Ticket Category is Required');
+      errors.push("Ticket Category is Required");
     }
 
     setTicketData({
@@ -69,7 +69,7 @@ const TicketForm = ({
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
       errors.forEach((err) => {
-        setAlert(err, 'danger', false, 3000);
+        setAlert(err, "danger", false, 3000);
       });
 
       // reset errors
@@ -96,8 +96,8 @@ const TicketForm = ({
     createTicket(ticketBody);
     // Form Reset
     setTicketData({
-      title: '',
-      content: '',
+      title: "",
+      content: "",
       category_id: null,
       errors: [],
     });
@@ -107,7 +107,7 @@ const TicketForm = ({
         'input[name="categorySwitch"]:checked'
       ).checked = false;
     }
-    history.push('/tickets');
+    history.push("/tickets");
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
@@ -160,7 +160,7 @@ const TicketForm = ({
                         className='form-control input-material'
                         name='title'
                         value={title}
-                        placeholder=''
+                        placeholder=' '
                         onChange={(e) => onChangeTextHandler(e)}
                       />
                       <label htmlFor='subject' className='label-material'>
@@ -172,7 +172,7 @@ const TicketForm = ({
                         className='form-control input-material'
                         name='content'
                         value={content}
-                        placeholder=''
+                        placeholder=' '
                         onChange={(e) => onChangeTextHandler(e)}
                       ></textarea>
                       <label htmlFor='content' className='label-material'>

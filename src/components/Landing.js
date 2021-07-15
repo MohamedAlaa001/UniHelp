@@ -1,17 +1,17 @@
 // import logo from '../../images/logo.png';\
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Alert from './layout/Alert';
-import { login } from '../actions/auth';
-import { setAlert } from '../actions/alert';
+import Alert from "./layout/Alert";
+import { login } from "../actions/auth";
+import { setAlert } from "../actions/alert";
 
 const Landing = ({ isAuthenticated, login, setAlert }) => {
   const [loginData, setLoginData] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
     errors: [],
   });
 
@@ -27,11 +27,11 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (username.trim() === '') {
-      errors.push('Academic ID is Required');
+    if (username.trim() === "") {
+      errors.push("Academic ID is Required");
     }
-    if (password.trim() === '') {
-      errors.push('Password is Required');
+    if (password.trim() === "") {
+      errors.push("Password is Required");
     }
 
     setLoginData({
@@ -42,12 +42,12 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
     // Alert Errors
     if (errors.length > 0) {
       errors.forEach((err) => {
-        setAlert(err, 'danger', false, 3000);
+        setAlert(err, "danger", false, 3000);
       });
 
       setLoginData({
-        username: '',
-        password: '',
+        username: "",
+        password: "",
         errors: [],
       });
 
@@ -57,8 +57,8 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
     login(username, password);
 
     setLoginData({
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       errors: [],
     });
   };
@@ -104,7 +104,7 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                           autoComplete='off'
                           autoCorrect='off'
                           autoCapitalize='off'
-                          placeholder=''
+                          placeholder=' '
                           value={username}
                           onChange={(e) => onChange(e)}
                         />
@@ -117,7 +117,7 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                           name='password'
                           autoCorrect='off'
                           autoCapitalize='off'
-                          placeholder=''
+                          placeholder=' '
                           value={password}
                           onChange={(e) => onChange(e)}
                         />

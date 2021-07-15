@@ -1,18 +1,21 @@
-import React from 'react';
+import React from "react";
 
 const TicketStatus = ({ status, title }) => {
   return (
     <strong>
-      {status === 'open' ? (
+      {/* {master === "null" && (
+        <strong className='ticket-status'>[Pending Master]</strong>
+      )} */}
+      {status === "pending_master" ? (
+        <strong className='ticket-status'>[Pending Master]</strong>
+      ) : status === "open" ? (
         <strong className='ticket-status open'>[open]</strong>
-      ) : status === 'closed' ? (
-        <strong className='ticket-status closed'>[closed]</strong>
-      ) : status === 'pending' ? (
-        <strong className='ticket-status pending'>[pending Resolve]</strong>
-      ) : status === 'resolved' ? (
-        <strong className='ticket-status resolved'>[resolved]</strong>
+      ) : status === "rejected" ? (
+        <strong className='ticket-status rejected'>[rejected]</strong>
       ) : (
-        <strong className='ticket-status'>[new]</strong>
+        status === "resolved" && (
+          <strong className='ticket-status resolved'>[resolved]</strong>
+        )
       )}
       {title}
     </strong>

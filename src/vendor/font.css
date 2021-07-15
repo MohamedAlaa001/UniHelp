@@ -196,3 +196,6 @@
 .icon-exclamation:before {
   content: "\5b";
 }
+.icon-add-user:before {
+  content: "\5c";
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const TicketsFilter = () => {
   const [filterValue, setFilterValue] = useState([]);
@@ -6,16 +6,16 @@ const TicketsFilter = () => {
   // filter effect
   useEffect(() => {
     const tickets = Array.from(
-      document.querySelectorAll('.tickets > a.ticket')
+      document.querySelectorAll(".tickets > a.ticket")
     );
     tickets.forEach((ticket) => {
       if (
         !filterValue.includes(ticket.dataset.status) &&
         filterValue.length > 0
       ) {
-        ticket.setAttribute('data-filter', true);
+        ticket.setAttribute("data-filter", true);
       } else {
-        ticket.setAttribute('data-filter', false);
+        ticket.setAttribute("data-filter", false);
       }
     });
   }, [filterValue]);
@@ -38,10 +38,10 @@ const TicketsFilter = () => {
           type='checkbox'
           className='form-check-input'
           name='filter'
-          value='new'
+          value='pending_master'
           onChange={(e) => filterOnChangeHandler(e)}
         />
-        <label className='form-check-label'>New</label>
+        <label className='form-check-label'>Pending Master</label>
       </div>
       <div className='form-check form-switch'>
         <input
@@ -58,16 +58,6 @@ const TicketsFilter = () => {
           type='checkbox'
           className='form-check-input'
           name='filter'
-          value='pending'
-          onChange={(e) => filterOnChangeHandler(e)}
-        />
-        <label className='form-check-label'>Pending Resolve</label>
-      </div>
-      <div className='form-check form-switch'>
-        <input
-          type='checkbox'
-          className='form-check-input'
-          name='filter'
           value='resolved'
           onChange={(e) => filterOnChangeHandler(e)}
         />
@@ -78,10 +68,10 @@ const TicketsFilter = () => {
           type='checkbox'
           className='form-check-input'
           name='filter'
-          value='closed'
+          value='rejected'
           onChange={(e) => filterOnChangeHandler(e)}
         />
-        <label className='form-check-label'>Closed</label>
+        <label className='form-check-label'>Rejected</label>
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
-import { Fragment, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { Fragment, useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { setAlert } from '../../../../actions/alert';
-import { createReply } from '../../../../actions/tickets';
-import { setConfirmation } from '../../../../actions/confirmation';
+import { setAlert } from "../../../../actions/alert";
+import { createReply } from "../../../../actions/tickets";
+import { setConfirmation } from "../../../../actions/confirmation";
 
-import ReplyFormSearch from './ReplyFormSearch';
+import ReplyFormSearch from "./ReplyFormSearch";
 
 const ReplyForm = ({
   ticket,
@@ -16,7 +16,7 @@ const ReplyForm = ({
   setConfirmation,
 }) => {
   const [replyData, setReplyData] = useState({
-    content: '',
+    content: "",
     is_private: false,
     errors: [],
   });
@@ -42,8 +42,8 @@ const ReplyForm = ({
     // e.preventDefault();
 
     // form validation
-    if (content.trim() === '') {
-      errors.push('Reply Content is Required');
+    if (content.trim() === "") {
+      errors.push("Reply Content is Required");
     }
 
     setReplyData({
@@ -56,7 +56,7 @@ const ReplyForm = ({
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
       errors.forEach((err) => {
-        setAlert(err, 'danger', false, 3000);
+        setAlert(err, "danger", false, 3000);
       });
 
       // reset errors
@@ -77,7 +77,7 @@ const ReplyForm = ({
 
     // Resest Form
     setReplyData({
-      content: '',
+      content: "",
       is_private: false,
       errors: [],
     });
@@ -93,9 +93,9 @@ const ReplyForm = ({
         onSubmit={(e) => {
           e.preventDefault();
           setConfirmation(
-            'Ticket Reply',
+            "Ticket Reply",
             `Are you sure you want to submit this ${
-              is_private ? 'private' : ''
+              is_private ? "private" : ""
             } reply`,
             setIsConfirm
           );
@@ -108,7 +108,7 @@ const ReplyForm = ({
                 className='form-control input-material '
                 name='content'
                 value={content}
-                placeholder=''
+                placeholder=' '
                 onChange={(e) => onChangeContentHandler(e)}
               ></textarea>
               <label htmlFor='content' className='label-material'>
@@ -123,7 +123,7 @@ const ReplyForm = ({
               >
                 Submit Reply
               </button>
-              {role !== 'student' ? (
+              {role !== "student" ? (
                 <div className='ms-1'>
                   <input
                     type='checkbox'
@@ -149,7 +149,7 @@ const ReplyForm = ({
                     <i
                       className='icon-private ms-2'
                       style={{
-                        transform: 'none',
+                        transform: "none",
                       }}
                     ></i>
                   </label>
@@ -159,7 +159,7 @@ const ReplyForm = ({
           </div>
           <div className='col'>
             {/* Search FOR EMPLOYEES ONLY*/}
-            {role !== 'student' && ticket.status !== 'new' ? (
+            {role !== "student" && ticket.status === "open" ? (
               <div>
                 {/* Search */}
                 <ReplyFormSearch isPrivate={is_private} />

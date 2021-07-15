@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { sidebarHandleClick } from '../handlersMethods';
+import React, { Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { sidebarHandleClick } from "../handlersMethods";
 
-import NavItem from './NavItem';
+import * as SiderbarContent from "./SidebarContent";
+import NavItem from "./NavItem";
 
 const Sidebar = ({ user: { role, first_name, last_name } }) => {
   useEffect(() => {
@@ -12,61 +13,14 @@ const Sidebar = ({ user: { role, first_name, last_name } }) => {
 
   const roleSwitch = () => {
     switch (role) {
-      case 'student':
-        return (
-          <Fragment>
-            <span className='heading'>Student Panel</span>
-            <ul className='list-unstyled'>
-              <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
-            </ul>
-          </Fragment>
-        );
-      case 'employee':
-        return (
-          <Fragment>
-            <span className='heading'>Employee Panel</span>
-            <ul className='list-unstyled'>
-              <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
-              <NavItem path='/dashboard' icon='chart' name='Dashboard' />
-              <li>
-                <a
-                  href='#menuDropdown'
-                  aria-expanded='false'
-                  data-bs-toggle='collapse'
-                >
-                  <i className='icon-settings'></i>
-                  Settings
-                </a>
-                <ul className='list-unstyled collapse' id='menuDropdown'>
-                  <NavItem path='/permissions' name='Permissions' />
-                </ul>
-              </li>
-            </ul>
-          </Fragment>
-        );
-      case 'master':
-        return (
-          <Fragment>
-            <span className='heading'>Master Panel</span>
-            <ul className='list-unstyled'>
-              <NavItem path='/tickets' icon='paper-and-pencil' name='Tickets' />
-              <NavItem path='/dashboard' icon='chart' name='Dashboard' />
-              <li>
-                <a
-                  href='#menuDropdown'
-                  aria-expanded='false'
-                  data-bs-toggle='collapse'
-                >
-                  <i className='icon-settings'></i>
-                  Settings
-                </a>
-                <ul className='list-unstyled collapse' id='menuDropdown'>
-                  <NavItem path='/permissions' name='Permissions' />
-                </ul>
-              </li>
-            </ul>
-          </Fragment>
-        );
+      case "student":
+        return SiderbarContent.student();
+      case "employee":
+        return SiderbarContent.employee();
+      case "master":
+        return SiderbarContent.master();
+      case "admin":
+        return SiderbarContent.admin();
       default:
         return null;
     }

@@ -129,7 +129,7 @@ nav.navbar .message .content .date {
 
 /* Sidebar */
 nav#sidebar a::before {
-  content: '';
+  content: "";
   width: 2px;
   height: 100%;
   background: none;
@@ -256,7 +256,7 @@ a:hover {
 }
 
 .messages-block .message > .content:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0px;
@@ -275,8 +275,12 @@ a:hover {
 * Tickets Section
 *
 */
-.tickets-block .ticket[data-filter='true'] {
+.tickets-block .ticket[data-filter="true"] {
   display: none !important;
+}
+
+.tickets-block .ticket-master {
+  font-size: 1rem !important;
 }
 
 .tickets-block .ticket-status {
@@ -289,13 +293,13 @@ a:hover {
   color: var(--color-warning) !important;
 }
 
-.tickets-block .ticket-status.open,
+.ticket-status.open,
 .statistic-block .ticket-status.open {
   color: var(--color-success) !important;
 }
 
-.tickets-block .ticket-status.closed,
-.statistic-block .ticket-status.closed {
+.ticket-status.rejected,
+.statistic-block .ticket-status.rejected {
   color: var(--color-danger) !important;
 }
 .tickets-block .ticket-status.resolved,
@@ -313,12 +317,21 @@ a:hover {
 
 /* Filter */
 .tickets-filter {
+  position: sticky;
+  top: 20px;
   height: 100%;
   padding: 0.75rem;
   background: var(--color-dark-block);
   border: 1px solid #393c43;
   border-radius: 5px;
   box-shadow: 0 3px 5px var(--color-dark-block);
+  max-height: 250px;
+}
+
+@media (max-width: 767.98px) {
+  .tickets-filter {
+    position: static;
+  }
 }
 
 /* .tickets-filter .dropdown-menu {
@@ -362,15 +375,15 @@ a:hover {
   position: absolute;
   top: 0%;
   right: 0%;
-  content: '\f107';
+  content: "\f107";
   /* vertical-align: middle; */
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
   margin-left: 0.25rem;
   margin-right: 0.5rem;
 }
 
-.tickets-block .reply-header[aria-expanded='true'] .title > strong:after {
-  content: '\f106';
+.tickets-block .reply-header[aria-expanded="true"] .title > strong:after {
+  content: "\f106";
 }
 
 /* radio button private */

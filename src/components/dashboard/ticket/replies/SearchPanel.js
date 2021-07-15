@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
-import classnames from 'classnames';
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import classnames from "classnames";
 
-import UsersList from './UsersList';
+import UsersList from "./UsersList";
 
-import { setConfirmation } from '../../../../actions/confirmation';
-import { transferTicket } from '../../../../actions/tickets';
+import { setConfirmation } from "../../../../actions/confirmation";
+import { transferTicket } from "../../../../actions/tickets";
 
 const SearchPanel = ({
   isPrivate,
@@ -27,10 +27,10 @@ const SearchPanel = ({
     // eslint-disable-next-line
   }, [isConfirm]);
 
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const isPrivateStyle = classnames('input-group-text', { active: isPrivate });
+  const isPrivateStyle = classnames("input-group-text", { active: isPrivate });
 
   const onChangeSearchHandler = (e) => {
     setSearchInput(e.target.value);
@@ -45,17 +45,16 @@ const SearchPanel = ({
   };
 
   const transferTicketHandler = () => {
-    console.log(ticket_id, selectedEmployee);
-    transferTicket(ticket_id, 6000);
+    transferTicket(ticket_id, selectedEmployee.username);
     // transferTicket(ticket_id, selectedEmployee.username)
 
     // Reset document scroll & Confirmation dialogue
     setIsConfirm(false);
-    document.querySelector('#search-panel').classList.remove('d-block');
-    document.body.classList.remove('no-scroll');
-    setSearchInput('');
+    document.querySelector("#search-panel").classList.remove("d-block");
+    document.body.classList.remove("no-scroll");
+    setSearchInput("");
     // return to /tickets
-    history.replace('/tickets');
+    history.replace("/tickets");
   };
 
   return (
@@ -64,9 +63,9 @@ const SearchPanel = ({
         <div
           className='close-btn'
           onClick={() => {
-            document.querySelector('#search-panel').classList.remove('d-block');
-            document.body.classList.remove('no-scroll');
-            setSearchInput(''); // Reset
+            document.querySelector("#search-panel").classList.remove("d-block");
+            document.body.classList.remove("no-scroll");
+            setSearchInput(""); // Reset
           }}
         >
           Close <i className='fa fa-close'></i>
@@ -91,7 +90,7 @@ const SearchPanel = ({
           ) : null}
           <div className='search-display'>
             <ul className='list-unstyled mb-0'>
-              {searchInput === '' ? (
+              {searchInput === "" ? (
                 employees.map((employee) => (
                   <UsersList
                     key={employee.username}
@@ -122,7 +121,7 @@ const SearchPanel = ({
               className='btn mt-2 w-100 search-open'
               onClick={() => {
                 setConfirmation(
-                  'Transfer Request',
+                  "Transfer Request",
                   `Are you sure you want to transfer ticket to ${selectedEmployee.name}`,
                   setIsConfirm
                 );
