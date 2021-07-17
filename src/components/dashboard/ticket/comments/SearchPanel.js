@@ -82,7 +82,7 @@ const SearchPanel = ({
             />
             <div className={isPrivateStyle}>
               <i className='icon-private '></i>
-              Private Reply
+              Private Comment
             </div>
           </div>
           {selectedEmployee !== null ? (

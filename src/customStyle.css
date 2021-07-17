@@ -78,9 +78,17 @@ nav.navbar .right-menu a.nav-link {
 }
 
 nav.navbar .dropdown-menu {
-  min-width: 400px;
+  min-width: 350px;
   max-width: 450px;
 }
+
+@media (max-width: 575px) {
+  nav.navbar .dropdown-menu {
+    min-width: 350px;
+    max-width: 350px;
+  }
+}
+
 nav.navbar .dropdown-menu#languagesCollapse {
   min-width: 150px;
 }
@@ -349,27 +357,27 @@ a:hover {
 } */
 
 /* Replies */
-.tickets-block .reply {
+.tickets-block .comment {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   background-color: var(--color-dark-block);
 }
 
-.tickets-block .reply.private {
+.tickets-block .comment.private {
   border: 1px solid var(--color-danger);
 }
 
-.tickets-block .reply .ticket-content {
+.tickets-block .comment .ticket-content {
   margin-top: 1rem;
   background: var(--color-gray-block);
 }
 
-.tickets-block .reply-header {
+.tickets-block .comment-header {
   cursor: pointer;
   position: relative;
 }
 
-.tickets-block .reply-header .title > strong:after {
+.tickets-block .comment-header .title > strong:after {
   border: none !important;
   float: right;
   position: absolute;
@@ -382,8 +390,54 @@ a:hover {
   margin-right: 0.5rem;
 }
 
-.tickets-block .reply-header[aria-expanded="true"] .title > strong:after {
+.tickets-block .comment-header[aria-expanded="true"] .title > strong:after {
   content: "\f106";
+}
+
+.ticket-comment-replies .title {
+  margin-bottom: 0.25rem !important;
+}
+
+.ticket-comment-reply {
+  position: relative;
+  background-color: #22252a;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin: 1.25rem 0;
+}
+
+.ticket-comment-replies > .ticket-comment-reply {
+  margin-top: 0.25rem;
+}
+.ticket-comment-replies .ticket-comment-reply:last-of-type {
+  margin-bottom: 0.25rem;
+}
+
+.ticket-comment-reply::before {
+  position: absolute;
+  border: 4px solid var(--color-primary);
+  border-radius: 50% 0 0 50%;
+  top: 0;
+  left: 0;
+  content: "";
+  height: 100%;
+}
+.ticket-comment-reply[data-is-private="true"]:before {
+  border-color: var(--color-danger) !important;
+}
+
+.ticket-comment-reply-form .form-floating > textarea {
+  height: 100px !important;
+}
+
+.ticket-comment-reply-form .form-floating > textarea:focus,
+.ticket-comment-reply-form .form-floating > textarea:not(:placeholder-shown) {
+  height: 200px !important;
+}
+@media (max-width: 575px) {
+  .ticket-comment-reply-form .form-floating > textarea:not(:placeholder-shown) {
+    height: 450px !important;
+  }
 }
 
 /* radio button private */

@@ -16,8 +16,9 @@ const Tickets = ({ getTicketsByUser, tickets: { loading, tickets }, user }) => {
     // *************************
     // Moved Ticket Switch under actions/ticket
     // *************************
-    getTicketsByUser(user);
-  }, [getTicketsByUser, user]);
+    getTicketsByUser(user.role);
+    // eslint-disable-next-line
+  }, [user]);
 
   return loading || tickets === null ? (
     <Spinner />
@@ -58,6 +59,13 @@ const Tickets = ({ getTicketsByUser, tickets: { loading, tickets }, user }) => {
                   {tickets.map((ticket) => (
                     <TicketItem key={ticket.ticket_id} ticket={ticket} />
                   ))}
+                  {/* {readOnlyTickets.map((ticket) => (
+                    <TicketItem
+                      key={ticket.ticket_id}
+                      ticket={ticket}
+                      readOnly={true}
+                    />
+                  ))} */}
                 </div>
               </div>
               <div className='col-sm-12 col-md-3 mb-md-0 mb-3'>
@@ -73,7 +81,7 @@ const Tickets = ({ getTicketsByUser, tickets: { loading, tickets }, user }) => {
 
 Tickets.propTypes = {
   user: PropTypes.object.isRequired,
-  // tickets: PropTypes.array,
+  // readOnlyTickets: PropTypes.array,
 };
 const mapStateToProps = (state) => ({
   user: state.auth.user,

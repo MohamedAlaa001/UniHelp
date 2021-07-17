@@ -77,3 +77,22 @@ export const addUser = (user) => async (dispatch) => {
     dispatch(setAlert(err.response.data.error, "danger", false, 3000));
   }
 };
+
+// Change User Password
+export const changeUserPassword = (body) => async (dispatch) => {
+  try {
+    const res = await api.post("/change_password", body);
+
+    dispatch(logout());
+    dispatch(
+      setAlert(
+        `${res.data.success}, Please login again`,
+        "success",
+        false,
+        5000
+      )
+    );
+  } catch (err) {
+    dispatch(setAlert(err.response.data.error, "danger", false, 3000));
+  }
+};

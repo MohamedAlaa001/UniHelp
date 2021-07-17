@@ -14,12 +14,12 @@ const TicketTimeline = ({
   clearTicketTimeline,
 }) => {
   useEffect(() => {
-    getTicketTimeline(ticket_id);
+    // getTicketTimeline(ticket_id);
     return () => {
       clearTicketTimeline();
     };
     // eslint-disable-next-line
-  }, [status]);
+  }, []);
 
   return timeline !== undefined ? (
     <div className='col'>

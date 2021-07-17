@@ -6,39 +6,40 @@ import {
   GET_TICKET,
   CHANGE_STATUS,
   CREATE_TICKET,
-  CREATE_TICKET_REPLY,
+  CREATE_TICKET_COMMENT,
   GET_TICKET_TIMELINE,
   GET_ALL_EMPLOYEES,
   TICKET_TRANSFER,
   GET_STUDENT_TICKETS,
   CLEAR_TICKET_TIMELINE,
+  GET_READ_ONLY_TICKETS,
+  CREATE_TICKET_COMMENT_REPLY,
 } from "./types";
 
-export const ticketSwitch = (user) => (dispatch) => {
-  switch (user.role) {
-    case "student":
-      dispatch(getTicketsByUser());
-      break;
-    case "employee":
-      dispatch(getTicketsByUser());
-      // dispatch(getAssignedTicketsByUserId(user.username));
-      break;
-    case "master":
-      dispatch(getTicketsByUser());
-      // dispatch(getNewTickets());
-      break;
-    default:
-      return;
-  }
-};
-
-// Student
-export const getTicketsByUser = () => async (dispatch) => {
+// Get Ticket per user
+export const getTicketsByUser = (role) => async (dispatch) => {
   try {
     const res = await api.get("/view_tickets");
 
     dispatch({
       type: GET_ALL_TICKETS,
+      payload: res.data,
+    });
+
+    if (role !== "student") {
+      dispatch(getReadOnlyTickets());
+    }
+  } catch (err) {
+    console.log(err.response.data.error);
+  }
+};
+// Get read only tickets
+export const getReadOnlyTickets = () => async (dispatch) => {
+  try {
+    const res = await api.get("/user_history");
+
+    dispatch({
+      type: GET_READ_ONLY_TICKETS,
       payload: res.data,
     });
   } catch (err) {
@@ -55,8 +56,10 @@ export const getTicketById = (ticket_id) => async (dispatch) => {
 
     dispatch({
       type: GET_TICKET,
-      payload: { ticket_id, replies: res.data },
+      payload: { ticket_id, comments: res.data },
     });
+
+    dispatch(getTicketTimeline(ticket_id));
   } catch (err) {
     console.log(err);
   }
@@ -126,18 +129,18 @@ export const createTicket = (ticket) => async (dispatch) => {
   }
 };
 
-// REPLIES
-export const createReply = (reply) => async (dispatch) => {
-  const body = { ...reply };
+// CREATE Comment
+export const createComment = (comment) => async (dispatch) => {
+  const body = { ...comment };
   try {
     const res = await api.post("/submit_reply", body);
     dispatch({
-      type: CREATE_TICKET_REPLY,
+      type: CREATE_TICKET_COMMENT,
       payload: res.data,
     });
     dispatch(
       setAlert(
-        "Your reply has been successfully submitted",
+        "Your comment has been successfully submitted",
         "success",
         false,
         3000
@@ -147,6 +150,21 @@ export const createReply = (reply) => async (dispatch) => {
     dispatch(setAlert(err.response.data.error, "danger", false, 3000));
   }
 };
+// CREATE Comment's Reply
+export const createCommentReply =
+  (ticket_id, reply_id, content, is_private) => async (dispatch) => {
+    const body = { ticket_id, reply_id, content, is_private };
+    try {
+      const res = await api.put("/submit_reply", body);
+
+      dispatch({
+        type: CREATE_TICKET_COMMENT_REPLY,
+        payload: { ticket_id, comment: res.data },
+      });
+    } catch (err) {
+      dispatch(setAlert(err.response.data.error, "danger", false, 3000));
+    }
+  };
 
 // get all employees
 export const getAllEmployees = () => async (dispatch) => {

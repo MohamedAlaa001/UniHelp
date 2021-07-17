@@ -24,7 +24,12 @@ const TicketItem = ({ ticket }) => {
     >
       <div className='content'>
         <div className='title'>
-          <TicketStatus master={master} status={status} title={title} />
+          <TicketStatus
+            master={master}
+            status={status}
+            title={title}
+            readOnly={ticket.readOnly}
+          />
           {master !== "null" && (
             <strong className='ticket-master d-block'>{`Ticket Master: ${master}`}</strong>
           )}

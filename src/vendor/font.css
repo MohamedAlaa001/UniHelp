@@ -199,3 +199,6 @@
 .icon-add-user:before {
   content: "\5c";
 }
+.icon-lock-secure:before {
+  content: "\5d";
+}

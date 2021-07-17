@@ -1,8 +1,8 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState } from "react";
 
-import SearchPanel from './SearchPanel';
+import SearchPanel from "./SearchPanel";
 
-const ReplyFormSearch = ({ isPrivate }) => {
+const TicketTransfer = ({ isPrivate }) => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   return (
@@ -16,8 +16,8 @@ const ReplyFormSearch = ({ isPrivate }) => {
         <div
           className='btn w-100 search-open'
           onClick={() => {
-            document.querySelector('#search-panel').classList.add('d-block');
-            document.body.classList.add('no-scroll');
+            document.querySelector("#search-panel").classList.add("d-block");
+            document.body.classList.add("no-scroll");
           }}
         >
           Forward Ticket
@@ -26,7 +26,7 @@ const ReplyFormSearch = ({ isPrivate }) => {
         <div className='search-results'>
           <ul className='list-unstyled mb-0'>
             {selectedEmployee !== null ? (
-              <li style={{ textTransform: 'capitalize' }}>
+              <li style={{ textTransform: "capitalize" }}>
                 <strong>* {selectedEmployee.name}</strong>
               </li>
             ) : null}
@@ -37,4 +37,4 @@ const ReplyFormSearch = ({ isPrivate }) => {
   );
 };
 
-export default ReplyFormSearch;
+export default TicketTransfer;

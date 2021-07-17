@@ -12,8 +12,8 @@ import TicketControl from "./TicketControl";
 import TicketStatus from "./TicketStatus";
 import TicketTimeline from "./TicketTimeline";
 
-import Replies from "./replies/Replies";
-import ReplyForm from "./replies/ReplyForm";
+import Comments from "./comments/Comments";
+import CommentForm from "./comments/CommentForm";
 
 const TicketBody = ({
   match,
@@ -54,7 +54,7 @@ const TicketBody = ({
         <div className='container-fluid'>
           <div className='tickets-block block'>
             <Alert />
-            <TicketControl ticket={ticket} role={role} />
+            {!ticket.readOnly && <TicketControl ticket={ticket} role={role} />}
 
             <div className='row mb-3'>
               <div className='col-sm-12 col-lg-9'>
@@ -67,6 +67,7 @@ const TicketBody = ({
                           master={ticket.master}
                           status={ticket.status}
                           title={ticket.title}
+                          readOnly={ticket.readOnly}
                         />
                         {ticket.master !== "null" && (
                           <strong className='ticket-master d-block'>{`Ticket Master: ${ticket.master}`}</strong>
@@ -101,13 +102,15 @@ const TicketBody = ({
               />
             </div>
 
-            {/* Reply Form */}
-            {ticket.status !== "rejected" && ticket.status !== "resolved" ? (
-              <ReplyForm />
+            {/* Comments Form */}
+            {!ticket.readOnly &&
+            ticket.status !== "rejected" &&
+            ticket.status !== "resolved" ? (
+              <CommentForm />
             ) : null}
 
-            {/* Ticket Replies */}
-            <Replies />
+            {/* Ticket Comments */}
+            <Comments />
           </div>
         </div>
       </section>

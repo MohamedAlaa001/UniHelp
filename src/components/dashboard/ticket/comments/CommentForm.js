@@ -3,19 +3,19 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { setAlert } from "../../../../actions/alert";
-import { createReply } from "../../../../actions/tickets";
+import { createComment } from "../../../../actions/tickets";
 import { setConfirmation } from "../../../../actions/confirmation";
 
-import ReplyFormSearch from "./ReplyFormSearch";
+import TicketTransfer from "./TicketTransfer";
 
-const ReplyForm = ({
+const CommentForm = ({
   ticket,
   user: { role },
-  createReply,
+  createComment,
   setAlert,
   setConfirmation,
 }) => {
-  const [replyData, setReplyData] = useState({
+  const [commentData, setCommentData] = useState({
     content: "",
     is_private: false,
     errors: [],
@@ -29,11 +29,11 @@ const ReplyForm = ({
   }, [isConfirm]);
   // const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const { content, is_private, errors } = replyData;
+  const { content, is_private, errors } = commentData;
 
   const onChangeContentHandler = (e) => {
-    setReplyData({
-      ...replyData,
+    setCommentData({
+      ...commentData,
       content: e.target.value,
     });
   };
@@ -46,8 +46,8 @@ const ReplyForm = ({
       errors.push("Reply Content is Required");
     }
 
-    setReplyData({
-      ...replyData,
+    setCommentData({
+      ...commentData,
       errors,
     });
 
@@ -60,23 +60,23 @@ const ReplyForm = ({
       });
 
       // reset errors
-      setReplyData({
-        ...replyData,
+      setCommentData({
+        ...commentData,
         errors: [],
       });
       return;
     }
 
-    const reply = {
+    const comment = {
       ticket_id: ticket.ticket_id,
       content,
       is_private,
     };
     // Submit Reply
-    createReply(reply);
+    createComment(comment);
 
     // Resest Form
-    setReplyData({
+    setCommentData({
       content: "",
       is_private: false,
       errors: [],
@@ -93,10 +93,10 @@ const ReplyForm = ({
         onSubmit={(e) => {
           e.preventDefault();
           setConfirmation(
-            "Ticket Reply",
+            "Ticket Comment",
             `Are you sure you want to submit this ${
               is_private ? "private" : ""
-            } reply`,
+            } comment`,
             setIsConfirm
           );
         }}
@@ -112,16 +112,16 @@ const ReplyForm = ({
                 onChange={(e) => onChangeContentHandler(e)}
               ></textarea>
               <label htmlFor='content' className='label-material'>
-                Reply's Content
+                Comment's Content
               </label>
             </div>
-            {/* Submit Reply*/}
+            {/* Submit Comment*/}
             <div className='d-flex mb-3'>
               <button
                 type='submit'
                 className='btn btn-primary flex-grow-1 me-1'
               >
-                Submit Reply
+                Submit Comment
               </button>
               {role !== "student" ? (
                 <div className='ms-1'>
@@ -130,8 +130,8 @@ const ReplyForm = ({
                     className='btn-check'
                     checked={is_private}
                     onChange={() =>
-                      setReplyData({
-                        ...replyData,
+                      setCommentData({
+                        ...commentData,
                         is_private: !is_private,
                       })
                     }
@@ -139,13 +139,13 @@ const ReplyForm = ({
                   <label
                     className='btn btn-outline-private'
                     onClick={() =>
-                      setReplyData({
-                        ...replyData,
+                      setCommentData({
+                        ...commentData,
                         is_private: !is_private,
                       })
                     }
                   >
-                    Private Reply
+                    Private Comment
                     <i
                       className='icon-private ms-2'
                       style={{
@@ -162,7 +162,7 @@ const ReplyForm = ({
             {role !== "student" && ticket.status === "open" ? (
               <div>
                 {/* Search */}
-                <ReplyFormSearch isPrivate={is_private} />
+                <TicketTransfer isPrivate={is_private} />
               </div>
             ) : null}
           </div>
@@ -172,7 +172,7 @@ const ReplyForm = ({
   );
 };
 
-ReplyForm.propTypes = {
+CommentForm.propTypes = {
   user: PropTypes.object.isRequired,
   ticket: PropTypes.object.isRequired,
 };
@@ -184,6 +184,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   setAlert,
-  createReply,
+  createComment,
   setConfirmation,
-})(ReplyForm);
+})(CommentForm);

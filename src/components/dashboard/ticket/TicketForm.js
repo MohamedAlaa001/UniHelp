@@ -10,6 +10,7 @@ import Alert from "../../layout/Alert";
 import Spinner from "../../layout/Spinner";
 
 import TicketFormInput from "./TicketFormInput";
+import TicketFormFiles from "./TicketFormFiles";
 
 const TicketForm = ({
   getCategories,
@@ -28,6 +29,11 @@ const TicketForm = ({
     content: "",
     category_id: null,
     errors: [],
+  });
+  const [isValid, setIsValid] = useState(true);
+  const [filesData, setFilesData] = useState({
+    files: [],
+    invalidFiles: [],
   });
 
   const { title, content, category_id, errors } = ticketData;
@@ -154,6 +160,7 @@ const TicketForm = ({
                     <strong className='d-block'>Create Ticket</strong>
                   </div>
                   <div className='block-body'>
+                    {/* Title */}
                     <div className='form-floating mb-3'>
                       <input
                         type='text'
@@ -167,6 +174,14 @@ const TicketForm = ({
                         Subject
                       </label>
                     </div>
+                    {/* Attachments */}
+                    <TicketFormFiles
+                      filesData={filesData}
+                      setFilesData={setFilesData}
+                      setIsValid={setIsValid}
+                    />
+
+                    {/* Text Area */}
                     <div className='form-floating mb-3'>
                       <textarea
                         className='form-control input-material'
@@ -202,6 +217,7 @@ const TicketForm = ({
                         type='submit'
                         className='btn btn-primary'
                         value='Submit'
+                        disabled={!isValid}
                       />
                     </div>
                   </div>

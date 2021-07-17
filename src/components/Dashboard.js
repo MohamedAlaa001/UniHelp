@@ -27,6 +27,7 @@ import Panel from "./dashboard/panel/Panel";
 // Settings
 import Perms from "./dashboard/settings/Perms";
 import AddUser from "./dashboard/admin/AddUser";
+import ChangePassword from "./dashboard/settings/ChangePassword";
 
 import NotFound from "./pages/NotFound";
 
@@ -95,6 +96,11 @@ const Dashboard = ({
               path='/addUser'
               role={["admin"]}
               component={AddUser}
+            />
+            <PrivateRoute
+              exact
+              path='/changePassword'
+              component={ChangePassword}
             />
             <Route component={NotFound} />
           </Switch>

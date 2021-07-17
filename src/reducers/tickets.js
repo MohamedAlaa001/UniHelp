@@ -3,7 +3,7 @@ import {
   GET_ALL_TICKETS,
   GET_TICKET,
   CREATE_TICKET,
-  CREATE_TICKET_REPLY,
+  CREATE_TICKET_COMMENT,
   CLEAR_TICKETS,
   CHANGE_STATUS,
   GET_TICKET_TIMELINE,
@@ -11,11 +11,13 @@ import {
   TICKET_TRANSFER,
   GET_STUDENT_TICKETS,
   CLEAR_TICKET_TIMELINE,
+  GET_READ_ONLY_TICKETS,
 } from "../actions/types";
 
 const initialState = {
   ticket: null,
   tickets: [],
+  readOnlyTickets: [],
   studentTickets: [],
   loading: true,
   categories: [],
@@ -47,7 +49,7 @@ function ticketReducer(state = initialState, action) {
               // eslint-disable-next-line
               (ticket) => ticket.ticket_id == payload.ticket_id
             ),
-            replies: [...payload.replies],
+            comments: [...payload.comments],
             timeline: [],
           },
           loading: false,
@@ -60,7 +62,7 @@ function ticketReducer(state = initialState, action) {
               // eslint-disable-next-line
               (ticket) => ticket.ticket_id == payload.ticket_id
             ),
-            replies: [...payload.replies],
+            comments: [...payload.comments],
             timeline: [],
           },
           loading: false,
@@ -76,10 +78,27 @@ function ticketReducer(state = initialState, action) {
         },
         loading: false,
       };
+
     case GET_ALL_TICKETS:
       return {
         ...state,
         tickets: payload,
+        loading: false,
+      };
+
+    case GET_READ_ONLY_TICKETS:
+      return {
+        ...state,
+        tickets: [
+          ...state.tickets,
+          ...payload
+            .filter(
+              (ticket) =>
+                ticket &&
+                !state.tickets.find((el) => el.ticket_id === ticket.ticket_id)
+            )
+            .map((ticket) => ({ ...ticket, readOnly: true })),
+        ],
         loading: false,
       };
     case CREATE_TICKET:
@@ -88,12 +107,12 @@ function ticketReducer(state = initialState, action) {
         tickets: [payload, ...state.tickets],
         loading: false,
       };
-    case CREATE_TICKET_REPLY:
+    case CREATE_TICKET_COMMENT:
       return {
         ...state,
         ticket: {
           ...state.ticket,
-          replies: payload,
+          comments: payload,
         },
         loading: false,
       };
@@ -133,6 +152,8 @@ function ticketReducer(state = initialState, action) {
         ...state,
         ticket: null,
         tickets: [],
+        studentTickets: [],
+        readOnlyTickets: [],
         categories: [],
         employees: [],
         loading: true,

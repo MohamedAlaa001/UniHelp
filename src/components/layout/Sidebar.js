@@ -46,8 +46,15 @@ const Sidebar = ({ user: { role, first_name, last_name } }) => {
           <NavItem path='/notifications' icon='bell' name='Notifications' />
         </ul>
         {/* Sidebar Main Menu End */}
-        {/* Switch case for different user panel */}
         {(() => roleSwitch())()}
+        <span className='heading'>Settings</span>
+        <ul className='list-unstyled'>
+          <NavItem
+            path='/changePassword'
+            icon='settings'
+            name='Change Password'
+          />
+        </ul>
       </nav>
     </Fragment>
   );

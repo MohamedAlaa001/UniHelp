@@ -1,11 +1,11 @@
 import React from "react";
 
-const TicketStatus = ({ status, title }) => {
+const TicketStatus = ({ status, title, readOnly }) => {
   return (
     <strong>
-      {/* {master === "null" && (
-        <strong className='ticket-status'>[Pending Master]</strong>
-      )} */}
+      {readOnly && (
+        <strong style={{ color: "var(--bs-danger)" }}>[ARCHIVE]</strong>
+      )}
       {status === "pending_master" ? (
         <strong className='ticket-status'>[Pending Master]</strong>
       ) : status === "open" ? (

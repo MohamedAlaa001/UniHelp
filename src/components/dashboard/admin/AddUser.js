@@ -54,8 +54,8 @@ class AddUser extends Component {
       this.state.errors.push("User Role is Required");
     }
     if (
-      this.state.formData.password["value"] !==
-      this.state.formData.confirmPassword["value"]
+      this.state.formData.password["value"].trim() !==
+      this.state.formData.confirmPassword["value"].trim()
     ) {
       this.state.errors.push("Password & Confirm Password don't match");
     }

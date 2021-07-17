@@ -77,13 +77,27 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
               <div className='col-lg-6'>
                 <div className='info d-flex align-items-center'>
                   <div className='content'>
-                    <div className='logo'>
-                      <h1>UniHelp</h1>
+                    <div className='logo d-none d-md-block'></div>
+                    <h1
+                      className='d-block d-md-none mb-3'
+                      style={{
+                        color: "var(--color-dark-block)",
+                      }}
+                    >
+                      UniHelp
+                    </h1>
+                    <div>
+                      <p className='lead'>
+                        <strong>Everyday,</strong> we might face issues that
+                        require time to resolve due to the complicated
+                        procedures.
+                      </p>
+                      <p className='lead'>
+                        <span>UniHelp,</span> Provides you with an automated
+                        support system to reduce the time taken to resolve your
+                        issue.
+                      </p>
                     </div>
-                    <p className='lead'>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Tempore, in.
-                    </p>
                   </div>
                 </div>
               </div>

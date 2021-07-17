@@ -44,6 +44,11 @@ a:focus-visible {
   outline: none;
 }
 
+button:disabled,
+input:disabled {
+  cursor: not-allowed !important;
+}
+
 .dashtext-1 {
   color: #864dd9 !important;
 }
@@ -836,6 +841,19 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   color: #8a8d93;
 }
 
+.statistic-block .progress-details {
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .statistic-block .progress-details {
+    flex-direction: column;
+  }
+  .statistic-block .progress-details .title {
+    align-self: start;
+  }
+}
+
 .statistic-block .title {
   margin-bottom: 0;
 }
@@ -1452,7 +1470,7 @@ section .tickets-block a.ticket {
   color: #70737a;
 }
 .tickets-block .ticket .ticket-content,
-.tickets-block .reply .ticket-content {
+.tickets-block .comment .ticket-content {
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
@@ -1511,9 +1529,9 @@ section .tickets-block a.ticket {
 .timeline .timeline-item:last-of-type .badge-dot {
   background: var(--color-danger);
 }
-.timeline .timeline-item:last-of-type .timeline-item-content {
-  /* color: var(--color-danger); */
-}
+/* .timeline .timeline-item:last-of-type .timeline-item-content {
+  color: var(--color-danger);
+} */
 
 .timeline .timeline-item .badge-dot:before {
   content: "";
@@ -1782,6 +1800,12 @@ section .tickets-block a.ticket {
   background-size: cover;
 }
 
+.landing .logo {
+  background: url("./vendor/images/logo.png") no-repeat center;
+  /* height: 100px; */
+  height: 30vh;
+}
+
 .landing .container {
   min-height: 100vh;
   padding: 20px;
@@ -1823,9 +1847,22 @@ section .tickets-block a.ticket {
   width: 100%;
 }
 
+.landing .lead strong {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--color-dark-block);
+}
+
+.landing .lead span {
+  text-transform: capitalize;
+  font-size: inherit;
+  font-weight: 900;
+  color: var(--color-dark-block);
+}
+
 .landing .form-holder .form form {
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
 }
 
 .landing .form-holder .form a.forgot-pass {
@@ -1839,6 +1876,11 @@ section .tickets-block a.ticket {
     min-height: auto;
     padding: 40px;
     height: 100%;
+  }
+}
+@media (max-width: 575px) {
+  .landing .lead {
+    font-size: 1rem !important;
   }
 }
 
