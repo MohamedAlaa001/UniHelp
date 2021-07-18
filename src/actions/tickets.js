@@ -157,10 +157,10 @@ export const createCommentReply =
     try {
       const res = await api.put("/submit_reply", body);
 
-      dispatch({
-        type: CREATE_TICKET_COMMENT_REPLY,
-        payload: { ticket_id, comment: res.data },
-      });
+      // dispatch({
+      //   type: CREATE_TICKET_COMMENT_REPLY,
+      //   payload: { ticket_id, comment: res.data },
+      // });
     } catch (err) {
       dispatch(setAlert(err.response.data.error, "danger", false, 3000));
     }

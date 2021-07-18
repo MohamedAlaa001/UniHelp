@@ -12,6 +12,7 @@ import {
   GET_STUDENT_TICKETS,
   CLEAR_TICKET_TIMELINE,
   GET_READ_ONLY_TICKETS,
+  CREATE_TICKET_COMMENT_REPLY,
 } from "../actions/types";
 
 const initialState = {
@@ -115,6 +116,10 @@ function ticketReducer(state = initialState, action) {
           comments: payload,
         },
         loading: false,
+      };
+    case CREATE_TICKET_COMMENT_REPLY:
+      return {
+        // payload: { ticket_id, comment: res.data },
       };
     case GET_ALL_EMPLOYEES:
       return {

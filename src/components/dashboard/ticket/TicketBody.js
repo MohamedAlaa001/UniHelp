@@ -79,11 +79,14 @@ const TicketBody = ({
                             By
                             {` ${ticket.student.first_name} ${ticket.student.last_name}`}
                           </span>
-                          <Link
-                            to={`/tickets/students/${ticket.student.username}`}
-                          >
-                            Click to view student history
-                          </Link>
+
+                          {role !== "student" && (
+                            <Link
+                              to={`/tickets/students/${ticket.student.username}`}
+                            >
+                              Click to view student history
+                            </Link>
+                          )}
                         </div>
                         <small className='date d-block'>
                           {ticket.timestamp}
