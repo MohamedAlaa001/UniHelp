@@ -49,6 +49,33 @@ input:disabled {
   cursor: not-allowed !important;
 }
 
+.processing-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(45, 48, 53, 0.95);
+  z-index: 5000;
+}
+
+.processing-overlay.active {
+  display: flex !important;
+}
+
+.processing-overlay .header {
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.processing-overlay .header h1 {
+  margin-left: 1.25rem;
+}
+
 .dashtext-1 {
   color: #864dd9 !important;
 }
@@ -869,6 +896,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   font-size: 0.9rem;
   color: #8a8d93;
   margin-bottom: 5px;
+  width: 75%;
 }
 
 .statistic-block .icon {

@@ -11,7 +11,6 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT = "LOGOUT";
-export const USER_ADDED = "USER_ADDED";
 // Notificaitons
 export const GET_ALL_NOTIFICATIONS = "GET_ALL_NOTIFICATIONS";
 export const GET_NOTIFICATION = "GET_NOTIFICATION";

@@ -4,7 +4,9 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
-} from '../actions/types';
+} from "../actions/types";
+
+import Cookies from "js-cookie";
 
 const initialState = {
   isAuthenticated: null,
@@ -40,6 +42,9 @@ function authReducer(state = initialState, action) {
 
     case AUTH_ERROR:
     case LOGOUT:
+      if (Cookies.get("sessionid")) {
+        Cookies.remove("sessionid");
+      }
       return {
         ...state,
         isAuthenticated: false,

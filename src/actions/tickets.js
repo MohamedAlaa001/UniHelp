@@ -15,6 +15,7 @@ import {
   GET_READ_ONLY_TICKETS,
   CREATE_TICKET_COMMENT_REPLY,
 } from "./types";
+import { setConfirmation } from "./confirmation";
 
 // Get Ticket per user
 export const getTicketsByUser = (role) => async (dispatch) => {
@@ -108,26 +109,96 @@ export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
 };
 
 // Create Ticket
-export const createTicket = (ticket) => async (dispatch) => {
-  const body = { ...ticket };
-  try {
-    const res = await api.post("/submit_ticket", body);
-    dispatch({
-      type: CREATE_TICKET,
-      payload: res.data,
-    });
-    dispatch(
-      setAlert(
-        `Ticket Created with ID ${res.data.ticket_id} `,
-        "success",
-        false,
-        3000
-      )
-    );
-  } catch (err) {
-    console.log(err.respone.data.error);
-  }
-};
+export const createTicket =
+  (ticket, category_id, history) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    document.querySelector(".processing-overlay").classList.add("active");
+    document.body.classList.add("no-scroll");
+    try {
+      const res = await api.post("/submit_ticket", ticket, config);
+
+      if (res.data.suggested_category) {
+        const { ticket_id, suggested_category } = res.data;
+        try {
+          dispatch(
+            setConfirmation(
+              "Ticket Category Suggestion",
+              `We suggest to change the ticket category to ${suggested_category}, Would you like to?`,
+              (value) => {
+                value
+                  ? dispatch(
+                      updateTicketCategory(
+                        ticket_id,
+                        suggested_category,
+                        history
+                      )
+                    )
+                  : dispatch(
+                      updateTicketCategory(ticket_id, category_id, history)
+                    );
+              }
+            )
+          );
+        } catch (err) {
+          console.log(err);
+          throw err;
+        }
+      } else {
+        history.push("/tickets");
+        dispatch({
+          type: CREATE_TICKET,
+          payload: res.data,
+        });
+        dispatch(
+          setAlert(
+            `Ticket Created with ID ${res.data.ticket_id} `,
+            "success",
+            false,
+            3000
+          )
+        );
+      }
+    } catch (err) {
+      console.log(err.response.data);
+    } finally {
+      document.querySelector(".processing-overlay").classList.remove("active");
+      document.body.classList.remove("no-scroll");
+    }
+  };
+
+// Update ticket category
+export const updateTicketCategory =
+  (ticket_id, category_id, history) => async (dispatch) => {
+    document.querySelector(".processing-overlay").classList.add("active");
+    document.body.classList.add("no-scroll");
+    const body = { ticket_id, category_id };
+    try {
+      const res = await api.put("/submit_ticket", body);
+
+      dispatch({
+        type: CREATE_TICKET,
+        payload: res.data,
+      });
+      dispatch(
+        setAlert(
+          `Ticket Created with ID ${res.data.ticket_id} `,
+          "success",
+          false,
+          3000
+        )
+      );
+    } catch (err) {
+      console.log(err.response.data);
+    } finally {
+      document.querySelector(".processing-overlay").classList.remove("active");
+      document.body.classList.remove("no-scroll");
+      history.push("/tickets");
+    }
+  };
 
 // CREATE Comment
 export const createComment = (comment) => async (dispatch) => {

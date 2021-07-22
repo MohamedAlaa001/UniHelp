@@ -1,14 +1,16 @@
-import axios from 'axios';
-import { store } from '../store';
-import { LOGOUT } from '../actions/types';
+import axios from "axios";
+import { store } from "../store";
+import { LOGOUT } from "../actions/types";
 
 const api = axios.create({
   // baseURL: 'https://my-json-server.typicode.com/MohamedAlaa001/UniHelp',
-  baseURL: 'http://localhost:8000/api',
+  baseURL: "http://localhost:8000/api",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   withCredentials: true,
+  xsrfCookieName: "csrftoken",
+  xsrfHeaderName: "X-CSRFToken",
 });
 /**
  intercept any error responses from the api

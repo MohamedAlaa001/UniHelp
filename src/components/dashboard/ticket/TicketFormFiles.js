@@ -9,7 +9,6 @@ const TicketFormFiles = ({ filesData, setFilesData, setIsValid }) => {
       setIsValid(false);
     } else {
       setIsValid(true);
-      setForSubmit();
     }
     // eslint-disable-next-line
   }, [files]);
@@ -43,14 +42,6 @@ const TicketFormFiles = ({ filesData, setFilesData, setIsValid }) => {
       invalidFiles: filesArray.filter((file) => file && !validFileType(file)),
     });
     // filesArray.forEach((file) => console.log(file.type));
-  };
-
-  const setForSubmit = () => {
-    let formData = new FormData();
-    files.forEach((file) => {
-      formData.append("file", file);
-    });
-    console.log(formData.getAll("file"));
   };
 
   return (

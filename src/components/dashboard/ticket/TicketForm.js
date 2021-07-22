@@ -92,14 +92,30 @@ const TicketForm = ({
       });
       return;
     }
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("priority", 0);
+    formData.append("category_id", category_id);
 
-    const ticketBody = {
-      title,
-      content,
-      priority: 0,
-      category_id,
-    };
-    createTicket(ticketBody);
+    // let ticketBody = {
+    //   title,
+    //   content,
+    //   priority: 0,
+    //   category_id,
+    // };
+
+    filesData.files.forEach((file) => {
+      if (file.type.match("image.*")) {
+        formData.append("image", file, file.name);
+      } else {
+        formData.append("file", file, file.name);
+      }
+    });
+    // ticketBody = { ...ticketBody, formData };
+    // createTicket(ticketBody);
+    createTicket(formData, category_id, history);
+
     // Form Reset
     setTicketData({
       title: "",
@@ -113,7 +129,6 @@ const TicketForm = ({
         'input[name="categorySwitch"]:checked'
       ).checked = false;
     }
-    history.push("/tickets");
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 

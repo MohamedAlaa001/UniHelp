@@ -30,6 +30,7 @@ import AddUser from "./dashboard/admin/AddUser";
 import ChangePassword from "./dashboard/settings/ChangePassword";
 
 import NotFound from "./pages/NotFound";
+import Processing from "./layout/Processing";
 
 const Dashboard = ({
   getAllNotifications,
@@ -52,6 +53,7 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
+      <Processing />
       <Confirmation />
       <Navbar />
       <div className='d-flex align-items-stretch'>
