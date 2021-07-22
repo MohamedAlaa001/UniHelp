@@ -43,7 +43,7 @@ const Sidebar = ({ user: { role, first_name, last_name } }) => {
         <span className='heading'>Main</span>
         <ul className='list-unstyled'>
           <NavItem path='/home' icon='home' name='Home' />
-          <NavItem path='/notifications' icon='bell' name='Notifications' />
+          {/* <NavItem path='/notifications' icon='bell' name='Notifications' /> */}
         </ul>
         {/* Sidebar Main Menu End */}
         {(() => roleSwitch())()}

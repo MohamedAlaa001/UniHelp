@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
-import { navbarHandler } from '../handlersMethods';
-import { setAllNotificationsRead } from '../../actions/notifications';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
+import { navbarHandler } from "../handlersMethods";
+// import { setAllNotificationsRead } from "../../actions/notifications";
 
-import NotificationItem from '../dashboard/notification/NotificationItem';
+// import NotificationItem from "../dashboard/notification/NotificationItem";
 
 const Navbar = ({
   logout,
-  setAllNotificationsRead,
+  // setAllNotificationsRead,
   user: { id },
   notifications,
 }) => {
@@ -18,18 +18,18 @@ const Navbar = ({
     navbarHandler();
   }, []);
 
-  const notificationDisplay =
-    notifications.filter((notification) => {
-      return notification.isRead === false;
-    }).length > 0 ? (
-      <span className='badge bg-danger'>
-        {
-          notifications.filter((notification) => {
-            return notification.isRead === false;
-          }).length
-        }
-      </span>
-    ) : null;
+  // const notificationDisplay =
+  //   notifications.filter((notification) => {
+  //     return notification.isRead === false;
+  //   }).length > 0 ? (
+  //     <span className='badge bg-danger'>
+  //       {
+  //         notifications.filter((notification) => {
+  //           return notification.isRead === false;
+  //         }).length
+  //       }
+  //     </span>
+  //   ) : null;
 
   return (
     <header>
@@ -55,7 +55,7 @@ const Navbar = ({
           {/* Right Menu */}
           <div className='right-menu list-inline no-margin-bottom'>
             {/* Messages box */}
-            <div className='list-inline-item dropdown'>
+            {/* <div className='list-inline-item dropdown'>
               <a
                 href='#messageMenu'
                 className='nav-link messages-toggle '
@@ -102,10 +102,10 @@ const Navbar = ({
                   </strong>
                 </Link>
               </div>
-            </div>
+            </div> */}
 
             {/* Languages */}
-            <div className='list-inline-item dropdown'>
+            {/* <div className='list-inline-item dropdown'>
               <a
                 href='#languageMenu'
                 className='nav-link language dropdown-toggle'
@@ -120,7 +120,7 @@ const Navbar = ({
                   <span>Arabic</span>
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* Logout */}
             <div className='list-inline-item logout'>
@@ -139,15 +139,15 @@ const Navbar = ({
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  notifications: PropTypes.array.isRequired,
+  // notifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  notifications: state.notification.notifications,
+  // notifications: state.notification.notifications,
 });
 
 export default connect(mapStateToProps, {
   logout,
-  setAllNotificationsRead,
+  // setAllNotificationsRead,
 })(Navbar);

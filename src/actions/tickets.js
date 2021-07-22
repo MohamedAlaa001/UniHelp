@@ -221,6 +221,7 @@ export const createComment = (comment) => async (dispatch) => {
     dispatch(setAlert(err.response.data.error, "danger", false, 3000));
   }
 };
+
 // CREATE Comment's Reply
 export const createCommentReply =
   (ticket_id, reply_id, content, is_private) => async (dispatch) => {
@@ -228,10 +229,10 @@ export const createCommentReply =
     try {
       const res = await api.put("/submit_reply", body);
 
-      // dispatch({
-      //   type: CREATE_TICKET_COMMENT_REPLY,
-      //   payload: { ticket_id, comment: res.data },
-      // });
+      dispatch({
+        type: CREATE_TICKET_COMMENT_REPLY,
+        payload: { reply_id, comment: res.data },
+      });
     } catch (err) {
       dispatch(setAlert(err.response.data.error, "danger", false, 3000));
     }

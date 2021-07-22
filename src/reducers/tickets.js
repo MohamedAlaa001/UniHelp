@@ -119,7 +119,18 @@ function ticketReducer(state = initialState, action) {
       };
     case CREATE_TICKET_COMMENT_REPLY:
       return {
-        // payload: { ticket_id, comment: res.data },
+        ...state,
+        // payload: { reply_id, comment: res.data },
+        ticket: {
+          ...state.ticket,
+          comments: state.ticket.comments.map((comment) => {
+            if (comment.reply_id === payload.reply_id) {
+              comment = payload.comment;
+            }
+            return comment;
+          }),
+        },
+        loading: false,
       };
     case GET_ALL_EMPLOYEES:
       return {

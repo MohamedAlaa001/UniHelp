@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import PrivateRoute from "./routing/PrivateRoute";
 
-import { getAllNotifications } from "../actions/notifications";
+// import { getAllNotifications } from "../actions/notifications";
 import { getAllEmployees } from "../actions/tickets";
 // layout
 import Navbar from "./layout/Navbar";
@@ -15,8 +15,8 @@ import Confirmation from "./layout/Confirmation";
 // Home
 import Home from "./dashboard/Home";
 // Notifications
-import Notifications from "./dashboard/notification/Notifications";
-import NotificationBody from "./dashboard/notification/NotificationBody";
+// import Notifications from "./dashboard/notification/Notifications";
+// import NotificationBody from "./dashboard/notification/NotificationBody";
 // Tickets
 import Tickets from "./dashboard/ticket/Tickets";
 import TicketBody from "./dashboard/ticket/TicketBody";
@@ -33,23 +33,23 @@ import NotFound from "./pages/NotFound";
 import Processing from "./layout/Processing";
 
 const Dashboard = ({
-  getAllNotifications,
+  // getAllNotifications,
   auth: {
     loading,
     user: { id, role },
   },
-  notifications,
+  // notifications,
   getAllEmployees,
 }) => {
   useEffect(() => {
-    getAllNotifications(id);
+    // getAllNotifications(id);
     if (role !== "student") {
       getAllEmployees();
     }
     // eslint-disable-next-line
-  }, [getAllNotifications, id]);
+  }, []);
 
-  return loading || notifications === null ? (
+  return loading === null ? (
     <Spinner />
   ) : (
     <Fragment>
@@ -61,7 +61,7 @@ const Dashboard = ({
         <div className='page-content'>
           <Switch>
             <PrivateRoute exact path={"/home"} component={Home} />
-            <PrivateRoute
+            {/* <PrivateRoute
               exact
               path={"/notifications"}
               component={Notifications}
@@ -70,7 +70,7 @@ const Dashboard = ({
               exact
               path={"/notifications/:id"}
               component={NotificationBody}
-            />
+            /> */}
             <PrivateRoute exact path='/tickets' component={Tickets} />
             <PrivateRoute
               exact
@@ -114,16 +114,16 @@ const Dashboard = ({
 };
 Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
-  getAllNotifications: PropTypes.func.isRequired,
-  notifications: PropTypes.array.isRequired,
+  // getAllNotifications: PropTypes.func.isRequired,
+  // notifications: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  notifications: state.notification.notifications,
+  // notifications: state.notification.notifications,
 });
 
 export default connect(mapStateToProps, {
-  getAllNotifications,
+  // getAllNotifications,
   getAllEmployees,
 })(Dashboard);

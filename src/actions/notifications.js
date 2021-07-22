@@ -1,11 +1,11 @@
-import api from '../utils/api';
+// import api from '../utils/api';
 // import { setAlert } from './alert';
 import {
-  GET_NOTIFICATION,
-  GET_ALL_NOTIFICATIONS,
-  SET_NOTIFICATION_READ,
+  // GET_NOTIFICATION,
+  // GET_ALL_NOTIFICATIONS,
+  // SET_NOTIFICATION_READ,
   SET_ALL_NOTIFICATIONS_READ,
-} from './types';
+} from "./types";
 
 export const getAllNotifications = (id) => async (dispatch) => {
   // try {
