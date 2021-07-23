@@ -44,33 +44,63 @@ const TicketFormFiles = ({ filesData, setFilesData, setIsValid }) => {
     // filesArray.forEach((file) => console.log(file.type));
   };
 
+  const handlerRemoveFile = (file) => {
+    const currFiles = files.filter((el) => el && el.name !== file.name);
+    setFilesData({
+      files: currFiles,
+      invalidFiles: currFiles.filter((file) => file && !validFileType(file)),
+    });
+  };
+
   return (
     <div className='mb-3'>
       <label className='form-label'>Attachments (Optional):</label>
       <input
         className='form-control'
+        id='input-select-file'
         type='file'
         name='filesData'
         multiple
         onChange={(e) => onFileChange(e)}
         accept={acceptFileTypes}
+        style={{ display: "none" }}
       />
-      <span>images, .pdf</span>
+      <input
+        type='button'
+        className='btn btn-primary d-block'
+        value='Browse...'
+        onClick={() => document.getElementById("input-select-file").click()}
+      />
+      <span className='d-block my-2'>Images, .pdf, .doc, .docx, .xml</span>
       {files.length > 0 &&
         files
           .filter((file) => file && validFileType(file))
           .map((file) => (
             <div
               key={uuidv4()}
+              className='d-flex align-items-center'
               style={{ color: "var(--color-success)" }}
-            >{`${file.name}`}</div>
+            >
+              <span
+                className='icon-close me-2'
+                onClick={() => handlerRemoveFile(file)}
+              ></span>
+              <span>{`${file.name}`}</span>
+            </div>
           ))}
       {invalidFiles.length > 0 &&
         invalidFiles.map((file) => (
           <div
             key={uuidv4()}
+            className='d-flex align-items-center'
             style={{ color: "var(--color-danger)" }}
-          >{`${file.name} is not a valid file type`}</div>
+          >
+            <span
+              className='icon-close me-2'
+              onClick={() => handlerRemoveFile(file)}
+            ></span>
+            <span>{`${file.name} is not a valid file type`}</span>
+          </div>
         ))}
     </div>
   );

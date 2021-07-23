@@ -202,3 +202,12 @@
 .icon-lock-secure:before {
   content: "\5d";
 }
+.icon-attachment:before {
+  content: "\5e";
+}
+.icon-download:before {
+  content: "\60";
+}
+.icon-upload:before {
+  content: "\5f";
+}

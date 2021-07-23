@@ -14,6 +14,7 @@ import {
   CLEAR_TICKET_TIMELINE,
   GET_READ_ONLY_TICKETS,
   CREATE_TICKET_COMMENT_REPLY,
+  ADD_FILES,
 } from "./types";
 import { setConfirmation } from "./confirmation";
 
@@ -31,7 +32,7 @@ export const getTicketsByUser = (role) => async (dispatch) => {
       dispatch(getReadOnlyTickets());
     }
   } catch (err) {
-    console.log(err.response.data.error);
+    console.log(err.response);
   }
 };
 // Get read only tickets
@@ -141,7 +142,8 @@ export const createTicket =
                   : dispatch(
                       updateTicketCategory(ticket_id, category_id, history)
                     );
-              }
+              },
+              "Keep it as it"
             )
           );
         } catch (err) {
@@ -321,6 +323,24 @@ export const downloadFile = (ticket_id, file) => async () => {
     link.click();
     link.remove();
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
+  }
+};
+
+export const addTicketFiles = (ticket) => async (dispatch) => {
+  document.querySelector(".processing-overlay").classList.add("active");
+  document.body.classList.add("no-scroll");
+  try {
+    const res = await api.post("/add_file", ticket);
+    dispatch({
+      type: ADD_FILES,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response);
+    dispatch(setAlert(err.resposne.data.error, "danger", false, 3000));
+  } finally {
+    document.querySelector(".processing-overlay").classList.remove("active");
+    document.body.classList.remove("no-scroll");
   }
 };

@@ -44,10 +44,7 @@ a:focus-visible {
   outline: none;
 }
 
-button:disabled,
-input:disabled {
-  cursor: not-allowed !important;
-}
+
 
 .processing-overlay {
   display: none;

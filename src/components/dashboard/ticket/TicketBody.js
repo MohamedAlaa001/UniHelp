@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import {
-  getTicketById,
-  getTicketTimeline,
-  downloadImage,
-  downloadFile,
-} from "../../../actions/tickets";
+import { getTicketById, getTicketTimeline } from "../../../actions/tickets";
 
 import Spinner from "../../layout/Spinner";
 import Alert from "../../layout/Alert";
@@ -17,6 +12,8 @@ import TicketSolution from "./TicketSolution";
 import TicketControl from "./TicketControl";
 import TicketStatus from "./TicketStatus";
 import TicketTimeline from "./TicketTimeline";
+import TicketBodyAttach from "./TicketBodyAttach";
+import TicketAddFiles from "./TicketAddFiles";
 
 import Comments from "./comments/Comments";
 import CommentForm from "./comments/CommentForm";
@@ -26,8 +23,6 @@ const TicketBody = ({
   getTicketById,
   tickets: { ticket, loading },
   user: { role },
-  downloadImage,
-  downloadFile,
 }) => {
   useEffect(() => {
     // clearTicket();
@@ -100,6 +95,13 @@ const TicketBody = ({
                           {ticket.timestamp}
                         </small>
                       </div>
+                      {ticket.suggested_solution.solution &&
+                        role !== "student" && (
+                          <TicketSolution
+                            solution={ticket.suggested_solution.solution}
+                            lang={ticket.suggested_solution.lang}
+                          />
+                        )}
                       <p
                         className={
                           ticket.lang === "ar"
@@ -109,39 +111,14 @@ const TicketBody = ({
                       >
                         {ticket.content}
                       </p>
-                      <div className='d-flex ticket-attachments'>
-                        <div className='images'>
-                          {ticket.images.length > 0 &&
-                            ticket.images.map((image) => (
-                              <button
-                                key={image.id}
-                                className='btn'
-                                download
-                                onClick={() =>
-                                  downloadImage(ticket.ticket_id, image)
-                                }
-                              >
-                                {image.name}
-                              </button>
-                            ))}
-                        </div>
-                        <div className='files'>
-                          {ticket.files.length > 0 &&
-                            ticket.files.map((file) => (
-                              <button
-                                key={file.id}
-                                // href='localhost:8000/api/download_image'
-                                className='btn'
-                                download
-                                onClick={() =>
-                                  downloadFile(ticket.ticket_id, file)
-                                }
-                              >
-                                {file.name}
-                              </button>
-                            ))}
-                        </div>
-                      </div>
+                      <TicketBodyAttach
+                        ticket_id={ticket.ticket_id}
+                        images={ticket.images}
+                        files={ticket.files}
+                      />
+                      {role === "student" && ticket.status === "open" && (
+                        <TicketAddFiles ticket_id={ticket.ticket_id} />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -149,12 +126,6 @@ const TicketBody = ({
 
               {/* Ticket Log */}
               <div className='col'>
-                {ticket.suggested_solution.solution && (
-                  <TicketSolution
-                    solution={ticket.suggested_solution.solution}
-                    lang={ticket.suggested_solution.lang}
-                  />
-                )}
                 <TicketTimeline
                   ticket_id={ticket.ticket_id}
                   status={ticket.status}
@@ -192,6 +163,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getTicketById,
   getTicketTimeline,
-  downloadImage,
-  downloadFile,
 })(TicketBody);

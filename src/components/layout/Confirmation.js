@@ -30,7 +30,7 @@ const Confirmation = ({ confirmation, removeConfirmation }) => {
                   removeConfirmation();
                 }}
               >
-                Cancel
+                {confirmation.cancelMessage}
               </button>
               <button
                 type='button'

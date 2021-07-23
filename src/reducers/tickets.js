@@ -13,6 +13,7 @@ import {
   CLEAR_TICKET_TIMELINE,
   GET_READ_ONLY_TICKETS,
   CREATE_TICKET_COMMENT_REPLY,
+  ADD_FILES,
 } from "../actions/types";
 
 const initialState = {
@@ -129,6 +130,16 @@ function ticketReducer(state = initialState, action) {
             }
             return comment;
           }),
+        },
+        loading: false,
+      };
+    case ADD_FILES:
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          images: payload.images,
+          files: payload.files,
         },
         loading: false,
       };

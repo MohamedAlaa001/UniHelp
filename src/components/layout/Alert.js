@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import AlertProgressBar from "./AlertProgressBar";
+// import AlertProgressBar from "./AlertProgressBar";
 import { removeAlert } from "../../actions/alert";
 
 const Alert = ({ alerts, removeAlert }) => {

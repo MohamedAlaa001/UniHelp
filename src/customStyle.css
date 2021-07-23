@@ -455,3 +455,30 @@ a:hover {
   background-color: var(--color-danger);
   border-color: var(--color-danger);
 }
+
+/* Attachments  */
+.ticket-attachments {
+  margin-left: 1.5rem;
+}
+
+.ticket-attachments .attachment-download {
+  display: flex;
+  align-items: center;
+}
+
+.ticket-attachments .attachment-download:hover {
+  color: var(--color-primary);
+}
+
+form .icon-close {
+  cursor: pointer !important;
+}
+
+form .icon-close:hover {
+  color: var(--color-dark);
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed !important;
+}
