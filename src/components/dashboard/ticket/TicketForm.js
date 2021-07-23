@@ -218,7 +218,7 @@ const TicketForm = ({
                   <div className='title'>
                     <strong className='d-block'>Select Category</strong>
                   </div>
-                  <div className='block-body'>
+                  <div className='block-body' style={{textTransform: 'capitalize'}}>
                     {categories.map((category) => (
                       <TicketFormInput
                         key={category.category_id}

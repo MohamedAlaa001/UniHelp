@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getTicketById, getTicketTimeline } from "../../../actions/tickets";
+import {
+  getTicketById,
+  getTicketTimeline,
+  downloadImage,
+  downloadFile,
+} from "../../../actions/tickets";
 
 import Spinner from "../../layout/Spinner";
 import Alert from "../../layout/Alert";
@@ -20,6 +25,8 @@ const TicketBody = ({
   getTicketById,
   tickets: { ticket, loading },
   user: { role },
+  downloadImage,
+  downloadFile,
 }) => {
   useEffect(() => {
     // clearTicket();
@@ -93,6 +100,39 @@ const TicketBody = ({
                         </small>
                       </div>
                       <p className='d-block ticket-content'>{ticket.content}</p>
+                      <div className='d-flex'>
+                        <div className='images'>
+                          {ticket.images.length > 0 &&
+                            ticket.images.map((image) => (
+                              <button
+                                key={image.id}
+                                className='btn'
+                                download
+                                onClick={() =>
+                                  downloadImage(ticket.ticket_id, image)
+                                }
+                              >
+                                {image.name}
+                              </button>
+                            ))}
+                        </div>
+                        <div className='files'>
+                          {ticket.files.length > 0 &&
+                            ticket.files.map((file) => (
+                              <button
+                                key={file.id}
+                                // href='localhost:8000/api/download_image'
+                                className='btn'
+                                download
+                                onClick={() =>
+                                  downloadFile(ticket.ticket_id, file)
+                                }
+                              >
+                                {file.name}
+                              </button>
+                            ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -135,4 +175,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getTicketById,
   getTicketTimeline,
+  downloadImage,
+  downloadFile,
 })(TicketBody);

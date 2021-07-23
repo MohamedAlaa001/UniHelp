@@ -127,13 +127,13 @@ export const createTicket =
           dispatch(
             setConfirmation(
               "Ticket Category Suggestion",
-              `We suggest to change the ticket category to ${suggested_category}, Would you like to?`,
+              `We suggest to change the ticket category to ${suggested_category.title}, Would you like to?`,
               (value) => {
                 value
                   ? dispatch(
                       updateTicketCategory(
                         ticket_id,
-                        suggested_category,
+                        suggested_category.category_id,
                         history
                       )
                     )
@@ -284,4 +284,46 @@ export const clearTicketTimeline = () => (dispatch) => {
   dispatch({
     type: CLEAR_TICKET_TIMELINE,
   });
+};
+
+export const downloadImage = (ticket_id, image) => async () => {
+  const body = { ticket_id, image_id: image.id };
+  console.log(body);
+  try {
+    const res = await api.post("/download_image", body, {
+      responseType: "blob",
+    });
+    console.log(res.data);
+    const downloadUrl = window.URL.createObjectURL(new Blob([res.data]));
+    const images = document.querySelector(".images");
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", image.name);
+    images.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const downloadFile = (ticket_id, file) => async () => {
+  const body = { ticket_id, file_id: file.id };
+  console.log(body);
+  try {
+    const res = await api.post("/download_file", body, {
+      responseType: "blob",
+    });
+    console.log(res.data);
+    const downloadUrl = window.URL.createObjectURL(new Blob([res.data]));
+    const images = document.querySelector(".images");
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.setAttribute("download", file.name);
+    images.appendChild(link);
+    link.click();
+    link.remove();
+  } catch (err) {
+    console.log(err);
+  }
 };
