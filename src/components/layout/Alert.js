@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import AlertProgressBar from './AlertProgressBar';
-import { removeAlert } from '../../actions/alert';
+import AlertProgressBar from "./AlertProgressBar";
+import { removeAlert } from "../../actions/alert";
 
 const Alert = ({ alerts, removeAlert }) => {
   return (
@@ -27,7 +27,7 @@ const Alert = ({ alerts, removeAlert }) => {
       ) : (
         <div key={alert.id} className={`alert alert-${alert.alertType}`}>
           {alert.msg}
-          <AlertProgressBar timeout={alert.timeout} />
+          {/* <AlertProgressBar timeout={alert.timeout} /> */}
         </div>
       )
     )

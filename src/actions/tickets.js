@@ -103,6 +103,7 @@ export const changeTicketStatus = (ticket_id, status) => async (dispatch) => {
       type: CHANGE_STATUS,
       payload: { ...res.data, ticket_id },
     });
+    dispatch(getTicketTimeline(ticket_id));
   } catch (err) {
     console.log(err.response.data.error);
   }

@@ -13,6 +13,7 @@ import {
 import Spinner from "../../layout/Spinner";
 import Alert from "../../layout/Alert";
 
+import TicketSolution from "./TicketSolution";
 import TicketControl from "./TicketControl";
 import TicketStatus from "./TicketStatus";
 import TicketTimeline from "./TicketTimeline";
@@ -99,8 +100,16 @@ const TicketBody = ({
                           {ticket.timestamp}
                         </small>
                       </div>
-                      <p className='d-block ticket-content'>{ticket.content}</p>
-                      <div className='d-flex'>
+                      <p
+                        className={
+                          ticket.lang === "ar"
+                            ? "d-block ticket-content ar"
+                            : "d-block ticket-content"
+                        }
+                      >
+                        {ticket.content}
+                      </p>
+                      <div className='d-flex ticket-attachments'>
                         <div className='images'>
                           {ticket.images.length > 0 &&
                             ticket.images.map((image) => (
@@ -139,10 +148,18 @@ const TicketBody = ({
               </div>
 
               {/* Ticket Log */}
-              <TicketTimeline
-                ticket_id={ticket.ticket_id}
-                status={ticket.status}
-              />
+              <div className='col'>
+                {ticket.suggested_solution.solution && (
+                  <TicketSolution
+                    solution={ticket.suggested_solution.solution}
+                    lang={ticket.suggested_solution.lang}
+                  />
+                )}
+                <TicketTimeline
+                  ticket_id={ticket.ticket_id}
+                  status={ticket.status}
+                />
+              </div>
             </div>
 
             {/* Comments Form */}

@@ -1502,6 +1502,9 @@ section .tickets-block a.ticket {
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
+.tickets-block .ticket .ticket-content.ar {
+  text-align: right;
+}
 
 /* Ticket Timeline */
 .timeline {
@@ -1791,6 +1794,25 @@ section .tickets-block a.ticket {
   .confirmation-window .confirmation-footer {
     justify-content: center;
   }
+}
+
+/* offCanvas */
+.offcanvas {
+  background-color: rgba(45, 48, 53, 0.95);
+  height: 35vh;
+  padding: 0 0.75rem;
+}
+
+.offcanvas .btn-close {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%238a8d93'%3E%3Cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+}
+
+.offcanvas .offcanvas-body {
+  margin-bottom: 1rem;
+}
+
+.offcanvas .offcanvas-body.ar {
+  text-align: right;
 }
 
 /* Modal */

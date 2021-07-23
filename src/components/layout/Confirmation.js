@@ -1,12 +1,14 @@
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import FireFly from "./FireFly";
 
-import { removeConfirmation } from '../../actions/confirmation';
+import { removeConfirmation } from "../../actions/confirmation";
 
 const Confirmation = ({ confirmation, removeConfirmation }) => {
   return (
     confirmation !== null && (
       <div className='confirmation-window-wrapper'>
+        <FireFly />
         <div className='confirmation-window'>
           <div className='top-bar'></div>
           <div className='confirmation-inner'>
