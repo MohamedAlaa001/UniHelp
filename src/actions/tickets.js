@@ -289,12 +289,10 @@ export const clearTicketTimeline = () => (dispatch) => {
 
 export const downloadImage = (ticket_id, image) => async () => {
   const body = { ticket_id, image_id: image.id };
-  console.log(body);
   try {
     const res = await api.post("/download_image", body, {
       responseType: "blob",
     });
-    console.log(res.data);
     const downloadUrl = window.URL.createObjectURL(new Blob([res.data]));
     const images = document.querySelector(".images");
     const link = document.createElement("a");
@@ -310,14 +308,12 @@ export const downloadImage = (ticket_id, image) => async () => {
 
 export const downloadFile = (ticket_id, file) => async () => {
   const body = { ticket_id, file_id: file.id };
-  console.log(body);
   try {
     const res = await api.post("/download_file", body, {
       responseType: "blob",
     });
-    console.log(res.data);
     const downloadUrl = window.URL.createObjectURL(new Blob([res.data]));
-    const images = document.querySelector(".images");
+    const images = document.querySelector(".files");
     const link = document.createElement("a");
     link.href = downloadUrl;
     link.setAttribute("download", file.name);
