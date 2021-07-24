@@ -9,7 +9,7 @@ const TicketBodyAttach = ({
   downloadImage,
   downloadFile,
 }) => {
-  return (
+  return images.length || files.length ? (
     <div>
       <div className='title'>
         <strong className='icon-attachment'></strong>
@@ -50,7 +50,7 @@ const TicketBodyAttach = ({
         </ul>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default connect(null, {

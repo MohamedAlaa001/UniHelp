@@ -11,6 +11,7 @@ class AddUser extends Component {
   state = {
     formData: {
       username: { value: "", label: "Username" },
+      email: { value: "", label: "Email" },
       password: { value: "", label: "Password" },
       confirmPassword: { value: "", label: "Confirm Password" },
       first_name: { value: "", label: "First Name" },
@@ -78,6 +79,7 @@ class AddUser extends Component {
 
     const user = {
       username: this.state.formData.username["value"],
+      email: this.state.formData.email["value"],
       password: this.state.formData.password["value"],
       first_name: this.state.formData.first_name["value"],
       last_name: this.state.formData.last_name["value"],
@@ -90,6 +92,7 @@ class AddUser extends Component {
     this.setState({
       formData: {
         username: { value: "", label: "Username" },
+        email: { value: "", label: "Email" },
         password: { value: "", label: "Password" },
         confirmPassword: { value: "", label: "Confirm Password" },
         first_name: { value: "", label: "First Name" },

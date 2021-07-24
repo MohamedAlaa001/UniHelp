@@ -14,6 +14,9 @@ import {
   GET_READ_ONLY_TICKETS,
   CREATE_TICKET_COMMENT_REPLY,
   ADD_FILES,
+  ADD_CATEGORY,
+  EDIT_CATEGORY,
+  DELETE_CATEGORY,
 } from "../actions/types";
 
 const initialState = {
@@ -206,7 +209,14 @@ function ticketReducer(state = initialState, action) {
           }),
         ],
       };
-
+    case DELETE_CATEGORY:
+    case ADD_CATEGORY:
+    case EDIT_CATEGORY:
+      return {
+        ...state,
+        categories: payload,
+        loading: false,
+      };
     default:
       return state;
   }

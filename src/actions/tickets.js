@@ -15,6 +15,9 @@ import {
   GET_READ_ONLY_TICKETS,
   CREATE_TICKET_COMMENT_REPLY,
   ADD_FILES,
+  ADD_CATEGORY,
+  EDIT_CATEGORY,
+  DELETE_CATEGORY,
 } from "./types";
 import { setConfirmation } from "./confirmation";
 
@@ -92,6 +95,53 @@ export const getCategories = () => async (dispatch) => {
     });
   } catch (err) {
     console.log(err.response.data.error);
+  }
+};
+
+// add Category
+export const addCategory = (title) => async (dispatch) => {
+  const body = { title };
+  try {
+    const res = await api.post("/get_category", body);
+
+    dispatch({
+      type: ADD_CATEGORY,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response);
+  }
+};
+
+// edit Category title
+export const editCategory = (category_id, title) => async (dispatch) => {
+  const body = { category_id, title };
+  try {
+    const res = await api.put("/get_category", body);
+
+    dispatch({
+      type: EDIT_CATEGORY,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response);
+  }
+};
+
+// delete category
+export const deleteCategory = (category_id) => async (dispatch) => {
+  const body = { category_id };
+  try {
+    const res = await api.delete("/get_category", {
+      data: body,
+    });
+
+    dispatch({
+      type: DELETE_CATEGORY,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.response);
   }
 };
 

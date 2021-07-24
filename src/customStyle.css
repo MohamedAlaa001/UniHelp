@@ -482,3 +482,43 @@ button:disabled,
 input:disabled {
   cursor: not-allowed !important;
 }
+
+/* Categories */
+/* .categories-block .categories {
+} */
+
+.categories-block .category-item {
+  width: 49%;
+  margin: 0 auto 0.5rem auto;
+  padding: 1rem;
+
+  background-color: var(--color-dark-block);
+  border-radius: 0.5rem;
+  text-transform: capitalize;
+}
+
+.categories-block .category-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categories-block .category-item .icon-delete {
+  margin-left: 0.75rem;
+}
+
+.categories-block .category-item .icon-edit:hover {
+  color: var(--color-success);
+  cursor: pointer;
+}
+
+.categories-block .category-item .icon-delete:hover {
+  color: var(--color-danger);
+  cursor: pointer;
+}
+
+@media (max-width: 575px) {
+  .categories-block .category-item {
+    width: 100%;
+  }
+}

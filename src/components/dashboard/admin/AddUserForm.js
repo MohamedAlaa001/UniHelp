@@ -3,8 +3,15 @@ import FormInput from "../../layout/FormInput";
 import AddUserRole from "./AddUserRole";
 
 const AddUserForm = ({ formData, onTextChange, onRoleChange, createUser }) => {
-  const { username, password, confirmPassword, first_name, last_name, role } =
-    formData;
+  const {
+    username,
+    email,
+    password,
+    confirmPassword,
+    first_name,
+    last_name,
+    role,
+  } = formData;
 
   return (
     <form autoComplete='off' onSubmit={createUser}>
@@ -14,19 +21,26 @@ const AddUserForm = ({ formData, onTextChange, onRoleChange, createUser }) => {
             name='username'
             value={username.value}
             onChange={onTextChange}
-            label='Username'
+            label={username.label}
+          />
+          <FormInput
+            type='email'
+            name='email'
+            value={email.value}
+            onChange={onTextChange}
+            label={email.label}
           />
           <FormInput
             name='password'
             value={password.value}
             onChange={onTextChange}
-            label='Password'
+            label={password.label}
           />
           <FormInput
             name='confirmPassword'
             value={confirmPassword.value}
             onChange={onTextChange}
-            label='Confirm Password'
+            label={confirmPassword.label}
           />
         </div>
         <div className='col-sm-12 col-md-6'>
@@ -34,13 +48,13 @@ const AddUserForm = ({ formData, onTextChange, onRoleChange, createUser }) => {
             name='first_name'
             value={first_name.value}
             onChange={onTextChange}
-            label='First Name'
+            label={first_name.label}
           />
           <FormInput
             name='last_name'
             value={last_name.value}
             onChange={onTextChange}
-            label='Last Name'
+            label={last_name.label}
           />
           <AddUserRole role={role} onRoleChange={onRoleChange} />
         </div>

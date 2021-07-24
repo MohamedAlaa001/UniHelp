@@ -27,6 +27,7 @@ import Panel from "./dashboard/panel/Panel";
 // Settings
 import Perms from "./dashboard/settings/Perms";
 import AddUser from "./dashboard/admin/AddUser";
+import ManageCategory from "./dashboard/admin/ManageCategory";
 import ChangePassword from "./dashboard/settings/ChangePassword";
 
 import NotFound from "./pages/NotFound";
@@ -98,6 +99,12 @@ const Dashboard = ({
               path='/addUser'
               role={["admin"]}
               component={AddUser}
+            />
+            <PrivateRoute
+              exact
+              path='/categories'
+              role={["admin"]}
+              component={ManageCategory}
             />
             <PrivateRoute
               exact
