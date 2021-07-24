@@ -143,12 +143,12 @@ const Landing = ({ isAuthenticated, login, setAlert }) => {
                         Login
                       </button>
                     </form>
-                    <p className=''>
+                    {/* <p className=''>
                       Forgot Password?
-                      {/* <a href='#' className=' ms-2'>
+                      <a href='#' className=' ms-2'>
                         Submit Ticket
-                      </a> */}
-                    </p>
+                      </a>
+                    </p> */}
                   </div>
                 </div>
               </div>
