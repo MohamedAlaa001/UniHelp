@@ -8,6 +8,7 @@ const ChangePasswordForm = ({ formData, onChangeHandler, changePassword }) => {
       <div className='row'>
         <div className='col-sm-12 col-md-4'>
           <FormInput
+            type='password'
             name='currentPassword'
             value={currentPassword}
             onChange={onChangeHandler}
@@ -16,6 +17,7 @@ const ChangePasswordForm = ({ formData, onChangeHandler, changePassword }) => {
         </div>
         <div className='col-sm-12 col-md-4'>
           <FormInput
+            type='password'
             name='newPassword'
             value={newPassword}
             onChange={onChangeHandler}
@@ -24,6 +26,7 @@ const ChangePasswordForm = ({ formData, onChangeHandler, changePassword }) => {
         </div>
         <div className='col-sm-12 col-md-4'>
           <FormInput
+            type='password'
             name='confirmNewPassword'
             value={confirmNewPassword}
             onChange={onChangeHandler}

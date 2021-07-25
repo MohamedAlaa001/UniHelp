@@ -31,12 +31,14 @@ const AddUserForm = ({ formData, onTextChange, onRoleChange, createUser }) => {
             label={email.label}
           />
           <FormInput
+            type='password'
             name='password'
             value={password.value}
             onChange={onTextChange}
             label={password.label}
           />
           <FormInput
+            type='password'
             name='confirmPassword'
             value={confirmPassword.value}
             onChange={onTextChange}
