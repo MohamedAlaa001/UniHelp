@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\django_sw"
+		},
+		{
+			"path": "..\\..\\..\\cs50\\mail"
+		},
+		{
+			"path": "..\\..\\..\\djangoxmssql"
+		},
+		{
+			"path": "..\\..\\..\\cs50\\commerce"
+		},
+		{
+			"path": "..\\.."
+		}
+	],
+	"settings": {}
+}
